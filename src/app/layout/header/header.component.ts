@@ -11,5 +11,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
+  open: boolean;
+
+
+  items = [
+    { value: 'Logout', icon: 'kanban' }
+  ];
+
+  onToggle($event: Event) {
+    $event.stopPropagation();
+    this.open = true;
+  }
+
 
 }

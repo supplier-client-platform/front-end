@@ -11,15 +11,31 @@
     Supplier Portal
     <ul class="slds-global-header__item slds-grid slds-grid--vertical-align-center">
       <li class="slds-dropdown-trigger slds-dropdown-trigger--click slds-m-left--x-small">
-        <button class="slds-button" title="person name" aria-haspopup="true">
+        <span nglDropdown [(open)]="open">
+        <button class="slds-button" title="person name" aria-haspopup="true" nglDropdownTrigger>
           
           <span class="slds-avatar slds-avatar--circle slds-avatar--medium">
             <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png" alt="person name" />
           </span>
-          <span class="app-user-title">
-           Nilesh Jayanandana  
-          </span>
+ 
+               
+     
+    <span class="slds-truncate app-user-title"> Nilesh Jayanandana  </span>
+        <ngl-icon icon="down" type="default" size="x-small"></ngl-icon>
+      
+
         </button>
+        <div class="slds-dropdown slds-dropdown--right">
+          <ul class="dropdown__list" role="menu">
+            <li class="slds-dropdown__item" *ngFor="let item of items;">
+              <a role="menuitem" nglDropdownItem (click)="selected = item.value; open = false;">
+                <p class="slds-truncate">{{item.value}}</p>
+                <ngl-icon [icon]="item.icon" type="default" size="x-small"></ngl-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+        </span>
       </li>
     </ul>
   </div>
