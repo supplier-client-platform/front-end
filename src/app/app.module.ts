@@ -4,6 +4,8 @@ import { FormsModule }   from '@angular/forms';
 
 import {NglModule, provideNglConfig} from 'ng-lightning/ng-lightning';
 import { AppComponent }  from './app.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -12,7 +14,9 @@ import { AppComponent }  from './app.component';
     NglModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    SidebarComponent
   ],
   providers: [provideNglConfig({'svgPath': './icons'})],
   bootstrap: [AppComponent]

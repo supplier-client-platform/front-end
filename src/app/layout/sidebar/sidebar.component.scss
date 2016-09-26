@@ -1,0 +1,33 @@
+aside{
+    background-color:#FFFFFF; 
+}
+
+.slds-is-active{
+    border-right-color: #d8dde6;
+}
+
+.app-user-title{
+    font-size: 1rem;
+    color: #757575;
+    letter-spacing: 0.5px;
+    
+    padding-top:0cm;
+}
+.app-user-subtitle{
+  
+    color: #9E9E9E;
+}
+
+.app-user-avatar{
+     padding-top:1rem;
+     img{
+        max-height: 5rem;
+        width:auto;
+     }
+}
+
+hr{
+    margin-top:1rem;
+    margin-bottom: 0cm;
+    color: #757575;
+}
