@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
 
   items = [
-    { value: 'Logout', icon: 'kanban' }
+    { value: 'Logout', icon: 'power' }
   ];
 
   onToggle($event: Event) {

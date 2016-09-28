@@ -12,7 +12,7 @@
     <ul class="slds-global-header__item slds-grid slds-grid--vertical-align-center">
       <li class="slds-dropdown-trigger slds-dropdown-trigger--click slds-m-left--x-small">
         <span nglDropdown [(open)]="open">
-        <button class="slds-button" title="person name" aria-haspopup="true" nglDropdownTrigger>
+        <a class="slds-button" title="person name" aria-haspopup="true" nglDropdownTrigger>
           
           <span class="slds-avatar slds-avatar--circle slds-avatar--medium">
             <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png" alt="person name" />
@@ -24,7 +24,7 @@
         <ngl-icon icon="down" type="default" size="x-small"></ngl-icon>
       
 
-        </button>
+        </a>
         <div class="slds-dropdown slds-dropdown--right">
           <ul class="dropdown__list" role="menu">
             <li class="slds-dropdown__item" *ngFor="let item of items;">

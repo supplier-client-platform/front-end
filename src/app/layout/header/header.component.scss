@@ -13,6 +13,12 @@
     min-width: 10rem;
 }
 
-button{
+a{
     border: none;
+     &:hover {
+        background-color:#EEEEEE;
+    };
+    &:active{
+        background-color:#EEEEEE;
+    }
 }
