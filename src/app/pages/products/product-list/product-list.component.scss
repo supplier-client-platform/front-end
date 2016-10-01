@@ -1,0 +1,50 @@
+h1{
+
+    font-size: 1.3rem;
+    color: #757575;
+    letter-spacing: 0.5px;
+}
+
+.main-content{
+    background-color:#FFFFFF; 
+    padding:2rem;
+}
+
+.product-list{
+
+     padding:2rem;
+     display: flex;
+
+}
+.product-item{
+    
+    min-height:18rem;
+    margin: 1rem;
+}
+
+.box {                        
+background-size:cover;
+border-radius:5px;
+overflow:hidden;
+padding:0cm;
+border-bottom : 1px solid #757575;
+&:hover .overlay{
+opacity:1;
+}
+&:hover{
+    border-bottom: 5px solid gray;
+}
+}
+
+.overlay    { 
+   
+            padding : 0cm;
+            background:rgba(0,0,0,.75);
+               text-align:center;
+              
+               min-height: 10rem;
+              
+               opacity:0;
+               transition: opacity .25s ease-in;}
+
+

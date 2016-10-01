@@ -22,3 +22,15 @@ a{
         background-color:#EEEEEE;
     }
 }
+
+.header-main-title{
+
+    font-size: 1.3rem;
+    color: #757575;
+    letter-spacing: 0.5px;
+}
+
+.app-header{
+     position: fixed;
+    z-index: 1000;
+}

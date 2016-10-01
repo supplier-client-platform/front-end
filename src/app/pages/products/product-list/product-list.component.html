@@ -1,0 +1,66 @@
+<div class="main-content">
+  <h1>
+    Product List</h1>
+  <hr style="margin-top:0.3rem;margin-bottom:0cm">
+  <div class=" ">
+    <div class="slds-grid slds-wrap slds-grid--pull-padded">
+
+      <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--1-of-12">
+
+      </div>
+      <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--6-of-12">
+        <ngl-form-element [nglFormError]="hasError ? error : null" class="slds-m-top--small">
+          <input type="text" placeholder="Search Products" [required]="required">
+        </ngl-form-element>
+      </div>
+
+
+
+      <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
+        <ngl-form-element [nglFormError]="hasError ? error : null" class="slds-m-top--small">
+          <select class="slds-select" [required]="required">
+    <option>All Brands</option>
+    <option>Option Two</option>
+    <option>Option Three</option>
+  </select>
+        </ngl-form-element>
+      </div>
+      <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
+        <ngl-form-element [nglFormError]="hasError ? error : null" class="slds-m-top--small">
+          <select class="slds-select" [required]="required">
+    <option>Published & Draft</option>
+    <option>Option Two</option>
+    <option>Option Three</option>
+  </select>
+        </ngl-form-element>
+      </div>
+      <!--<div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--1-of-12">
+      <button type="button" nglButton="neutral">Search</button>
+    </div>-->
+    </div>
+  </div>
+</div>
+
+
+
+<!-- product list -->
+
+<div class="product-list slds-grid slds-wrap slds-grid--pull-padded">
+
+  <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
+    <div class="overlay">
+      <h1>Hello</h1>
+    </div>
+  </div>
+
+
+  <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
+    <div class="overlay">
+      <h1>Hello</h1>
+    </div>
+
+Hello product
+
+  </div>
+
+</div>

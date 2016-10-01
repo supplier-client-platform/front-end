@@ -16,7 +16,8 @@
       "mobile": false,
       "styles": [
         "styles.css",
-        "../node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.css"
+        "../node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.css",
+        "animate.css"
       ],
       "scripts": [],
       "environments": {
