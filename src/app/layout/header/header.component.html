@@ -1,42 +1,51 @@
-<header class=" app-header slds-global-header_container">
-  <a href="javascript:void(0);" class="slds-assistive-text slds-assistive-text--focus">Skip to Navigation</a><a href="javascript:void(0);"
-    class="slds-assistive-text slds-assistive-text--focus">Skip to Main Content</a>
-  <div class="slds-global-header slds-grid slds-grid--align-spread">
-    <div class="slds-global-header__item">
-      <div class="slds-global-header__logo">
-        <img src="assets/images/logo.png" alt="" />
-      </div>
+<!--header start-->
+<header class="header fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle hr-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="fa fa-bars"></span>
+              </button>
+
+    <!--logo start-->
+    <!--logo start-->
+    <div class="brand " style="background-color:#fff">
+
+      <img class="img-responsive" src="assets/images/logo.png" alt="">
 
     </div>
-    <div class="header-main-title"> Supplier Portal Admin </div>
-    <ul class="slds-global-header__item slds-grid slds-grid--vertical-align-center">
-      <li class="slds-dropdown-trigger slds-dropdown-trigger--click slds-m-left--x-small">
-        <span nglDropdown [(open)]="open">
-        <a class="slds-button" title="person name" aria-haspopup="true" nglDropdownTrigger>
-          
-          <span class="slds-avatar slds-avatar--circle slds-avatar--medium">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png" alt="person name" />
-          </span>
+    <!--logo end-->
+    <!--logo end-->
+    <div class="horizontal-menu navbar-collapse collapse ">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Dashboard</a></li>
+        <li class="active"><a href="#">Components</a></li>
+        
+        <li><a href="basic_table.html">Sample Menu</a></li>
+        
+      </ul>
 
-
-
-        <span class="slds-truncate app-user-title"> Nilesh Jayanandana  </span>
-        <ngl-icon icon="down" type="default" size="x-small"></ngl-icon>
-
-
-        </a>
-        <div class="slds-dropdown slds-dropdown--right">
-          <ul class="dropdown__list" role="menu">
-            <li class="slds-dropdown__item" *ngFor="let item of items;">
-              <a role="menuitem" [routerLink]="[item.url]" nglDropdownItem>
-                <p class="slds-truncate">{{item.value}}</p>
-                <ngl-icon [icon]="item.icon" type="default" size="x-small"></ngl-icon>
-              </a>
-            </li>
+    </div>
+    <div class="top-nav hr-top-nav">
+      <ul class="nav pull-right top-menu">
+        
+        <!-- user login dropdown start-->
+        <li class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <img alt="" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png">
+            <span class="username">John Doe</span>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu extended logout">
+            <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+            <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+            <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
+            <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
           </ul>
-        </div>
-        </span>
-      </li>
-    </ul>
+        </li>
+        <!-- user login dropdown end -->
+      </ul>
+    </div>
+
   </div>
+
 </header>
+<!--header end-->

@@ -16,8 +16,12 @@
       "mobile": false,
       "styles": [
         "styles.css",
-        "../node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.css",
-        "animate.css"
+        "./assets/css/bootswatch.css",
+        "./assets/css/animate.css",
+        "./assets/theme/css/bootstrap-reset.css",
+        "./assets/theme/css/style.css",
+        "./assets/theme/css/style-responsive.css",
+        "./assets/font-awesome/css/font-awesome.css"
       ],
       "scripts": [],
       "environments": {

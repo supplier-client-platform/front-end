@@ -1,32 +1,4 @@
- .app-body{
-     background-color: #F5F5F5;
-     height: 100%;
- }
- .side-bar-main{
-       padding-left:0rem;
-       background-color: 1px solid red;
- }
- .main-content{
-     margin-top:4rem;
- }
-@mixin centerer {
-  position: absolute;
-  top: 50%;
-  transform: translate(10%, 5%);
-  width:100%;
+ .fill { 
+    min-height: 100vh;
+    
 }
- .parent {
-  position: fixed;
-   width:12rem;
-}
-.child {
-  @include centerer;
-} 
-
-.page-content{
-   margin-top:2%;
-   padding-left:2%;
-   padding-right:2%;
-   
-}
- 

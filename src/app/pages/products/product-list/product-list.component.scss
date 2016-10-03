@@ -20,6 +20,12 @@ h1{
     
     min-height:18rem;
     margin: 1rem;
+    &:hover .overlay{
+opacity:1;
+}
+&:hover{
+    border-bottom: 5px solid gray;
+}
 }
 
 .box {                        
@@ -28,12 +34,7 @@ border-radius:5px;
 overflow:hidden;
 padding:0cm;
 border-bottom : 1px solid #757575;
-&:hover .overlay{
-opacity:1;
-}
-&:hover{
-    border-bottom: 5px solid gray;
-}
+
 }
 
 .overlay    { 
@@ -45,6 +46,32 @@ opacity:1;
                min-height: 10rem;
               
                opacity:0;
-               transition: opacity .25s ease-in;}
+               transition: opacity .25s ease-in;
+ }
+
+.add-product{
+    border: 2px  solid #757575;
+     min-height:18rem;
+    margin: 1rem;
+    &:hover .add-overlay{
+opacity:1;
+}
+&:hover{
+    border-bottom: 5px solid gray;
+}
+}
+
+.add-overlay{
+
+    padding : 0cm;
+    background:rgba(0,0,0,.75);
+    text-align:center;
+              
+   
+               min-height: 18rem;
+              
+    opacity:0;
+    transition: opacity .25s ease-in;
+}
 
 
