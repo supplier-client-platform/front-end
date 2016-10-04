@@ -1,154 +1,126 @@
-<div class="main-content">
-  <h1>
-    Product List</h1>
-  <hr style="margin-top:0.3rem;margin-bottom:0cm">
-  <div class=" ">
-    <div class="slds-grid slds-wrap slds-grid--pull-padded">
+<div class="row">
+  <div class="col-sm-12">
+    <section class="panel">
+      <header class="panel-heading">
+        Search Products
 
-      <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--1-of-12">
+      </header>
+      <div class="panel-body">
+        <form class="fomr-horizontal">
+          <div class="form-group">
 
+            <div class="col-sm-4">
+              <label class="control-label">Search Products</label>
+              <input class="form-control input-sm" placeholder="Enter keywords here...">
+            </div>
+            <div class="col-sm-3">
+              <label class="control-label">Product Status</label>
+              <select class="form-control input-sm">
+                 <option>All</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label class="control-label">Product Brand</label>
+              <select class="form-control input-sm">
+                <option>All</option>
+              </select>
+            </div>
+            <div class="col-sm-2">
+              <label class="control-label">&nbsp;</label>
+              <button type="button" class="btn btn-sm btn-info btn-block"> Search</button>
+            </div>
+          </div>
+
+
+        </form>
       </div>
-      <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--6-of-12">
-        <ngl-form-element [nglFormError]="hasError ? error : null" class="slds-m-top--small">
-          <input type="text" placeholder="Search Products" [required]="required">
-        </ngl-form-element>
-      </div>
-
-
-
-      <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-        <ngl-form-element [nglFormError]="hasError ? error : null" class="slds-m-top--small">
-          <select class="slds-select" [required]="required">
-    <option>All Brands</option>
-    <option>Option Two</option>
-    <option>Option Three</option>
-  </select>
-        </ngl-form-element>
-      </div>
-      <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-        <ngl-form-element [nglFormError]="hasError ? error : null" class="slds-m-top--small">
-          <select class="slds-select" [required]="required">
-    <option>Published & Draft</option>
-    <option>Option Two</option>
-    <option>Option Three</option>
-  </select>
-        </ngl-form-element>
-      </div>
-      <!--<div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--1-of-12">
-      <button type="button" nglButton="neutral">Search</button>
-    </div>-->
-    </div>
+    </section>
   </div>
 </div>
 
+<div class="row">
+  <div class="">
+    <section class="">
+      <!-- list start -->
+      <div class="col-md-3 ">
+        <section class="panel">
+          <div class="panel-body">
+             <div class="row">
+              <div class="hovereffect">
+                <img src="http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg" class="img-container img-responsive">
+                <div class="overlay">
+                  <h2>Actions</h2>
+                  <a class="info" href="#">Edit</a>
+                  <a class="info" href="#">Remove</a>
+                </div>
+              </div>
+            </div>
 
 
-<!-- product list -->
+            <h4 class="product-item">Chicken Whooper BK KING SIZE LOL
+              <br>
+              <small>Happy Meal Brand</small>
+            </h4>
+            <h5><small class="text-uppercase">Price Rs.</small> 120.00 </h5>
+            <span class="label pull-right label-success">Published</span>
+          </div>
 
-<div class="product-list slds-grid slds-wrap slds-grid--pull-padded">
+
+        </section>
+      </div>
+      <div class="col-md-3   ">
+        <section class="panel  ">
+          <div class="panel-body">
+
+            <div class="row">
+              <div class="hovereffect">
+                <img src="http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg" class="img-container img-responsive">
+                <div class="overlay">
+                  <h2>Actions</h2>
+                  <a class="info" href="#">Edit</a>
+                  <a class="info" href="#">Remove</a>
+                </div>
+              </div>
+            </div>
+
+            <h4 class="product-item">Chicken Whooper
+              <br>
+              <small>Happy Meal Brand</small>
+            </h4>
+            <h5><small class="text-uppercase">Price Rs.</small> 120.00 </h5>
+            <span class="label pull-right label-danger">Draft</span>
+          </div>
 
 
-  <div class="box add-product   slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="add-overlay">
-      <h1>Add Product</h1>
-    </div>
+        </section>
+      </div>
+
+      <div class="col-md-3 ">
+        <section class="panel    ">
+          <div class="panel-body">
+              <div class="row">
+              <div class="hovereffect">
+                <img src="http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg" class="img-container img-responsive">
+                <div class="overlay">
+                  <h2>Actions</h2>
+                  <a class="info" href="#">Edit</a>
+                  <a class="info" href="#">Remove</a>
+                </div>
+              </div>
+            </div>
+            <h4 class="product-item">Chicken Whooper
+              <br>
+              <small>Happy Meal Brand</small>
+            </h4>
+            <h5><small class="text-uppercase">Price Rs.</small> 120.00 </h5>
+            <span class="label pull-right label-success">Published</span>
+          </div>
+
+
+        </section>
+      </div>
+
+      <!-- list end -->
+    </section>
   </div>
-
-  <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-  </div>
-
-
-  <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-  <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-    <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-    <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-    <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-    <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-    <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-    <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-    <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
-    <div class="box product-item slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--2-of-6 slds-large-size--2-of-12">
-    <div class="overlay">
-      <h1>Hello</h1>
-    </div>
-
-    Hello product
-
-  </div>
-
 </div>
