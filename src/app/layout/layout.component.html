@@ -39,31 +39,33 @@
   <!--header start-->
   <app-header> </app-header>
   <!--header end-->
-  <!--sidebar start-->
-  <!--<app-sidebar></app-sidebar>-->
-  <!--sidebar end-->
+
   <!--main content start-->
   <section id="main-content">
     <section class="wrapper">
-      <!-- page start-->
+
 
       <div class="row">
+        <!--sidebar start-->
         <div class="col-sm-2">
           <app-sidebar></app-sidebar>
         </div>
-        <div class="col-sm-10">
+        <!--sidebar end-->
 
-          
+        <!-- page start-->
+        <div class="col-sm-10">
           <!--breadcrumbs start -->
-          <ul class="breadcrumb">
+          <!--<ul class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#">Library</a></li>
             <li class="active">Data</li>
-          </ul>
+          </ul>-->
           <!--breadcrumbs end -->
+          <router-outlet></router-outlet>
         </div>
+        <!-- page end-->
       </div>
-      <!-- page end-->
+
     </section>
   </section>
   <!--main content end-->

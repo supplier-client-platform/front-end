@@ -16,30 +16,25 @@
     <!--logo end-->
     <div class="horizontal-menu navbar-collapse collapse ">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Dashboard</a></li>
-        <li class="active"><a href="#">Components</a></li>
-        
-        <li><a href="basic_table.html">Sample Menu</a></li>
-        
+        <li class="" [routerLinkActive]="['active']"><a [routerLink]="['/','product-list']">Products</a></li>
+        <li  ><a href="#">Orders</a></li>
+        <li ><a href="#">Calendar</a></li>
+        <li><a href="">Reports</a></li>
+
       </ul>
 
     </div>
     <div class="top-nav hr-top-nav">
       <ul class="nav pull-right top-menu">
-        
+
         <!-- user login dropdown start-->
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <img alt="" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png">
             <span class="username">John Doe</span>
-            <b class="caret"></b>
+
           </a>
-          <ul class="dropdown-menu extended logout">
-            <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-            <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-            <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
-            <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
-          </ul>
+
         </li>
         <!-- user login dropdown end -->
       </ul>
