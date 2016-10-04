@@ -18,6 +18,7 @@
         "styles.css",
         "./assets/css/bootswatch.css",
         "./assets/css/animate.css",
+        "./assets/css/main.css",
         "./assets/theme/css/bootstrap-reset.css",
         "./assets/theme/css/style.css",
         "./assets/theme/css/style-responsive.css",
