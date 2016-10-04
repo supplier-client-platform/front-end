@@ -16,7 +16,7 @@ const APP_ROUTES: Routes = [
     },
     {
         path: "",
-        redirectTo: "/product-list",
+        redirectTo: "/product/list",
         pathMatch: "full"
     }
 ];

@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <ul class="breadcrumb">
+      <li><a [routerLink]="['/','product','list']" class="text-uppercase">  Products</a></li>
+      <li class="text-uppercase"> Add</li>
+
+    </ul>
+
+    <div class="row">
+
+      <div class="col-md-5">
+
+        <section class="panel">
+          <header class="panel-heading">
+            Product Image
+          </header>
+          <div class="panel-body">
+
+
+            <div class="upload-container">
+              <dropzone class="upload-area" [config]="config" [placeholder]="'Click here to upload an image'" (uploadDone)="onUploadDone($event)"
+                (uploadError)="onUploadError($event)"></dropzone>
+            </div>
+
+            <div class="uploads-container">
+              <div *ngFor="let image of uploadedImages">
+                <img [src]="uploadedImages.url" class="preview-image">
+              </div>
+            </div>
+
+
+          </div>
+        </section>
+      </div>
+
+      <div class="col-md-7">
+
+
+        <section class="panel">
+          <header class="panel-heading">
+            Product Details - Main
+          </header>
+          <div class="panel-body">
+            <form class="form-horizontal bucket-form" method="get">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <label class="   ">Product Name</label>
+                  <input type="text" class="form-control input-sm">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <label class="  ">Brand Name</label>
+                  <select name="" class="form-control input-sm">
+                    <option value="0">N/A</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <label class="  ">Price</label>
+                  <input type="text" class="form-control input-sm">
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+
+
+        </section>
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <section class="panel">
+          <header class="panel-heading">
+            Product Details - Additional
+          </header>
+          <div class="panel-body">
+
+            <div class="form-group">
+              <div class="col-sm-4">
+                <label class="   ">Label</label>
+                <input type="text" class="form-control input-sm">
+              </div>
+              <div class="col-sm-8">
+                <label class="   ">Description</label>
+                <input type="text" class="form-control input-sm">
+              </div>
+            </div>
+
+          </div>
+
+
+
+        </section>
+
+
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+          <button class="btn btn-default btn-block"> Reset</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-warning btn-block"> Save as Draft</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary btn-block"> Save and Publish</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>

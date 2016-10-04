@@ -11,12 +11,17 @@
 
   <style>
     .vertical-center {
-      min-height: 100%;
-      /* Fallback for browsers do NOT support vh unit */
-      min-height: 100vh;
-      /* These two lines are counted as one :-)       */
-      display: flex;
-      align-items: center;
+      height: 18rem;
+    }
+    
+    .vertical {
+      margin-left: 40rem;
+      margin-top: 20rem;
+    }
+    
+    .dz-message {
+      height: 23.5rem !important;
+      line-height: 16;
     }
   </style>
 </head>
@@ -24,7 +29,13 @@
 <body class=" full-width">
 
   <app-root>
-    Loading
+    <div class="vertical">
+      <img src="assets/images/logo.png" class="  vertical-center">
+
+      <div class="progress progress-striped active  progress-bar-info" style="width: 58%">
+        <div class="progress-bar" style="width: 100%"></div>
+      </div>
+    </div>
   </app-root>
 
   <!--<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>

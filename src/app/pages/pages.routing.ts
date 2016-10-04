@@ -1,10 +1,17 @@
 import { Routes, RouterModule } from "@angular/router";
-import { ProductListComponent } from "./products/product-list/product-list.component";
+import { OrderListComponent } from "./orders/order-list/order-list.component";
+import { PRODUCT_ROUTES } from "./products/products.routing";
+
 
 
 export const USER_ROUTES: Routes = [
+
     {
-        path: "product-list",
-        component: ProductListComponent
+        path: "product",
+        children: PRODUCT_ROUTES
+    },
+    {
+        path: "order",
+        component: OrderListComponent
     }
 ];
