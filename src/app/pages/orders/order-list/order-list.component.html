@@ -7,178 +7,165 @@
 
 		</ul>
 
+		<div class="row">
+			<div class="col-sm-7">
+				<section class="panel">
+					<div class="panel-body">
+						<tabset>
+							<tab>
+								<template tabHeading style="margin-bottom:1rem">Pending</template>
 
-		<section class="panel">
-			<!--<header class="panel-heading tab-bg-dark-navy-blue tab-right ">
-				<ul class="nav nav-tabs pull-right">
-					<li>
-						<input style="height:5.7rem" placeholder="Enter Order Id to Search" type="text" class="form-control ">
-					</li>
-					<li class="">
-						<a data-toggle="tab">
-							Search
-						</a>
-					</li>
-				</ul>
-				<ul class="nav nav-tabs pull-left">
-					<li class="">
-						<a data-toggle="tab">
-							Pending
-						</a>
-					</li>
-					<li class="">
-						<a data-toggle="tab">
-							Accepted
-						</a>
-					</li>
-				</ul>
-			</header>-->
-			<div class="panel-body">
-
-				<tabset>
-					<tab>
-						<template tabHeading style="margin-bottom:1rem">Pending</template>
-
-						<div class="row search-item form-group">
-							<label class="col-md-offset-7 col-md-1 search-label control-label">Search</label>
-							<div class="col-md-4 ">
-								<input type="text" placeholder="Search Pending Orders" class="form-control input-sm">
-							</div>
-						</div>
-
-						<table style="margin-top:1rem" class="table table-hover table-condensed table-striped table    general-table">
-							<thead>
-								<tr>
-									<td>Order#</td>
-									<td>Date</td>
-									<td>Customer Name</td>
-									<td>Contact No</td>
-									<td>Email</td>
-									<td>Status</td>
-									<td>Total</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>11123</td>
-									<td>2015-10-10</td>
-									<td>Nilesh Jayanandana</td>
-									<td>0715910955</td>
-									<td>nilesh.jayanandana@yahoo.com</td>
-									<td>Pending</td>
-									<td>Rs.1500.00</td>
-									<td><button class="btn btn-xs btn-block btn-default" (click)="lgModal.show()">Peek</button></td>
-									<td><button class="btn btn-xs btn-block btn-success">View</button></td>
-								</tr>
-								<tr>
-									<td>11123</td>
-									<td>2015-10-10</td>
-									<td>Nilesh Jayanandana</td>
-									<td>0715910955</td>
-									<td>nilesh.jayanandana@yahoo.com</td>
-									<td>Pending</td>
-									<td>Rs.1500.00</td>
-									<td><button class="btn btn-xs btn-block btn-default" (click)="lgModal.show()">Peek</button></td>
-									<td><button class="btn btn-xs btn-block btn-success">View</button></td>
-								</tr>
-							</tbody>
-						</table>
-
-					</tab>
-					<tab>
-						<template tabHeading>Accepted / Not Collected</template>
-
-
-						<div class="row search-item form-group">
-							<label class="col-md-offset-7 col-md-1 search-label control-label">Search</label>
-							<div class="col-md-4 ">
-								<input type="text" placeholder="Search Pending Orders" class="form-control input-sm">
-							</div>
-						</div>
-
-						<table style="margin-top:1rem" class="table table-hover table-condensed table-striped table    general-table">
-							<thead>
-								<tr>
-									<td>Order#</td>
-									<td>Date</td>
-									<td>Customer Name</td>
-									<td>Contact No</td>
-									<td>Email</td>
-									<td>Status</td>
-									<td>Total</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>11123</td>
-									<td>2015-10-10</td>
-									<td>Nilesh Jayanandana</td>
-									<td>0715910955</td>
-									<td>nilesh.jayanandana@yahoo.com</td>
-									<td>Pending</td>
-									<td>Rs.1500.00</td>
-									<td><button class="btn btn-xs btn-block btn-default" (click)="tempModal.show()">Actions</button></td>
-									<td><button class="btn btn-xs btn-block btn-success">View</button></td>
-								</tr>
-								<tr>
-									<td>11123</td>
-									<td>2015-10-10</td>
-									<td>Nilesh Jayanandana</td>
-									<td>0715910955</td>
-									<td>nilesh.jayanandana@yahoo.com</td>
-									<td>Pending</td>
-									<td>Rs.1500.00</td>
-									<td><button class="btn btn-xs btn-block btn-default" (click)="tempModal.show()">Actions</button></td>
-									<td><button class="btn btn-xs btn-block btn-success">View</button></td>
-								</tr>
-							</tbody>
-						</table>
-
-
-					</tab>
-
-					<tab>
-						<template tabHeading>Search Order</template>
-
-						<div class="  search-item ">
-							<form class="form-horizontal">
-								<div class="form-group">
-
-									<div class="col-md-3">
-										<label class="acontrol-label">Order ID</label>
-										<input type="text" placeholder="Order Id" class="form-control input-sm">
-									</div>
-
+								<div class="row search-item form-group">
+									<label class="col-md-offset-7 col-md-1 search-label control-label">Search</label>
 									<div class="col-md-4 ">
-										<label class="acontrol-label">Customer Name</label>
-										<input type="text" placeholder="Customer Name" class="form-control input-sm">
-									</div>
-
-									<div class="col-md-3">
-										<label class="acontrol-label">Date</label>
-										<input type="text" placeholder="Date" class="form-control input-sm">
-									</div>
-
-
-
-									<div class="col-md-2">
-										<label class="acontrol-label">&nbsp;</label>
-										<button class="btn btn-sm btn-block btn-primary">Search</button>
+										<input type="text" placeholder="Search Pending Orders" class="form-control input-sm">
 									</div>
 								</div>
-							</form>
-						</div>
+
+								<table style="margin-top:1rem" class="table table-hover table-condensed table-striped table    general-table">
+									<thead>
+										<tr>
+											<td>Order#</td>
+											<td>Date</td>
+											<td>Customer Name</td>
+
+											<td>Status</td>
+											<td>Total</td>
+											<td></td>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="info">
+											<td>11123</td>
+											<td>2015-10-10</td>
+											<td>Nilesh Jayanandana</td>
+
+											<td>Pending</td>
+											<td>Rs.1500.00</td>
+											<td><button class="btn btn-xs btn-block btn-warning">Select</button></td>
+
+										</tr>
+										<tr>
+											<td>11123</td>
+											<td>2015-10-10</td>
+											<td>Nilesh Jayanandana</td>
+
+											<td>Pending</td>
+											<td>Rs.1500.00</td>
+											<td><button class="btn btn-xs btn-block btn-warning">Select</button></td>
+										</tr>
+									</tbody>
+								</table>
+
+							</tab>
+							<tab>
+								<template tabHeading>Accepted / Not Collected</template>
 
 
-					</tab>
-				</tabset>
+
+							</tab>
+
+							<tab>
+								<template tabHeading>Search Order</template>
+
+								<div class="  search-item ">
+									<form class="form-horizontal">
+										<div class="form-group">
+
+											<div class="col-md-4">
+												<label class="acontrol-label">Order ID</label>
+												<input type="text" placeholder="Order Id" class="form-control input-sm">
+											</div>
+
+											<div class="col-md-6 ">
+												<label class="acontrol-label">Customer Name</label>
+												<input type="text" placeholder="Customer Name" class="form-control input-sm">
+											</div>
+
+
+
+
+											<div class="col-md-2">
+												<label class="acontrol-label">&nbsp;</label>
+												<button class="btn btn-sm btn-block btn-primary">Search</button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+
+							</tab>
+						</tabset>
+
+					</div>
+				</section>
 
 			</div>
-		</section>
+
+			<div class="col-sm-5">
+				<section class="panel panel-primary">
+					<header _ngcontent-ktc-12="" class="panel-heading  "  >
+						Order - #11124
+					</header>
+					<div class="panel-body">
+						<table class="table table-hover table-condensed table-striped table  general-table">
+							<tr>
+								<td><button class="btn btn-sm btn-block btn-success">Accept</button></td>
+								<td><button class="btn  btn-sm btn-block btn-danger">Reject</button></td>
+							</tr>
+						</table>
+						<table class="table table-hover table-condensed table-striped table  general-table">
+							<tr>
+								<td>2016-10-10 12:00:12</td>
+							</tr>
+							<tr>
+								<td>Pending</td>
+							</tr>
+							<tr>
+								<td>Nilesh Jayanandana</td>
+							</tr>
+							<tr>
+								<td>0715910955</td>
+							</tr>
+							<tr>
+								<td>nilesh.jayanandana@yahoo.com</td>
+							</tr>
+						</table>
+
+						<table class="table table-hover table-condensed table-striped table  general-table">
+							<thead>
+								<tr class="warning">
+									<td>Product Name</td>
+									<td>Brand</td>
+									<td>Price</td>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Cheese Whooper</td>
+									<td>Happy Meal</td>
+									<td>Rs 550.00 x2</td>
+
+								</tr>
+								<tr>
+									<td>Cheese Whooper</td>
+									<td>Happy Meal</td>
+									<td>Rs 550.00 x2</td>
+								</tr>
+								<tr class="info">
+									<td colspan="2">TOTAL AMOUNT</td>
+									<td>Rs. 3000.00</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+			</div>
+		</div>
+
 
 
 	</div>
@@ -241,60 +228,3 @@
 	</div>
 </div>
 <!-- End Modal -->
-
-<!-- Temp modal for Demo Rishan contact me before editing this -->
-<div bsModal #tempModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" (click)="tempModal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-				<h4 class="modal-title">Order #12345 Items</h4>
-			</div>
-			<div class="modal-body">
-
-
-				<table class="table table-hover table-condensed table-striped table  general-table">
-					<thead>
-						<tr>
-							<td>Product Name</td>
-							<td>Brand</td>
-							<td>Quantity</td>
-							<td>Unit Price</td>
-							<td>Total</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Cheese Whooper</td>
-							<td>Happy Meal</td>
-							<td>x2</td>
-							<td>Rs 550.00</td>
-							<td>Rs 550.00 x 2</td>
-						</tr>
-						<tr>
-							<td>Cheese Whooper</td>
-							<td>Happy Meal</td>
-							<td>x2</td>
-							<td>Rs 550.00</td>
-							<td>Rs 550.00</td>
-						</tr>
-						<tr>
-							<td colspan="4">TOTAL AMOUNT</td>
-							<td>Rs. 3000.00</td>
-						</tr>
-					</tbody>
-				</table>
-
-			</div>
-			<div class="modal-footer">
-
-
-				<button type="button" class="btn btn-sm btn-success">Save As Collected</button>
-				<button type="button" class="btn btn-sm btn-danger">Cancel Order and Discard</button>
-				<button type="button" class="btn  btn-sm btn-default" (click)="tempModal.hide()">Close</button>
-			</div>
-		</div>
-	</div>
-</div>

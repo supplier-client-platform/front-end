@@ -22,6 +22,7 @@ import { ProductAddComponent } from './pages/products/product-add/product-add.co
 import { ProductEditComponent } from './pages/products/product-edit/product-edit.component';
 import { OrderListComponent } from './pages/orders/order-list/order-list.component';
 import { LoadingComponent } from './layout/loading/loading.component';
+import { BussinessComponent } from './pages/bussiness/bussiness/bussiness.component';
 
 
 
@@ -55,7 +56,8 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     ProductAddComponent,
     ProductEditComponent,
     OrderListComponent,
-    LoadingComponent
+    LoadingComponent,
+    BussinessComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
