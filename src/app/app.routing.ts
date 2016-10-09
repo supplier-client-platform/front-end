@@ -1,23 +1,28 @@
-import { Routes, RouterModule } from "@angular/router";
-import { LayoutComponent } from "./layout/layout.component";
-import { LoginComponent } from "./login/login.component";
-import { USER_ROUTES } from "./pages/pages.routing";
+import { Routes, RouterModule } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { USER_ROUTES } from './pages/pages.routing';
 
 
 const APP_ROUTES: Routes = [
     {
-        path: "",
+        path: '',
         component: LayoutComponent,
         children: USER_ROUTES
     },
     {
-        path: "login",
+        path: 'login',
         component: LoginComponent
     },
     {
-        path: "",
-        redirectTo: "/product/list",
-        pathMatch: "full"
+        path: 'register',
+        component: RegisterComponent
+    },
+    {
+        path: '',
+        redirectTo: '/product/list',
+        pathMatch: 'full'
     }
 ];
 

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+
+// 3rd party components
 import { DropzoneModule, DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
 // import { NglModule, provideNglConfig } from 'ng-lightning/ng-lightning';
 import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
@@ -27,6 +29,7 @@ import { LoadingComponent } from './layout/loading/loading.component';
 import { BussinessComponent } from './pages/bussiness/bussiness/bussiness.component';
 import { OrderListTableComponent } from './pages/orders/order-list/order-list-table/order-list-table.component';
 import { OrderInfoComponent } from './pages/orders/order-list/order-info/order-info.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -63,7 +66,8 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     LoadingComponent,
     BussinessComponent,
     OrderListTableComponent,
-    OrderInfoComponent
+    OrderInfoComponent,
+    RegisterComponent
   ],
   providers: [
     ProductService,
