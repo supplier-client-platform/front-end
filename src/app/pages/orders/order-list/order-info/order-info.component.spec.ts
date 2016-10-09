@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { OrderListComponent } from './order-list.component';
+import { OrderInfoComponent } from './order-info.component';
 
-describe('Component: OrderList', () => {
+describe('Component: OrderInfo', () => {
   it('should create an instance', () => {
-    let component = new OrderListComponent();
+    let component = new OrderInfoComponent();
     expect(component).toBeTruthy();
   });
 });

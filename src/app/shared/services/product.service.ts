@@ -6,10 +6,10 @@ import 'rxjs/Rx'; // observables
 @Injectable()
 export class ProductService {
 
+
   constructor(private http: Http) { }
 
   getProducts(params) {
-    console.log(params);
     return this.http.get(URL_CONST.URL_PREFIX + 'products?' + params)
       .map((response: Response) => response.json());
   }

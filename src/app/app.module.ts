@@ -10,6 +10,7 @@ import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 // providers
 import { ProductService } from './shared/services/product.service';
 import { CommonService } from './shared/services/common.service';
+import { OrderService } from './shared/services/order.service';
 
 // custom components
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { OrderListComponent } from './pages/orders/order-list/order-list.compone
 import { LoadingComponent } from './layout/loading/loading.component';
 import { BussinessComponent } from './pages/bussiness/bussiness/bussiness.component';
 import { OrderListTableComponent } from './pages/orders/order-list/order-list-table/order-list-table.component';
+import { OrderInfoComponent } from './pages/orders/order-list/order-info/order-info.component';
 
 
 
@@ -60,11 +62,13 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     OrderListComponent,
     LoadingComponent,
     BussinessComponent,
-    OrderListTableComponent
+    OrderListTableComponent,
+    OrderInfoComponent
   ],
   providers: [
     ProductService,
-    CommonService
+    CommonService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

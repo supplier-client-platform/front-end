@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../../shared/services/order.service';
+import { CommonService } from '../../../shared/services/common.service';
 
 @Component({
   selector: 'app-order-list',
@@ -7,32 +9,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderListComponent implements OnInit {
 
-  constructor() { }
+  pendingOrders: Array<any> = [];
+  completedOrders: Array<any> = [];
+  searchOrders: Array<any> = [];
+  orderInfo: Object;
+
+
+  constructor(private commonService: CommonService, private orderService: OrderService) { }
 
   ngOnInit() {
+    this.getCompletedOrders();
+    this.getPendingOrders();
   }
-  
-  public oneAtATime: boolean = true;
-  public items: Array<string> = ['Item 1', 'Item 2', 'Item 3'];
 
-  public status: Object = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
+  getPendingOrders() {
+    let param = this.commonService.addQueryParams({ status: 'Pending' }, []);
+    this.orderService.getOrders(param)
+      .subscribe((data: any) => {
+        this.pendingOrders = data.data;
+      });
+  }
 
-  public groups: Array<any> = [
-    {
-      title: 'Dynamic Group Header - 1',
-      content: 'Dynamic Group Body - 1'
-    },
-    {
-      title: 'Dynamic Group Header - 2',
-      content: 'Dynamic Group Body - 2'
-    }
-  ];
+  getCompletedOrders() {
+    let param = this.commonService.addQueryParams({ status: 'Completed' }, []);
+    this.orderService.getOrders(param)
+      .subscribe((data: any) => {
+        this.completedOrders = data.data;
+      });
+  }
+  getSearchOrders(id, query) {
+    let param = this.commonService.addQueryParams({ orderId: id, query: query }, ['']);
+    this.orderService.getOrders(param)
+      .subscribe((data: any) => {
+        this.searchOrders = data.data;
+      });
+  }
 
-  public addItem(): void {
-    this.items.push(`Items ${this.items.length + 1}`);
+  loadOrder(order) {
+    this.orderInfo = order;
   }
 
 }

@@ -1,3 +1,36 @@
-<p>
-  order-list-table works!
-</p>
+<div *ngIf="hideSearch" style="margin-top:1rem;">
+  <div class="row search-item form-group">
+    <label class="col-md-offset-7 col-md-1 search-label control-label">Search</label>
+    <div class="col-md-4 ">
+      <input type="text" placeholder="Search Pending Orders" class="form-control input-sm">
+    </div>
+  </div>
+</div>
+
+
+<table style="margin-top:1rem" class="table table-hover table-condensed table-striped table    general-table">
+  <thead>
+    <tr>
+      <td>Order#</td>
+      <td>Date</td>
+      <td>Customer Name</td>
+
+      <td>Status</td>
+      <td>Total</td>
+      <td></td>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr [ngClass]="{info:activateRowClass(order.id)}" *ngFor="let order of orders">
+      <td>{{order.id}}</td>
+      <td>{{order.date}}</td>
+      <td>{{order.customer_name}}</td>
+
+      <td> <span class="label " [ngClass]="{'label-info': order.status=='Accepted','label-success':order.status=='Completed','label-danger':order.status=='Pending'}">{{order.status}}</span></td>
+      <td>Rs. {{order.total | number : '1.2-2'}}</td>
+      <td><button (click)="activateRow(order)" class="btn btn-xs btn-block btn-warning">Select</button></td>
+
+    </tr>
+  </tbody>
+</table>
