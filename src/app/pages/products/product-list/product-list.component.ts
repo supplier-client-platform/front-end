@@ -88,7 +88,4 @@ export class ProductListComponent implements OnInit {
     };
     this.getProducts('New');
   }
-
-
-
 }

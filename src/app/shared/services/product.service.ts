@@ -14,6 +14,12 @@ export class ProductService {
       .map((response: Response) => response.json());
   }
 
+  getProduct(params) {
+    console.log(params);
+    return this.http.get(URL_CONST.URL_PREFIX + 'product/' + params)
+      .map((response: Response) => response.json());
+  }
+
   getBrands() {
     return this.http.get(URL_CONST.URL_PREFIX + 'product/brands')
       .map((response: Response) => response.json());
