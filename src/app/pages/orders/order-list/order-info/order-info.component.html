@@ -2,15 +2,15 @@
   <div class="panel-body">
     <div class="alert alert-dismissible alert-info">
 
-      <strong>Heads up!</strong> This <a  class="alert-link">No order is selected</a>, but it's not super important.
+      <strong>Heads up!</strong> This <a class="alert-link">No order is selected</a>, but it's not super important.
     </div>
   </div>
 </section>
-<section class="panel panel-primary" *ngIf="orderInfo">
+<section class="panel panel-info "   *ngIf="orderInfo">
   <header _ngcontent-ktc-12="" class="panel-heading  ">
-    Order - #{{orderInfo.id}}
+    Order - #{{orderInfo.id}}  
   </header>
-  <div class="panel-body">
+  <div class="panel-body animated fadeIn" *ngIf="orderInfo && animationStatus">
     <table class="table table-hover table-condensed table-striped table  general-table">
       <tr *ngIf="orderInfo.status=='Pending'">
         <td><button class="btn btn-sm btn-block btn-success">Accept</button></td>
@@ -20,9 +20,9 @@
         <td><button class="btn btn-sm btn-block btn-success">Collect</button></td>
         <td><button class="btn  btn-sm btn-block btn-danger">Cancel</button></td>
       </tr>
-       <tr class="success" *ngIf="orderInfo.status=='Completed'">
+      <tr class="success" *ngIf="orderInfo.status=='Completed'">
         <td>Completed Order</td>
-         
+
       </tr>
     </table>
     <table class="table table-hover table-condensed table-striped table  general-table">

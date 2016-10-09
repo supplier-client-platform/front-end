@@ -11,21 +11,26 @@ export class OrderInfoComponent implements OnInit, OnChanges {
   @Input() orderInfo: any = {};
   orderProducts: Array<any> = [];
 
+  animationStatus: boolean = false;
+
   constructor(private commonService: CommonService, private orderService: OrderService) { }
 
   ngOnInit() {
   }
 
   ngOnChanges() {
+    this.animationStatus = false;
     if (this.orderInfo) {
       this.getOrderProducts();
     }
+
   }
 
   getOrderProducts() {
     this.orderService.getOrderItems(this.orderInfo.id)
       .subscribe((data: any) => {
         this.orderProducts = data.data;
+        this.animationStatus = true;
       });
   }
 
