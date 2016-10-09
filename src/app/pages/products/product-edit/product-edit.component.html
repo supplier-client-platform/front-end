@@ -85,35 +85,24 @@
           </header>
           <div class="panel-body">
             
-            <div class="form-group">
-               <div class="col-sm-4">
-                <label class=" ">Template</label>
-                <select class="form-control input-sm" id="select">
-                  <option  value="0">New Template</option>
-                </select>
-              </div>
+            <div class="row form-group">
 
-               <div class="col-sm-8">
-                <label class="   ">Name</label>
-                <input type="text" class="form-control input-sm">
-              </div>
             </div>
 
-            <div class="form-group">
-              <div class="col-sm-4">
-                <label class="   ">Label</label>
-                <input type="text" class="form-control input-sm">
-              </div>
-              <div class="col-sm-8">
-                <label class="   ">Description</label>
-                <input type="text" class="form-control input-sm">
+            <div class="row">
+                <div class="form-group" *ngFor="let customAttribs of product.customAttribs">
+                  <div class="col-sm-4">
+                    <h5 style="margin-left:2rem;">{{customAttribs.key}}</h5>
+                  </div>
+                  <div class="col-sm-8">
+                    <label class="   ">Description</label>
+                    <input type="text" class="form-control input-sm">
+                  </div>
               </div>
             </div>
+            
 
           </div>
-
-
-
         </section>
 
 

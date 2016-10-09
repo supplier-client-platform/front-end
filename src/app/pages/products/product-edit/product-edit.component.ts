@@ -15,12 +15,11 @@ export class ProductEditComponent implements OnInit {
   brandList: Array<Object>;
   templateList: Object;
 
-  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private commonService: CommonService) { 
+  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
     this.id = activatedRoute.snapshot.params['id'];
     this.enableBrandOptions = false;
     this.product = {};
     this.brandList = [];
-    this.templateList = {};
   }
 
   ngOnInit() {
@@ -32,7 +31,6 @@ export class ProductEditComponent implements OnInit {
     this.productService.getProduct(this.id)
       .subscribe((data: any) => {
         this.product = data;
-        console.log(this.product);
       });
   }
 

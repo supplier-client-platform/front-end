@@ -25,6 +25,8 @@ export class ProductService {
       .map((response: Response) => response.json());
   }
 
-
-
+  getTemplates() {
+     return this.http.get(URL_CONST.URL_PREFIX + 'template/all')
+      .map((response: Response) => response.json());
+  }
 }
