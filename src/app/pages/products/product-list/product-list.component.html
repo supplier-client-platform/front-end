@@ -8,7 +8,7 @@
     </ul>
     <section class="panel animated fadeIn">
       <div class="panel-body">
-        <form class="fomr-horizontal" #searchForm="ngForm" (ngSubmit)="search(search.value,status.value,brand.value)">
+        <form class="fomr-horizontal" #searchForm="ngForm" (ngSubmit)="searchProduct(search.value,status.value,brand.value)">
           <div class="form-group ">
 
             <div class="col-sm-4 ">
@@ -32,7 +32,7 @@
             </div>
             <div class="col-sm-2 ">
               <label class="control-label ">&nbsp;</label>
-              <button type="button" (click)="searchProduct(search.value,status.value,brand.value)" class="btn btn-sm btn-info btn-block "> Search</button>
+              <button type="submit"  class="btn btn-sm btn-info btn-block "> Search</button>
             </div>
           </div>
 
@@ -92,6 +92,10 @@
       <!-- list end -->
     </section>
 
-    <button class="btn btn-sm btn-info" (click)="loadMore()">LoadMore</button>
+    <div class="row">
+      <div class="col-md-offset-5 col-md-2" [hidden]="!showLoadMore">
+        <button  class="btn btn-block btn-primary" (click)="loadMore()">LoadMore</button>
+      </div>
+    </div>
   </div>
 </div>

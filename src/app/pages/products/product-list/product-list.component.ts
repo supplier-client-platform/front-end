@@ -25,6 +25,8 @@ export class ProductListComponent implements OnInit {
   itemsPerPage: number = 11;
   pageNo: number = 1;
 
+  showLoadMore: boolean = false;
+
   obj: QueryObject = {
     query: undefined,
     status: undefined,
@@ -54,6 +56,12 @@ export class ProductListComponent implements OnInit {
           this.productList = data.data;
         } else {
           this.productList.concat(data.data);
+        }
+
+        if (data.data.length === this.itemsPerPage) {
+          this.showLoadMore = true;
+        } else {
+          this.showLoadMore = false;
         }
       });
   }
