@@ -1,0 +1,25 @@
+{
+    "data": [
+        {
+            "name": "Chicken Burger",
+            "brand": "Happy Meal Brand",
+            "price": "120",
+            "status": "Published",
+            "img": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"
+        },
+        {
+            "name": "Chicken Submarine",
+            "brand": "Happy Meal Brand",
+            "price": "120",
+            "status": "Published",
+            "img": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"
+        },
+        {
+            "name": "Chicken Nuggets",
+            "brand": "Happy Meal Brand",
+            "price": "200",
+            "status": "Draft",
+            "img": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"
+        }
+    ]
+}

@@ -6,30 +6,33 @@
       <li class="text-uppercase"><a class="current"> List</a></li>
 
     </ul>
-    <section class="panel">
+    <section class="panel animated fadeIn">
       <div class="panel-body">
-        <form class="fomr-horizontal">
-          <div class="form-group">
+        <form class="fomr-horizontal" #searchForm="ngForm" (ngSubmit)="search(search.value,status.value,brand.value)">
+          <div class="form-group ">
 
-            <div class="col-sm-4">
-              <label class="control-label">Search Products</label>
-              <input class="form-control input-sm" placeholder="Enter keywords here...">
+            <div class="col-sm-4 ">
+              <label class="control-label ">Search Products</label>
+              <input #search class="form-control input-sm " placeholder="Enter keywords here... ">
             </div>
-            <div class="col-sm-3">
-              <label class="control-label">Product Status</label>
-              <select class="form-control input-sm">
-                 <option>All</option>
+            <div class="col-sm-3 ">
+              <label class="control-label ">Product Status</label>
+              <select #status class="form-control input-sm ">
+             <option value="0">All</option>
+              <option value="Pending ">Pending</option>
+              <option value="Draft ">Draft</option>
               </select>
             </div>
-            <div class="col-sm-3">
-              <label class="control-label">Product Brand</label>
-              <select class="form-control input-sm">
-                <option>All</option>
+            <div class="col-sm-3 ">
+              <label class="control-label ">Product Brand</label>
+              <select #brand class="form-control input-sm ">
+                <option value="0">All</option>
+                <option *ngFor="let brand of brandList " [value]="brand.id ">{{brand.name}}</option>
               </select>
             </div>
-            <div class="col-sm-2">
-              <label class="control-label">&nbsp;</label>
-              <button type="button" class="btn btn-sm btn-info btn-block"> Search</button>
+            <div class="col-sm-2 ">
+              <label class="control-label ">&nbsp;</label>
+              <button type="button" (click)="searchProduct(search.value,status.value,brand.value)" class="btn btn-sm btn-info btn-block "> Search</button>
             </div>
           </div>
 
@@ -40,19 +43,19 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="">
-    <section class="">
-      <div class="col-md-3 ">
-        <section class="panel">
-          <div class="panel-body" style="padding-top:0cm;padding-bottom:0cm">
-            <div class="row">
-              <div class="hovereffect">
-                <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Create_with_plus_mail_layer_add_vector_stock.png"
-                  class="img-container-add img-responsive">
-                <div class="overlay">
+<div class="row ">
+  <div class=" ">
+    <section class=" ">
+      <div class="col-md-3 animated fadeIn ">
+        <section class="panel ">
+          <div class="panel-body " style="padding-top:0cm;padding-bottom:0cm ">
+            <div class="row ">
+              <div class="hovereffect ">
+                <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Create_with_plus_mail_layer_add_vector_stock.png "
+                  class="img-container-add img-responsive ">
+                <div class="overlay ">
                   <h2>Actions</h2>
-                  <a class="info" [routerLink]="['/','product','add']" style="margin-top:19rem">ADD PRODUCT</a>
+                  <a class="info " [routerLink]="[ '/', 'product', 'add'] " style="margin-top:19rem ">ADD PRODUCT</a>
                 </div>
               </div>
             </div>
@@ -60,133 +63,35 @@
         </section>
       </div>
       <!-- list start -->
-      <div class="col-md-3 ">
-        <section class="panel">
-          <div class="panel-body">
-            <div class="row">
-              <div class="hovereffect">
-                <img src="http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg" class="img-container img-responsive">
-                <div class="overlay">
+      <div class="col-md-3 animated fadeIn " *ngFor="let product of productList ">
+        <section class="panel ">
+          <div class="panel-body ">
+            <div class="row ">
+              <div class="hovereffect ">
+                <img [src]="product.img " class="img-container img-responsive ">
+                <div class="overlay ">
                   <h2>Actions</h2>
-                  <a class="info" [routerLink]="['/','product','edit']">Edit</a>
-                  <a class="info" href="#">Remove</a>
+                  <a class="info " [routerLink]="[ '/', 'product', 'edit'] ">Edit</a>
+                  <a class="info " href="# ">Remove</a>
                 </div>
               </div>
             </div>
 
 
-            <h4 class="product-item">Chicken Whooper BK KING SIZE LOL
+            <h4 class="product-item ">{{product.name}}
               <br>
-              <small>Happy Meal Brand</small>
+              <small>{{product.brand}}</small>
             </h4>
-            <h5><small class="text-uppercase">Price Rs.</small> 120.00 </h5>
-            <span class="label pull-right label-success">Published</span>
+            <h5><small class="text-uppercase ">Price Rs.</small> {{product.price | number : '1.2-2'}} </h5>
+            <span class="label pull-right " [ngClass]="{ 'label-success': (product.status=='Published' ),
+          'label-danger':(product.status=='Draft' ) } ">{{product.status}}</span>
           </div>
-        </section>
-      </div>
-      <div class="col-md-3   ">
-        <section class="panel  ">
-          <div class="panel-body">
-
-            <div class="row">
-              <div class="hovereffect">
-                <img src="http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg" class="img-container img-responsive">
-                <div class="overlay">
-                  <h2>Actions</h2>
-                  <a class="info" href="#">Edit</a>
-                  <a class="info" href="#">Remove</a>
-                </div>
-              </div>
-            </div>
-
-            <h4 class="product-item">Chicken Whooper
-              <br>
-              <small>Happy Meal Brand</small>
-            </h4>
-            <h5><small class="text-uppercase">Price Rs.</small> 120.00 </h5>
-            <span class="label pull-right label-danger">Draft</span>
-          </div>
-
-
-        </section>
-      </div>
-
-      <div class="col-md-3 ">
-        <section class="panel    ">
-          <div class="panel-body">
-            <div class="row">
-              <div class="hovereffect">
-                <img src="http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg" class="img-container img-responsive">
-                <div class="overlay">
-                  <h2>Actions</h2>
-                  <a class="info" href="#">Edit</a>
-                  <a class="info" href="#">Remove</a>
-                </div>
-              </div>
-            </div>
-            <h4 class="product-item">Chicken Whooper
-              <br>
-              <small>Happy Meal Brand</small>
-            </h4>
-            <h5><small class="text-uppercase">Price Rs.</small> 120.00 </h5>
-            <span class="label pull-right label-success">Published</span>
-          </div>
-
-
-        </section>
-      </div>
-
-      <div class="col-md-3 ">
-        <section class="panel    ">
-          <div class="panel-body">
-            <div class="row">
-              <div class="hovereffect">
-                <img src="http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg" class="img-container img-responsive">
-                <div class="overlay">
-                  <h2>Actions</h2>
-                  <a class="info" href="#">Edit</a>
-                  <a class="info" href="#">Remove</a>
-                </div>
-              </div>
-            </div>
-            <h4 class="product-item">Chicken Whooper
-              <br>
-              <small>Happy Meal Brand</small>
-            </h4>
-            <h5><small class="text-uppercase">Price Rs.</small> 120.00 </h5>
-            <span class="label pull-right label-success">Published</span>
-          </div>
-
-
-        </section>
-      </div>
-
-      <div class="col-md-3 ">
-        <section class="panel    ">
-          <div class="panel-body">
-            <div class="row">
-              <div class="hovereffect">
-                <img src="http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg" class="img-container img-responsive">
-                <div class="overlay">
-                  <h2>Actions</h2>
-                  <a class="info" href="#">Edit</a>
-                  <a class="info" href="#">Remove</a>
-                </div>
-              </div>
-            </div>
-            <h4 class="product-item">Chicken Whooper
-              <br>
-              <small>Happy Meal Brand</small>
-            </h4>
-            <h5><small class="text-uppercase">Price Rs.</small> 120.00 </h5>
-            <span class="label pull-right label-success">Published</span>
-          </div>
-
-
         </section>
       </div>
 
       <!-- list end -->
     </section>
+
+    <button class="btn btn-sm btn-info" (click)="loadMore()">LoadMore</button>
   </div>
 </div>

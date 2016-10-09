@@ -6,11 +6,12 @@ import { DropzoneModule, DropzoneConfigInterface } from 'angular2-dropzone-wrapp
 import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
- 
 
+// providers
+import { ProductService } from './shared/services/product.service';
+import { CommonService } from './shared/services/common.service';
 
-
-
+// custom components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
@@ -61,7 +62,10 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     BussinessComponent,
     OrderListTableComponent
   ],
-  providers: [],
+  providers: [
+    ProductService,
+    CommonService
+  ],
   bootstrap: [AppComponent]
 })
 
