@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { ProductService } from '../../../shared/services/product.service';
 import { CommonService } from '../../../shared/services/common.service';
 
@@ -14,6 +15,18 @@ export class ProductEditComponent implements OnInit {
   enableBrandOptions: Boolean;
   brandList: Array<Object>;
   templateList: Object;
+
+  src: string = '';
+  resizeOptions: ResizeOptions = {
+    resizeMaxHeight: 175,
+    resizeMaxWidth: 175
+  };
+
+  selected(imageResult: ImageResult) {
+    this.src = imageResult.resized
+      && imageResult.resized.dataURL
+      || imageResult.dataURL;
+  }
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
     this.id = activatedRoute.snapshot.params['id'];

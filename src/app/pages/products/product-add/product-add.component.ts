@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 
 
 @Component({
@@ -9,26 +9,25 @@ import { DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
 })
 export class ProductAddComponent implements OnInit {
 
+
+  src: string = '';
+  resizeOptions: ResizeOptions = {
+    resizeMaxHeight: 175,
+    resizeMaxWidth: 175
+  };
+
+  selected(imageResult: ImageResult) {
+    this.src = imageResult.resized
+      && imageResult.resized.dataURL
+      || imageResult.dataURL;
+  }
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  private config: DropzoneConfigInterface = {
-    params: "name=test.png&directory=images"
-  };
 
-  private uploadedImages = [];
-
-
-
-  onUploadDone(event: any) {
-    console.log('onUploadDone:', event);
-  }
-
-  onUploadError(event: any) {
-    console.log('onUploadError:', event);
-  }
 
 
 }

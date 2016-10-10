@@ -2,7 +2,7 @@
   <div class="col-md-12">
 
     <ul class="breadcrumbs-alt">
-      <li><a   class="text-uppercase">  Products </a></li>
+      <li><a class="text-uppercase">  Products </a></li>
       <li><a [routerLink]="['/','product','list']" class="text-uppercase">  List </a></li>
       <li class="text-uppercase"><a class="current"> Add</a></li>
     </ul>
@@ -20,15 +20,15 @@
 
 
             <div class="upload-container">
-              <dropzone class="upload-area" [config]="config" [placeholder]="'Click here to upload an image'" (uploadDone)="onUploadDone($event)"
-                (uploadError)="onUploadError($event)"></dropzone>
+              <div class="upload-container"> 
+
+                <img class="img-responsive" style="margin: 0 auto;" [src]="src" [hidden]="!src"><br>
+                <input class="form-control" type="file" image-upload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions">
+              </div>
+
             </div>
 
-            <div class="uploads-container">
-              <div *ngFor="let image of uploadedImages">
-                <img [src]="uploadedImages.url" class="preview-image">
-              </div>
-            </div>
+
 
 
           </div>

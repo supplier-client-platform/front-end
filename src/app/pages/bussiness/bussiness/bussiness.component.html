@@ -23,17 +23,19 @@
         <div class="col-md-4">
           <div class="profile-desk">
             <h1>Burger King</h1>
-            <span class="text-muted">Burger Food Chain</span>
-            <h4>burgerking@gmail.com</h4>
-            <h4>27292729/01125017603</h4>
+            <span class="text-muted" style="padding-bottom:0cm;">Burger Food Chain</span><br>
+            <span style="padding-bottom:0.5rem;"> 163B, Bandranayaka Mw, Asgiriya, Gampaha </span>
+            <h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp; burgerking@gmail.com</small></h4>
+            <h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; 27292729/01125017603</small></h4>
           </div>
         </div>
         <div class="col-md-4">
           <div class="profile-desk" style="border:none;">
-            <h1>Nilesh Jayanandana</h1>
-            <span class="text-muted">Admin</span>
-            <h4>burgerking@gmail.com</h4>
-            <h4>27292729/01125017603</h4>
+            <h1>Nilesh Jayannadana</h1>
+            <span class="text-muted" style="padding-bottom:0cm;">Admin</span><br>
+            <span style="padding-bottom:0.5rem;">  &nbsp;</span>
+            <h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;nilesh@gmail.com</small></h4>
+            <h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; 0715910955</small></h4>
           </div>
         </div>
         <div class="col-md-2">
@@ -54,16 +56,133 @@
       <div class="panel-body">
         <tabset>
           <tab>
-            <template tabHeading style="margin-bottom:1rem">Other Information</template>
-            //Map Here
+            <template tabHeading style="margin-bottom:1rem">Location Information</template>
+
+            <sebm-google-map [latitude]="lat" [longitude]="lng">
+              <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+            </sebm-google-map>
           </tab>
           <tab>
             <template tabHeading style="margin-bottom:1rem">Edit Bussiness</template>
-            //Form Here
+
+            <div>
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material">
+                    <label for="validation-details">Supplier Category</label>
+                    <select class="form-control" type="text" id="validation-category" name="validation-category">
+                                                        <option value="supermarket">Supermarket</option>
+                                                        <option value="food-chain">Food Chain</option>
+                                                    </select>
+
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material">
+                    <label>Company/Bussiness Name</label>
+                    <input class="form-control" type="text" id="validation-company-name" name="validation-company-name" placeholder="Please enter your Company/Bussiness name">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material">
+                    <label for="validation-email">Company/Bussiness Email</label>
+                    <input class="form-control" type="email" id="validation-company-email" name="validation-company-email" placeholder="Please enter your Company/Bussiness email address">
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material">
+                    <label for="validation-lastname">Company/Bussiness Contact</label>
+                    <input class="form-control" type="text" id="validation-company-contact" name="validation-company-contact" placeholder="Please enter your personal contact number">
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material">
+                    <label for="validation-lastname">Company Address</label>
+                    <input class="form-control" type="text" [(ngModel)]="address" (setAddress)="getAddress($event)" googleplace/>
+
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material">
+                    <label for="validation-lastname">Base City</label>
+                    <select class="form-control" type="text" id="validation-city" name="validation-city">
+                                                        <option value="Sri Lanka">Colombo</option>
+                                                    </select>
+
+                  </div>
+                </div>
+              </div>
+            </div>
           </tab>
           <tab>
             <template tabHeading style="margin-bottom:1rem">Edit User</template>
-            //Form Here
+            <div class="tab-pane fade fade-right push-30-t push-50 active in" id="validation-step1">
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material form-material-primary">
+                    <label for="validation-firstname">Full Name</label>
+                    <input class="form-control" type="text" id="validation-firstname" name="validation-firstname" placeholder="Please enter your firstname">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material form-material-primary">
+                    <label for="validation-lastname">NIC</label>
+                    <input class="form-control" type="text" id="validation-nic" name="validation-nic" placeholder="Please enter your NIC number">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material form-material-primary">
+                    <label for="validation-email">Personal Email</label>
+                    <input class="form-control" type="email" id="validation-email" name="validation-email" placeholder="Please enter your personal email address">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="form-material form-material-primary">
+                    <label for="validation-lastname">Personal Contact</label>
+                    <input class="form-control" type="text" id="validation-contact" name="validation-contact" placeholder="Please enter your personal contact number">
+
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
           </tab>
         </tabset>
       </div>
