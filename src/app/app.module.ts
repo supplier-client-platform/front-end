@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 // 3rd party components
-import { DropzoneModule, DropzoneConfigInterface } from 'angular2-dropzone-wrapper';
+import { DropzoneModule } from 'angular2-dropzone-wrapper';
 import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ImageUploadModule } from 'ng2-imageupload';
+import { NKDatetime } from 'ng2-datetime/ng2-datetime';
 
 // providers
 import { ProductService } from './shared/services/product.service';
@@ -33,6 +34,7 @@ import { LoadingComponent } from './layout/loading/loading.component';
 import { BussinessComponent } from './pages/bussiness/bussiness/bussiness.component';
 import { OrderListTableComponent } from './pages/orders/order-list/order-list-table/order-list-table.component';
 import { OrderInfoComponent } from './pages/orders/order-list/order-info/order-info.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 
 
@@ -74,7 +76,9 @@ const DROPZONE_CONFIG = {
     LoadingComponent,
     BussinessComponent,
     OrderListTableComponent,
-    OrderInfoComponent
+    OrderInfoComponent,
+    ReportsComponent,
+    NKDatetime
   ],
   providers: [
     ProductService,

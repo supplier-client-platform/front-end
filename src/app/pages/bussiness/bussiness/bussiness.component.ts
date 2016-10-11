@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 
 @Component({
   selector: 'app-bussiness',
@@ -11,6 +12,19 @@ export class BussinessComponent implements OnInit {
   lat: number = 51.678418;
   lng: number = 7.809007;
   public address: Object;
+
+  src: string = '';
+  resizeOptions: ResizeOptions = {
+    resizeMaxHeight: 175,
+    resizeMaxWidth: 175
+  };
+
+  selected(imageResult: ImageResult) {
+    this.src = imageResult.resized
+      && imageResult.resized.dataURL
+      || imageResult.dataURL;
+  }
+
 
   constructor() { }
 

@@ -2,58 +2,60 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>Frontend</title>
-  <base href="/">
+	<meta charset="utf-8">
+	<title>Frontend</title>
+	<base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <style>
-    .vertical-center {
-      height: 18rem;
-    }
-    
-    .vertical {
-      margin-left: 40rem;
-      margin-top: 20rem;
-    }
-    
-    .dz-message {
-      height: 23.5rem !important;
-      line-height: 16;
-    }
-    
-    .nav-tabs .nav-link {
-      margin-bottom: 1rem;
-    }
-  </style>
-   
+	<style>
+		.vertical-center {
+			height: 18rem;
+		}
+		
+		.vertical {
+			margin-left: 40rem;
+			margin-top: 20rem;
+		}
+		
+		.dz-message {
+			height: 23.5rem !important;
+			line-height: 16;
+		}
+		
+		.nav-tabs .nav-link {
+			margin-bottom: 1rem;
+		}
+	</style>
+
+	<!--<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.js"></script>-->
 </head>
 
 <body class=" full-width">
 
-  <app-root>
-    <div class="vertical">
+	<app-root>
+		<div class="vertical">
 
-      <div class="blobs">
-        <div class="blob"></div>
-        <div class="blob"></div>
-      </div>
+			<div class="blobs">
+				<div class="blob"></div>
+				<div class="blob"></div>
+			</div>
 
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-            <feBlend in2="goo" in="SourceGraphic" result="mix" />
-          </filter>
-        </defs>
-      </svg>
-    </div>
-  </app-root>
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<filter id="goo">
+						<feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+						<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+						<feBlend in2="goo" in="SourceGraphic" result="mix" />
+					</filter>
+				</defs>
+			</svg>
+		</div>
+	</app-root>
 
-  <!--<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<!--<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>-->
 </body>
