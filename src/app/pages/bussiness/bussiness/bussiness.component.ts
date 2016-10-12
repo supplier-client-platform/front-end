@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 
+
+ 
+
 @Component({
   selector: 'app-bussiness',
   templateUrl: './bussiness.component.html',

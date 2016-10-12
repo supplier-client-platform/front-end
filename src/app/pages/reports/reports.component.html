@@ -10,6 +10,28 @@
 	</div>
 </div>
 
-<div class="row animated bounceInUp">
- 
-</div>
+<section class="panel animated bounceInUp">
+	<div class="panel-body">
+		<div class="row ">
+
+			<div class="col-md-3">
+				<datetime [timepicker]="false" [(ngModel)]="date"></datetime>
+			</div>
+			<div class="col-md-3">
+				<datetime [timepicker]="false" [(ngModel)]="date"></datetime>
+			</div>
+			<div class="col-md-4">
+				<select class="form-control">
+			<option value="product-report">Product Sales Report</option>
+			<option value="product-report">Order Income  Report</option>
+		</select>
+			</div>
+			<div class="col-md-2"><button class="btn-primary btn btn-block">Generate</button></div>
+		</div>
+	</div>
+</section>
+<section class="panel animated bounceInUp">
+	<div class="panel-body">
+		Result Table
+	</div>
+</section>

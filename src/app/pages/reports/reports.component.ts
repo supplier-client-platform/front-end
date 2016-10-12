@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+// decalere jQuery for date picker
+let jQuery: any;
+
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportsComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

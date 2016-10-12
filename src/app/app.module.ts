@@ -16,7 +16,7 @@ import { ProductService } from './shared/services/product.service';
 import { CommonService } from './shared/services/common.service';
 import { OrderService } from './shared/services/order.service';
 
-// Directives
+// Directives 
 // import { GoogleplaceDirective } from '../../node_modules/angular2-google-map-auto-complete/directives/googleplace.directive';
 
 // custom components
@@ -35,12 +35,17 @@ import { BussinessComponent } from './pages/bussiness/bussiness/bussiness.compon
 import { OrderListTableComponent } from './pages/orders/order-list/order-list-table/order-list-table.component';
 import { OrderInfoComponent } from './pages/orders/order-list/order-info/order-info.component';
 import { ReportsComponent } from './pages/reports/reports.component';
+import { SearchComponent } from './pages/search/search.component';
 
 
 
 
 const GMAP_KEY = 'AIzaSyCwkmAAikH-IoW8ZTNaqz73qhddfm9rOrE';
 
+const GMAP_CONFIG = {
+  apiKey: GMAP_KEY,
+  libraries: ['places']
+};
 const DROPZONE_CONFIG = {
   server: 'https://httpbin.org/post',
   maxFilesize: 50,
@@ -57,9 +62,7 @@ const DROPZONE_CONFIG = {
     TabsModule,
     AccordionModule,
     ModalModule,
-    AgmCoreModule.forRoot({
-      apiKey: GMAP_KEY
-    }),
+    AgmCoreModule.forRoot(GMAP_CONFIG),
     ImageUploadModule,
     DropzoneModule.forRoot(DROPZONE_CONFIG),
   ],
@@ -78,7 +81,8 @@ const DROPZONE_CONFIG = {
     OrderListTableComponent,
     OrderInfoComponent,
     ReportsComponent,
-    NKDatetime
+    NKDatetime,
+    SearchComponent
   ],
   providers: [
     ProductService,

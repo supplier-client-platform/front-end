@@ -1,0 +1,64 @@
+<div class="row">
+	<div class="col-sm-12">
+
+		<ul class="breadcrumbs-alt">
+			<li><a class="text-uppercase"> Search</a></li>
+			<li class="text-uppercase"><a class="current"> Advanced</a></li>
+
+		</ul>
+
+	</div>
+</div>
+
+<section class="panel animated bounceInUp">
+	<div class="panel-body">
+
+		<div class="">
+			<div class="row " style="margin-bottom:1rem;">
+
+				<div class="col-md-3">
+					<input class="form-control" placeholder="Order Id">
+				</div>
+				<div class="col-md-5">
+					<input class="form-control" placeholder="Customer Name">
+				</div>
+				<div class="col-md-4">
+					<input class="form-control" placeholder="Customer Mobile">
+				</div>
+
+			</div>
+			<div class="row ">
+
+				<div class="col-md-3">
+					<datetime [timepicker]="false" [(ngModel)]="date"></datetime>
+				</div>
+				<div class="col-md-3">
+					<datetime [timepicker]="false" [(ngModel)]="date"></datetime>
+				</div>
+				<div class="col-md-2 col-md-offset-4">
+					<button class="btn-primary btn btn-block">Search</button>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<div class="row animated bounceInUp">
+
+	<div class="col-md-7">
+
+		<section class="panel">
+			<div class="panel-body">
+				<app-order-list-table [showSearch]="false"></app-order-list-table>
+			</div>
+		</section>
+	</div>
+	<div class="col-md-5">
+ 
+				<app-order-info [orderInfo]="orderInfo"></app-order-info>
+		 
+	</div>
+
+</div>
