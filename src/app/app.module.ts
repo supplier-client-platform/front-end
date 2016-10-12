@@ -36,6 +36,8 @@ import { OrderListTableComponent } from './pages/orders/order-list/order-list-ta
 import { OrderInfoComponent } from './pages/orders/order-list/order-info/order-info.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { SearchComponent } from './pages/search/search.component';
+import { BrandsComponent } from './pages/brands/brands.component';
+import { BrandProductsComponent } from './pages/brands/brand-products/brand-products.component';
 
 
 
@@ -82,7 +84,9 @@ const DROPZONE_CONFIG = {
     OrderInfoComponent,
     ReportsComponent,
     NKDatetime,
-    SearchComponent
+    SearchComponent,
+    BrandsComponent,
+    BrandProductsComponent
   ],
   providers: [
     ProductService,

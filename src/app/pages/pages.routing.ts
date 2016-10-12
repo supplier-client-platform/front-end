@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { BussinessComponent } from './bussiness/bussiness/bussiness.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SearchComponent } from './search/search.component';
+import { BrandsComponent } from './brands/brands.component';
 import { PRODUCT_ROUTES } from './products/products.routing';
 import { ORDER_ROUTES } from './orders/orders.routing';
 
@@ -27,5 +28,9 @@ export const USER_ROUTES: Routes = [
     {
         path: 'search',
         component: SearchComponent
+    },
+    {
+        path: 'brands',
+        component: BrandsComponent
     }
 ];
