@@ -14,7 +14,6 @@ export class ProductEditComponent implements OnInit {
   product: Object;
   enableBrandOptions: Boolean;
   brandList: Array<Object>;
-  templateList: Object;
 
   src: string = '';
   resizeOptions: ResizeOptions = {
