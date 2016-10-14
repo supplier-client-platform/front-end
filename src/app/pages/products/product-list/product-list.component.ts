@@ -10,6 +10,7 @@ interface QueryObject {
   brand: any;
   itemsPerPage: number;
   pageNo: number;
+  marketPlaceId: number;
 }
 
 @Component({
@@ -33,7 +34,8 @@ export class ProductListComponent implements OnInit {
     status: undefined,
     brand: undefined,
     itemsPerPage: this.itemsPerPage,
-    pageNo: this.pageNo
+    pageNo: this.pageNo,
+    marketPlaceId: this.supplierID
   };
 
   constructor(private productService: ProductService, private commonService: CommonService) { }
@@ -70,14 +72,12 @@ export class ProductListComponent implements OnInit {
 
   private getBrands() {
     this.productService.getBrands(this.supplierID)
-      .subscribe((data: any) => console.log(data));
+      .subscribe((data: any) => this.brandList = data);
   }
 
   private loadMore() {
     this.pageNo++;
     this.getProducts('Append');
-
-
   }
 
   private searchProduct(query, status, brand) {
@@ -86,7 +86,8 @@ export class ProductListComponent implements OnInit {
       status: status,
       brand: brand,
       itemsPerPage: this.itemsPerPage,
-      pageNo: this.pageNo
+      pageNo: this.pageNo,
+      marketPlaceId: this.supplierID
     };
     this.getProducts('New');
   }

@@ -7,114 +7,134 @@
 			<li class="text-uppercase"><a class="current"> Add</a></li>
 		</ul>
 
+		<form #productAdd="ngForm" (ngSubmit)="formSubmit(productAdd.value)" class="form-horizontal">
+			<div class="row animated bounceInUp">
 
-		<div class="row animated bounceInUp">
+				<div class="col-md-5">
 
-			<div class="col-md-5">
-
-				<section class="panel">
-					<header class="panel-heading">
-						Product Image
-					</header>
-					<div class="panel-body">
+					<section class="panel">
+						<header class="panel-heading">
+							Product Image
+						</header>
+						<div class="panel-body">
 
 
-						<div class="upload-container">
 							<div class="upload-container">
+								<div class="upload-container">
 
-								<img class="img-responsive" style="margin: 0 auto;" [src]="src" [hidden]="!src"><br>
-								<input class="form-control" type="file" image-upload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions">
+									<img class="img-responsive" style="margin: 0 auto;" [src]="src" [hidden]="!src"><br>
+									<input class="form-control" type="file" image-upload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions">
+								</div>
+
+							</div>
+
+
+
+
+						</div>
+					</section>
+				</div>
+
+				<div class="col-md-7">
+
+
+					<section class="panel">
+						<header class="panel-heading">
+							Product Details - Main
+						</header>
+						<div class="panel-body">
+						 
+								<div class="form-group" >
+									<div class="col-sm-12">
+										<label class="   ">Product Name</label>
+										<input type="text" name="productname" id="productname"  [(ngModel)]="product.name" class="form-control input-sm" required>										{{productname}}
+									 
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<label class="  ">Brand Name</label>
+										<select name="brandname" [(ngModel)]="product.brand" class="form-control input-sm" required>
+										<option  [value]='brand.id' *ngFor="let brand of brandList">{{brand.brandname}}</option>
+                  					</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-7">
+										<label class="  ">Category/Type</label>
+										<select name="catname" [(ngModel)]="product.cat" class="form-control input-sm" required>
+										<option [value]='cat.id' *ngFor="let cat of categoryList">{{cat.name}}</option>
+                  					</select>
+									</div>
+									<div class="col-sm-5">
+										<label class="  ">Price</label>
+										<input name="price" [(ngModel)]="product.price" type="text" class="form-control input-sm" required pattern="^[\d\.,]+$">
+									</div>
+								</div>
+
+							 
+						</div>
+
+					</section>
+
+				</div>
+
+			</div>
+			<div class="row animated bounceInUp">
+				<div class="col-md-12">
+					<section class="panel">
+						<header class="panel-heading">
+							Product Details - Additional
+						</header>
+						<div class="panel-body">
+							<div class="form-group row">
+								<div class="col-sm-4">
+									<label class="   ">Select Template</label>
+									<select type="text" [(ngModel)]="template.id" name="template" class="form-control input-sm">
+									<option value="0">New Template</option>
+									<option [value]="temp.id" *ngFor="let temp of templateList">{{temp.name}}</option>
+								</select>
+								</div>
+								<div class="col-sm-8" [hidden]="template.id!=0">
+									<label class="   ">Template Name</label>
+									<input [disabled]="template.id!=0" [(ngModel)]="template.name" type="text" name="template-name" class="form-control input-sm">
+								</div>
+
+							</div>
+
+
+							<div class="form-group row " *ngFor="let atrrib of customAtribs;  let i = index; ">
+								<div class="col-sm-4">
+									<label class="   ">Label</label>
+									<input type="text" (keyup)="detectChange(i)" [(ngModel)]="customAtribs[i].label" [name]="'label'+i" class="form-control input-sm">
+								</div>
+								<div class="col-sm-8">
+									<label class="   ">Description</label>
+									<input (keyup)="detectChange(i)" [(ngModel)]="customAtribs[i].value" type="text" [name]="'value'+i" class="form-control input-sm">
+								</div>
 							</div>
 
 						</div>
 
 
 
+					</section>
 
+
+					<div class="col-md-4"></div>
+					<div class="col-md-2">
+						<button (click)="reset()" type="reset" class="btn btn-default btn-block"> Reset</button>
 					</div>
-				</section>
-			</div>
-
-			<div class="col-md-7">
-
-
-				<section class="panel">
-					<header class="panel-heading">
-						Product Details - Main
-					</header>
-					<div class="panel-body">
-						<form class="form-horizontal bucket-form" method="get">
-							<div class="form-group">
-								<div class="col-sm-12">
-									<label class="   ">Product Name</label>
-									<input type="text" class="form-control input-sm">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-12">
-									<label class="  ">Brand Name</label>
-									<select name="" class="form-control input-sm">
-                    <option value="0">N/A</option>
-                  </select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div class="col-sm-12">
-									<label class="  ">Price</label>
-									<input type="text" class="form-control input-sm">
-								</div>
-							</div>
-
-						</form>
+					<div class="col-md-3">
+						<button (click)="changeStatus('Draft')" type="submit" class="btn btn-warning btn-block"> Save as Draft</button>
 					</div>
-
-
-
-				</section>
-
-			</div>
-
-		</div>
-		<div class="row animated bounceInUp">
-			<div class="col-md-12">
-				<section class="panel">
-					<header class="panel-heading">
-						Product Details - Additional
-					</header>
-					<div class="panel-body">
-
-						<div class="form-group" *ngFor="let atrrib of customAtribs;  let i = index; ">
-							<div class="col-sm-4">
-								<label class="   ">Label</label>
-								<input type="text" (keyup)="detectChange(i)" [(ngModel)]="customAtribs[i].label" [name]="'label'+i"   class="form-control input-sm">
-							</div>
-							<div class="col-sm-8">
-								<label class="   ">Description</label>
-								<input (keyup)="detectChange(i)" [(ngModel)]="customAtribs[i].value" type="text" [name]="'value'+i" class="form-control input-sm">
-							</div>
-						</div>
-
+					<div class="col-md-3">
+						<button type="submit"  (click)="changeStatus('Published')" class="btn btn-primary btn-block"> Save and Publish</button>
 					</div>
-
-
-
-				</section>
-
-
-				<div class="col-md-4"></div>
-				<div class="col-md-2">
-					<button class="btn btn-default btn-block"> Reset</button>
-				</div>
-				<div class="col-md-3">
-					<button class="btn btn-warning btn-block"> Save as Draft</button>
-				</div>
-				<div class="col-md-3">
-					<button class="btn btn-primary btn-block"> Save and Publish</button>
 				</div>
 			</div>
-		</div>
-
+		</form>
 	</div>
 
 

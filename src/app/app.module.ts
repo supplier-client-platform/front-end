@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // 3rd party components
 import { DropzoneModule } from 'angular2-dropzone-wrapper';
@@ -15,6 +15,7 @@ import { NKDatetime } from 'ng2-datetime/ng2-datetime';
 import { ProductService } from './shared/services/product.service';
 import { CommonService } from './shared/services/common.service';
 import { OrderService } from './shared/services/order.service';
+import { UserService } from './shared/services/user.service';
 
 // Directives 
 // import { GoogleplaceDirective } from '../../node_modules/angular2-google-map-auto-complete/directives/googleplace.directive';
@@ -67,6 +68,7 @@ const DROPZONE_CONFIG = {
     AgmCoreModule.forRoot(GMAP_CONFIG),
     ImageUploadModule,
     DropzoneModule.forRoot(DROPZONE_CONFIG),
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -91,7 +93,8 @@ const DROPZONE_CONFIG = {
   providers: [
     ProductService,
     CommonService,
-    OrderService
+    OrderService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

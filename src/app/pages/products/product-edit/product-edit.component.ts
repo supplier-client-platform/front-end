@@ -25,6 +25,8 @@ export class ProductEditComponent implements OnInit {
     this.src = imageResult.resized
       && imageResult.resized.dataURL
       || imageResult.dataURL;
+
+      console.log(this.src);
   }
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private commonService: CommonService) {
@@ -47,10 +49,10 @@ export class ProductEditComponent implements OnInit {
   }
 
   private getBrands() {
-    this.productService.getBrands()
-      .subscribe((data: any) => {
-        this.brandList = data.data;
-        this.enableBrandOptions = true;
-      });
+    // this.productService.getBrands()
+    //   .subscribe((data: any) => {
+    //     this.brandList = data.data;
+    //     this.enableBrandOptions = true;
+    //   });
   }
 }
