@@ -10,7 +10,7 @@ export class ProductService {
   constructor(private http: Http) { }
 
   getProducts(params) {
-    return this.http.get(URL_CONST.URL_PREFIX + 'products?' + params)
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/product/all?' + params)
       .map((response: Response) => response.json());
   }
 
@@ -20,13 +20,19 @@ export class ProductService {
       .map((response: Response) => response.json());
   }
 
-  getBrands() {
-    return this.http.get(URL_CONST.URL_PREFIX + 'product/brands')
+  getBrands(id) {
+    let params = '?supplier_id =' + id;
+    return this.http.get(URL_CONST.DEV_PREFIX + 'brand/all' + params)
       .map((response: Response) => response.json());
   }
 
   getTemplates() {
-     return this.http.get(URL_CONST.URL_PREFIX + 'template/all')
+    return this.http.get(URL_CONST.URL_PREFIX + 'template/all')
+      .map((response: Response) => response.json());
+  }
+
+  getCategories() {
+    return this.http.get(URL_CONST.URL_PREFIX + 'template/all')
       .map((response: Response) => response.json());
   }
 }

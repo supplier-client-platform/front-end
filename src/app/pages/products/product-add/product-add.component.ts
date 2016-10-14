@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 
 
+interface CustomAttrib {
+  label: string;
+  value: string;
+}
+
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
@@ -16,6 +21,14 @@ export class ProductAddComponent implements OnInit {
     resizeMaxWidth: 175
   };
 
+  customAttribIndex: number = 0;
+  customAtribs: Array<CustomAttrib> = [
+    {
+      label: '',
+      value: ''
+    }
+  ];
+
   selected(imageResult: ImageResult) {
     this.src = imageResult.resized
       && imageResult.resized.dataURL
@@ -27,6 +40,23 @@ export class ProductAddComponent implements OnInit {
   ngOnInit() {
   }
 
+  detectChange(id) {
+    console.log(id);
+    if ((this.customAtribs.length - 1) === id) {
+      console.log('came here 1', this.customAtribs[id].label, this.customAtribs[id].value);
+      if (this.customAtribs[id].label.trim() !== '' && this.customAtribs[id].value.trim() !== '') {
+        this.customAtribs.push(
+          {
+            label: '',
+            value: ''
+          }
+        );
+
+        console.log('came here 2');
+      }
+
+    }
+  }
 
 
 

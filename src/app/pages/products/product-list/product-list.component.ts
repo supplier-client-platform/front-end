@@ -19,6 +19,7 @@ interface QueryObject {
 })
 export class ProductListComponent implements OnInit {
 
+  supplierID: number = 1;
   productList: Array<Object> = [];
   brandList: Array<Object> = [];
 
@@ -52,6 +53,7 @@ export class ProductListComponent implements OnInit {
 
     this.productService.getProducts(params)
       .subscribe((data: any) => {
+        console.log(data);
         if (type === 'New') {
           this.productList = data.data;
         } else {
@@ -67,8 +69,8 @@ export class ProductListComponent implements OnInit {
   }
 
   private getBrands() {
-    this.productService.getBrands()
-      .subscribe((data: any) => this.brandList = data.data);
+    this.productService.getBrands(this.supplierID)
+      .subscribe((data: any) => console.log(data));
   }
 
   private loadMore() {

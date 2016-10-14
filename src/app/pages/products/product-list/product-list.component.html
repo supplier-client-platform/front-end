@@ -68,10 +68,13 @@
           <div class="panel-body ">
             <div class="row ">
               <div class="hovereffect ">
-                <img [src]="product.img " class="img-container img-responsive ">
+                <!-- TODO : // get the blob url -->
+                 <img [src]="product.img_url " class="img-container img-responsive ">
                 <div class="overlay ">
                   <h2>Actions</h2>
+                  
                   <a class="info " [routerLink]="[ '/', 'product', 'edit', product.id] ">Edit</a>
+                    <!-- TODO : // delete option -->
                   <a class="info " href="# ">Remove</a>
                 </div>
               </div>
@@ -80,7 +83,7 @@
 
             <h4 class="product-item ">{{product.name}}
               <br>
-              <small>{{product.brand}}</small>
+              <small>{{product.brandname}}</small>
             </h4>
             <h5><small class="text-uppercase ">Price Rs.</small> {{product.price | number : '1.2-2'}} </h5>
             <span class="label pull-right " [ngClass]="{ 'label-success': (product.status=='Published' ),
