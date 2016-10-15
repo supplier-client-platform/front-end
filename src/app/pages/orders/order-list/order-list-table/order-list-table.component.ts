@@ -27,8 +27,5 @@ export class OrderListTableComponent implements OnInit {
 
   activateRowClass(id) {
     return (id === this.activatedRow);
-
   }
-
-
 }

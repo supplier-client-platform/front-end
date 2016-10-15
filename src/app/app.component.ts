@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 
 
 @Component({
@@ -8,12 +8,16 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+  private viewContainerRef: ViewContainerRef;
   title: string = 'App works! Supplier Client Angular2 App';
-
-
   selected: boolean = true;
   iconType: string = 'border';
   sizes: string[] = ['x-small', 'small', 'large'];
+
+  public constructor(viewContainerRef: ViewContainerRef) {
+    // You need this small hack in order to catch application root view container ref
+    this.viewContainerRef = viewContainerRef;
+  }
 
   change() {
     this.selected = !this.selected;

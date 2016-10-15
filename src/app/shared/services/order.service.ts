@@ -1,8 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers  } from '@angular/http';
 import { URL_CONST } from '../config/url.constants';
 import 'rxjs/Rx';
+import {IOrderStatusSubmit} from '../../pages/orders/order-list/order-list.component';
 
 @Injectable()
 export class OrderService {
@@ -18,9 +19,16 @@ export class OrderService {
 
   // TODO: Set params values properly
   getOrderItems(params) {
-
     return this.http.get(URL_CONST.URL_PREFIX + 'order/2/items')
       .map((response: Response) => response.json());
+  }
+
+  changeOrderStatus(params: IOrderStatusSubmit) {
+    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/order/edit', params, options)
+      .map((response: Response) => response);
   }
 }
 
