@@ -13,13 +13,7 @@ export class OrderService {
   }
 
   getOrders(params) {
-    return this.http.get(URL_CONST.URL_PREFIX + 'orders?' + params)
-      .map((response: Response) => response.json());
-  }
-
-  // TODO: Set params values properly
-  getOrderItems(params) {
-    return this.http.get(URL_CONST.URL_PREFIX + 'order/2/items')
+    return this.http.get(URL_CONST.DEV_PREFIX_R + 'api/v1/order/all?'+params)
       .map((response: Response) => response.json());
   }
 
@@ -27,7 +21,7 @@ export class OrderService {
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/order/edit', params, options)
+    return this.http.post(URL_CONST.DEV_PREFIX_R + 'api/v1/order/update/'+params.orderID, params, options)
       .map((response: Response) => response);
   }
 }

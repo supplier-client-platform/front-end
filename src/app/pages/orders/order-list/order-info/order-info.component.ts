@@ -22,17 +22,9 @@ export class OrderInfoComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.animationStatus = false;
     if (this.orderInfo) {
-      this.getOrderProducts();
+      this.orderProducts = JSON.parse(this.orderInfo.shopping_list);
+      this.animationStatus = true;
     }
-
-  }
-
-  getOrderProducts(): void {
-    this.orderService.getOrderItems(this.orderInfo.id)
-      .subscribe((data: any) => {
-        this.orderProducts = data.data;
-        this.animationStatus = true;
-      });
   }
 
   changeOrderStatus(status: string): void {
