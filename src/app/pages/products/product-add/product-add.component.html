@@ -43,37 +43,37 @@
 							Product Details - Main
 						</header>
 						<div class="panel-body">
-						 
-								<div class="form-group" >
-									<div class="col-sm-12">
-										<label class="   ">Product Name</label>
-										<input type="text" name="productname" id="productname"  [(ngModel)]="product.name" class="form-control input-sm" required>										{{productname}}
-									 
-									</div>
+
+							<div class="form-group">
+								<div class="col-sm-12">
+									<label class="   ">Product Name</label>
+									<input type="text" name="productname" id="productname" [(ngModel)]="product.name" class="form-control input-sm" required>									{{productname}}
+
 								</div>
-								<div class="form-group">
-									<div class="col-sm-12">
-										<label class="  ">Brand Name</label>
-										<select name="brandname" [(ngModel)]="product.brand" class="form-control input-sm" required>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<label class="  ">Brand Name</label>
+									<select name="brandname" [(ngModel)]="product.brand" class="form-control input-sm" required>
 										<option  [value]='brand.id' *ngFor="let brand of brandList">{{brand.brandname}}</option>
                   					</select>
-									</div>
 								</div>
+							</div>
 
-								<div class="form-group">
-									<div class="col-sm-7">
-										<label class="  ">Category/Type</label>
-										<select name="catname" [(ngModel)]="product.cat" class="form-control input-sm" required>
+							<div class="form-group">
+								<div class="col-sm-7">
+									<label class="  ">Category/Type</label>
+									<select name="catname" [(ngModel)]="product.cat" class="form-control input-sm" required>
 										<option [value]='cat.id' *ngFor="let cat of categoryList">{{cat.name}}</option>
                   					</select>
-									</div>
-									<div class="col-sm-5">
-										<label class="  ">Price</label>
-										<input name="price" [(ngModel)]="product.price" type="text" class="form-control input-sm" required pattern="^[\d\.,]+$">
-									</div>
 								</div>
+								<div class="col-sm-5">
+									<label class="  ">Price</label>
+									<input name="price" [(ngModel)]="product.price" type="text" class="form-control input-sm" required pattern="^[\d\.,]+$">
+								</div>
+							</div>
 
-							 
+
 						</div>
 
 					</section>
@@ -91,7 +91,7 @@
 							<div class="form-group row">
 								<div class="col-sm-4">
 									<label class="   ">Select Template</label>
-									<select type="text" [(ngModel)]="template.id" name="template" class="form-control input-sm">
+									<select (change)="templateChange(tmp.value)" type="text" #tmp [(ngModel)]="template.id" name="template" class="form-control input-sm">
 									<option value="0">New Template</option>
 									<option [value]="temp.id" *ngFor="let temp of templateList">{{temp.name}}</option>
 								</select>
@@ -106,8 +106,12 @@
 
 							<div class="form-group row " *ngFor="let atrrib of customAtribs;  let i = index; ">
 								<div class="col-sm-4">
-									<label class="   ">Label</label>
-									<input type="text" (keyup)="detectChange(i)" [(ngModel)]="customAtribs[i].label" [name]="'label'+i" class="form-control input-sm">
+									<div [hidden]="template.id!=0">
+										<label class="   ">Label</label>
+										<input type="text" (keyup)="detectChange(i)" [(ngModel)]="customAtribs[i].label" [name]="'label'+i" class="form-control input-sm">
+
+									</div>
+									<label class="  pull-right " style="margin-top:1.5rem;" [hidden]="template.id==0">{{customAtribs[i].label}}</label>
 								</div>
 								<div class="col-sm-8">
 									<label class="   ">Description</label>
@@ -130,7 +134,7 @@
 						<button (click)="changeStatus('Draft')" type="submit" class="btn btn-warning btn-block"> Save as Draft</button>
 					</div>
 					<div class="col-md-3">
-						<button type="submit"  (click)="changeStatus('Published')" class="btn btn-primary btn-block"> Save and Publish</button>
+						<button type="submit" (click)="changeStatus('Published')" class="btn btn-primary btn-block"> Save and Publish</button>
 					</div>
 				</div>
 			</div>

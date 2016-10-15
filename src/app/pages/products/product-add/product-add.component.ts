@@ -2,16 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { ProductService } from '../../../shared/services/product.service';
 import { UserService } from '../../../shared/services/user.service';
+import { IMG_CONST } from '../../../shared/config/img.constants';
 
 
 
 interface CustomAttrib {
   label: string;
   value: string;
-}
-interface Template {
-  id: number;
-  name: string;
 }
 
 @Component({
@@ -26,15 +23,12 @@ export class ProductAddComponent implements OnInit {
 
   supplierID: number;
   src: string = '';
-  resizeOptions: ResizeOptions = {
-    resizeMaxHeight: 300,
-    resizeMaxWidth: 300
-  };
+  resizeOptions: ResizeOptions = { resizeMaxHeight: 200, resizeMaxWidth: 200 };
 
   product: Object = {};
   customAtribs: Array<CustomAttrib>;
 
-  template: Template;
+  template: Object;
 
   brandList: Array<Object> = [];
   categoryList: Array<Object> = [];
@@ -50,6 +44,7 @@ export class ProductAddComponent implements OnInit {
     this.getBrands();
     this.getCategories();
     this.getTemplates();
+    this.src = IMG_CONST.IMG_PRODUCT;
   }
 
   ngOnInit() {
@@ -64,19 +59,10 @@ export class ProductAddComponent implements OnInit {
 
   detectChange(id) {
     console.log(id);
-    if ((this.customAtribs.length - 1) === id) {
-      console.log('came here 1', this.customAtribs[id].label, this.customAtribs[id].value);
+    if ((this.customAtribs.length - 1) === id && this.template['id'] === 0) {
       if (this.customAtribs[id].label.trim() !== '' && this.customAtribs[id].value.trim() !== '') {
-        this.customAtribs.push(
-          {
-            label: '',
-            value: ''
-          }
-        );
-
-        console.log('came here 2');
+        this.customAtribs.push({ label: '', value: '' });
       }
-
     }
   }
 
@@ -99,7 +85,6 @@ export class ProductAddComponent implements OnInit {
   }
 
   formSubmit(values) {
-    console.log(values);
 
     let Obj: Object = {
       'name': values.productname,
@@ -110,11 +95,14 @@ export class ProductAddComponent implements OnInit {
       'supplier_id': this.supplierID,
       'img_url': this.src,
       'category_id': values.catname,
+      'template_id': this.template['id'],
+      'template_name': this.template['name']
     };
+
     this.productService.createProduct(Obj).subscribe((data: any) => {
       console.log(data);
       this.reset();
-      this.templateList = data.data;
+      this.getTemplates();
     }, (err) => console.log(err));
 
     return false;
@@ -124,17 +112,39 @@ export class ProductAddComponent implements OnInit {
     this.product['status'] = value;
   }
 
+  templateChange(id: string) {
+
+    this.template['id'] = id;
+    console.log(this.template['id'], id);
+
+    if (this.template['id'] === 0) {
+      this.customAtribs = [{ label: '', value: '' }];
+
+    } else {
+
+      this.templateList.map((value, key) => {
+        console.log('for', value['id']);
+
+        if (value['id'] == id) {
+          console.log(value['custom_attr']);
+          this.customAtribs = value['custom_attr'];
+          this.cleanAtrribs();
+        }
+      });
+
+    }
+
+    // this.customAtribs;
+  }
+
+  cleanAtrribs() {
+    this.customAtribs.map((value, key) => {
+      this.customAtribs[key]['value'] = '';
+    });
+  }
   reset() {
-    this.customAtribs = [
-      {
-        label: '',
-        value: ''
-      }
-    ];
-    this.template = {
-      id: 0,
-      name: ''
-    };
+    this.customAtribs = [{ label: '', value: '' }];
+    this.template = { id: 0, name: '' };
   }
 
 }
