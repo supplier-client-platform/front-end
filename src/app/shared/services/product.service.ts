@@ -6,6 +6,8 @@ import 'rxjs/Rx'; // observables
 @Injectable()
 export class ProductService {
 
+  headers = new Headers({ 'Content-Type': 'application/json' });
+  options = new RequestOptions({ headers: this.headers });
 
   constructor(private http: Http) { }
 
@@ -14,21 +16,22 @@ export class ProductService {
     return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/product/all?' + params)
       .map((response: Response) => response.json());
   }
-
+  // --Tested
   createProduct(params) {
-
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers });
-    params.custom_attr.pop();
-
-    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/product/create/new', params, options)
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/product/create/new', params, this.options)
       .map((response: Response) => response);
   }
 
+  // --Tested
   getProduct(params) {
-    console.log(params);
-    return this.http.get(URL_CONST.URL_PREFIX + 'product/' + params)
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/product/product_id/' + params)
       .map((response: Response) => response.json());
+  }
+
+  // --Tested
+  updateProduct(params) {
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/product/update/' + params['id'], params, this.options)
+      .map((response: Response) => response);
   }
 
   // --Tested
@@ -38,7 +41,7 @@ export class ProductService {
       .map((response: Response) => response.json());
   }
 
-
+  // --Tested
   getTemplates(id) {
     let params = '?supplier_id=' + id;
     return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/template/all' + params)

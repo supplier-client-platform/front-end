@@ -3,13 +3,10 @@ import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { ProductService } from '../../../shared/services/product.service';
 import { UserService } from '../../../shared/services/user.service';
 import { IMG_CONST } from '../../../shared/config/img.constants';
+import { CustomAttrib } from '../product.interfaces';
 
 
 
-interface CustomAttrib {
-  label: string;
-  value: string;
-}
 
 @Component({
   selector: 'app-product-add',
@@ -28,13 +25,13 @@ export class ProductAddComponent implements OnInit {
   product: Object = {};
   customAtribs: Array<CustomAttrib>;
 
-  template: Object;
+
 
   brandList: Array<Object> = [];
   categoryList: Array<Object> = [];
   templateList: Array<Object> = [];
 
-
+  template: Object;
 
 
   constructor(private productService: ProductService, private userService: UserService) {
@@ -98,6 +95,19 @@ export class ProductAddComponent implements OnInit {
       'template_id': this.template['id'],
       'template_name': this.template['name']
     };
+
+    let arr = [];
+    Obj['custom_attr'].map((value, key) => {
+      if (value.label.trim() === '' && value.value.trim() === '') {
+        arr.push(key);
+      }
+    });
+
+    let count = 0;
+    arr.map((value) => {
+      Obj['custom_attr'].splice((value - count), 1);
+      count++;
+    });
 
     this.productService.createProduct(Obj).subscribe((data: any) => {
       console.log(data);
