@@ -23,7 +23,7 @@
 								<template tabHeading>Accepted / Not Collected</template>
 
 
-								<app-order-list-table (rowSelected)="loadOrder($event)" [showSearch]="true"></app-order-list-table>
+								<app-order-list-table (rowSelected)="loadOrder($event)" [showSearch]="true" [orders]="completedOrders"></app-order-list-table>
 
 							</tab>
 

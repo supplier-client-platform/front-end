@@ -26,12 +26,16 @@ export class OrderInfoComponent implements OnInit, OnChanges {
 
   }
 
-  getOrderProducts() {
+  getOrderProducts(): void {
     this.orderService.getOrderItems(this.orderInfo.id)
       .subscribe((data: any) => {
         this.orderProducts = data.data;
         this.animationStatus = true;
       });
+  }
+
+  changeOrderStatus(status: string): void {
+    this.orderInfo.status =  status;
   }
 
 }
