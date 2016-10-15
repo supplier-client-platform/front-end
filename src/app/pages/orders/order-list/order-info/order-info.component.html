@@ -13,12 +13,12 @@
   <div class="panel-body animated fadeIn" *ngIf="orderInfo && animationStatus">
     <table class="table table-hover table-condensed table-striped table  general-table">
       <tr *ngIf="orderInfo.status=='Pending'">
-        <td><button class="btn btn-sm btn-block btn-success">Accept</button></td>
-        <td><button class="btn  btn-sm btn-block btn-danger">Reject</button></td>
+        <td><button class="btn btn-sm btn-block btn-success" (click)="changeOrderStatus('Accepted')">Accept</button></td>
+        <td><button class="btn  btn-sm btn-block btn-danger" (click)="changeOrderStatus('Rejected')">Reject</button></td>
       </tr>
       <tr *ngIf="orderInfo.status=='Accepted'">
-        <td><button class="btn btn-sm btn-block btn-success">Collect</button></td>
-        <td><button class="btn  btn-sm btn-block btn-danger">Cancel</button></td>
+        <td><button class="btn btn-sm btn-block btn-success" (click)="changeOrderStatus('Completed')">Collect</button></td>
+        <td><button class="btn  btn-sm btn-block btn-danger" (click)="changeOrderStatus('Cancelled')">Cancel</button></td>
       </tr>
       <tr class="success" *ngIf="orderInfo.status=='Completed'">
         <td>Completed Order</td>
@@ -58,7 +58,7 @@
         <tr *ngFor="let x of orderProducts">
           <td>{{x.product_name}}</td>
           <td>{{x.brand}}</td>
-          <td>Rs {{x.unit_price | number : '1.2-2'}} x2</td>
+          <td>Rs {{x.unit_price | number : '1.2-2'}} x{{x.qty}}</td>
         </tr>
         <tr class="info">
           <td colspan="2">TOTAL AMOUNT</td>
