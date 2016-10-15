@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter  } from '@angular/core';
 import { OrderService } from '../../../../shared/services/order.service';
 import { CommonService } from '../../../../shared/services/common.service';
 
@@ -9,6 +9,7 @@ import { CommonService } from '../../../../shared/services/common.service';
 })
 export class OrderInfoComponent implements OnInit, OnChanges {
   @Input() orderInfo: any = {};
+  @Output() orderSelected = new EventEmitter();
   orderProducts: Array<any> = [];
 
   animationStatus: boolean = false;
@@ -35,7 +36,6 @@ export class OrderInfoComponent implements OnInit, OnChanges {
   }
 
   changeOrderStatus(status: string): void {
-    this.orderInfo.status =  status;
+    this.orderSelected.emit(status);
   }
-
 }
