@@ -8,20 +8,22 @@ import {IOrderStatusSubmit} from '../../pages/orders/order-list/order-list.compo
 @Injectable()
 export class OrderService {
 
+  headers = new Headers({ 'Content-Type': 'application/json' });
+  options = new RequestOptions({ headers: this.headers });
+
   constructor(private http: Http) {
 
   }
 
+  // --Tested
   getOrders(params) {
     return this.http.get(URL_CONST.DEV_PREFIX_R + 'api/v1/order/all?'+params)
       .map((response: Response) => response.json());
   }
 
+  // --Tested
   changeOrderStatus(params: IOrderStatusSubmit) {
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.post(URL_CONST.DEV_PREFIX_R + 'api/v1/order/update/'+params.orderID, params, options)
+    return this.http.post(URL_CONST.DEV_PREFIX_R + 'api/v1/order/update/'+params.orderID, params, this.options)
       .map((response: Response) => response);
   }
 }
