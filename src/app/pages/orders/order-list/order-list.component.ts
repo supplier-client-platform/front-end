@@ -28,8 +28,9 @@ export class OrderListComponent implements OnInit {
     this.getPendingOrders();
   }
 
+  // TODO: Market place id should be available after login
   getPendingOrders() {
-    let param = this.commonService.addQueryParams({ status: 'Pending' }, []);
+    let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Pending' }, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.pendingOrders = data.data;
@@ -37,14 +38,14 @@ export class OrderListComponent implements OnInit {
   }
 
   getCompletedOrders() {
-    let param = this.commonService.addQueryParams({ status: 'Completed' }, []);
+    let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Accepted' }, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.completedOrders = data.data;
       });
   }
-  getSearchOrders(id, query) {
-    let param = this.commonService.addQueryParams({ orderId: id, query: query }, ['']);
+  getSearchOrders(value) {
+    let param = this.commonService.addQueryParams({ marketPlaceId: 1, orderId: value.orderId, customer_name: value.name }, ['']);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.searchOrders = data.data;
@@ -64,17 +65,17 @@ export class OrderListComponent implements OnInit {
     console.log(values.reason);
 
     let obj: IOrderStatusSubmit = {
-      orderID: this.orderInfo.status,
+      orderID: this.orderInfo.id,
       status: this.orderInfoStatus,
       reason: values.reason
     };
 
     // TODO need to handle this after a success response from the server otherwise need to give a proper error message.
-    this.orderInfo.status = this.orderInfoStatus;
+
     this.lgModal.hide();
 
     this.orderService.changeOrderStatus(obj).subscribe((data: any) => {
-      //
+      this.orderInfo.status = this.orderInfoStatus;
     }, (err) => {
       console.log(err);
     });

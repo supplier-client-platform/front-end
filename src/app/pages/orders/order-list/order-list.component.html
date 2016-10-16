@@ -30,18 +30,18 @@
 							<tab>
 								<template tabHeading>Search Order</template>
 
-								<div class="  search-item ">
-									<form class="form-horizontal" #searchForm="ngForm" (onSubmit)="getSearchOrders(orderId.value,name.value)">
+								<div class="search-item">
+									<form #searchForm="ngForm" (ngSubmit)="getSearchOrders(searchForm.value)" class="form-horizontal">
 										<div class="form-group">
 
 											<div class="col-md-4">
 												<label class="acontrol-label">Order ID</label>
-												<input #orderId type="text" placeholder="Order Id" class="form-control input-sm">
+												<input name="orderId" id="orderId" type="text" placeholder="Order Id" class="form-control input-sm" ngModel >
 											</div>
 
 											<div class="col-md-6 ">
 												<label class="acontrol-label">Customer Name</label>
-												<input #name type="text" placeholder="Customer Name" class="form-control input-sm">
+												<input name="name" id="name" type="text" placeholder="Customer Name" class="form-control input-sm" ngModel >
 											</div>
 
 
@@ -55,7 +55,7 @@
 									</form>
 								</div>
 
-								<app-order-list-table [showSearch]="false" [orders]="searchOrders"></app-order-list-table>
+								<app-order-list-table (rowSelected)="loadOrder($event)" [showSearch]="false" [orders]="searchOrders"></app-order-list-table>
 
 							</tab>
 						</tabset>

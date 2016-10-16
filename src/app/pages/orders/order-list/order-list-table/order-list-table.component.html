@@ -24,11 +24,11 @@
   <tbody>
     <tr [ngClass]="{info:activateRowClass(order.id)}" *ngFor="let order of orders">
       <td>{{order.id}}</td>
-      <td>{{order.date}}</td>
-      <td>{{order.customer_name}}</td>
+      <td>{{order.created_at}}</td>
+      <td>{{order.name}}</td>
 
       <td> <span class="label " [ngClass]="{'label-info': order.status=='Accepted','label-success':order.status=='Completed','label-danger':order.status=='Pending'}">{{order.status}}</span></td>
-      <td>Rs. {{order.total | number : '1.2-2'}}</td>
+      <td>Rs. {{order.net_total | number : '1.2-2'}}</td>
       <td><button (click)="activateRow(order)" class="btn btn-xs btn-block btn-warning">Select</button></td>
 
     </tr>

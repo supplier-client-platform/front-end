@@ -8,26 +8,22 @@ import 'rxjs/Rx';
 @Injectable()
 export class OrderService {
 
+  headers = new Headers({ 'Content-Type': 'application/json' });
+  options = new RequestOptions({ headers: this.headers });
+
   constructor(private http: Http) {
 
   }
 
+  // --Tested
   getOrders(params) {
-    return this.http.get(URL_CONST.URL_PREFIX + 'orders?' + params)
+    return this.http.get(URL_CONST.DEV_PREFIX_R + 'api/v1/order/all?' + params)
       .map((response: Response) => response.json());
   }
 
-  // TODO: Set params values properly
-  getOrderItems(params) {
-    return this.http.get(URL_CONST.URL_PREFIX + 'order/2/items')
-      .map((response: Response) => response.json());
-  }
-
+  // --Tested
   changeOrderStatus(params) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/order/edit', params, options)
+    return this.http.post(URL_CONST.DEV_PREFIX_R + 'api/v1/order/update/' + params.orderID, params, this.options)
       .map((response: Response) => response);
   }
 }
