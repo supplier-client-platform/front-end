@@ -43,14 +43,15 @@
 						</header>
 						<div class="panel-body">
 
-							<div class="alert alert-dismissible alert-danger" [ngClass]="{'alert-danger':(product.status=='Draft'),'alert-success':(product.status=='Published')}">
-								<strong>Draft</strong>
+							<div class="alert alert-dismissible " [ngClass]="{'alert-warning':(product.status=='Draft'),'alert-success':(product.status=='Published')}">
+								<strong>{{product.status}}</strong>
 							</div>
-							<div class="form-group">
+							<div class="form-group" [ngClass]="{'has-error':!productName.valid}">
 								<div class="col-sm-12">
 									<label class="   ">Product Name</label>
-									<input type="text" name="productname" id="productname" [(ngModel)]="product.name" class="form-control input-sm" required>									{{productname}}
-
+									<input type="text" #productName="ngModel" name="productname" id="productname" [(ngModel)]="product.name" class="form-control input-sm"
+										required>
+									<span class="help-block" *ngIf="!productName.valid">*Produt Name Required</span>
 								</div>
 							</div>
 							<div class="form-group">
@@ -69,9 +70,10 @@
 										<option [value]='cat.id' *ngFor="let cat of categoryList">{{cat.name}}</option>
                   					</select>
 								</div>
-								<div class="col-sm-5">
+								<div class="col-sm-5" [ngClass]="{'has-error':!price.valid}">
 									<label class="  ">Price</label>
-									<input name="price" [(ngModel)]="product.price" type="text" class="form-control input-sm" required pattern="^[\d\.,]+$">
+									<input name="price" #price="ngModel" [(ngModel)]="product.price" type="text" class="form-control input-sm" required pattern="^[\d\.,]+$">
+									<span class="help-block" *ngIf="!price.valid">*Price Required and should be a valid amount</span>
 								</div>
 							</div>
 
@@ -105,12 +107,15 @@
 									</div>
 
 								</div>
-								<div class="col-sm-8">
+								<div class="col-sm-7">
 									<label class="   ">Description</label>
 									<input (keyup)="detectChange(i)" [(ngModel)]="product.custom_attr[i].value" type="text" [name]="'value'+i" class="form-control input-sm">
 								</div>
 
-
+								<div class="col-sm-1" *ngIf="i != (product.custom_attr.length-1)">
+									<label class="   ">&nbsp;</label>
+									<button type="button" (click)="removeAttrib(i)" class="btn btn-danger btn-sm btn-block"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+								</div>
 							</div>
 
 
@@ -123,10 +128,10 @@
 						<button (click)="reset()" type="reset" class="btn btn-default btn-block"> Reset</button>
 					</div>
 					<div class="col-md-3">
-						<button (click)="changeStatus('Draft')" type="submit" class="btn btn-warning btn-block"> Save as Draft</button>
+						<button (click)="changeStatus('Draft')" type="submit" class="btn btn-warning btn-block"> Update as Draft</button>
 					</div>
 					<div class="col-md-3">
-						<button type="submit" (click)="changeStatus('Published')" class="btn btn-primary btn-block"> Save and Publish</button>
+						<button type="submit" (click)="changeStatus('Published')" class="btn btn-primary btn-block"> Update and Publish</button>
 					</div>
 				</div>
 			</div>

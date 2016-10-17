@@ -1,104 +1,104 @@
 <div class="row">
-  <div class="col-sm-12">
+	<div class="col-sm-12">
 
-    <ul class="breadcrumbs-alt">
-      <li><a class="text-uppercase">  Products</a></li>
-      <li class="text-uppercase"><a class="current"> List</a></li>
+		<ul class="breadcrumbs-alt">
+			<li><a class="text-uppercase">  Products</a></li>
+			<li class="text-uppercase"><a class="current"> List</a></li>
 
-    </ul>
-    <section class="panel animated bounceInUp">
-      <div class="panel-body">
-        <form class="fomr-horizontal" #searchForm="ngForm" (ngSubmit)="searchProduct(search.value,status.value,brand.value)">
-          <div class="form-group ">
+		</ul>
+		<section class="panel animated bounceInUp">
+			<div class="panel-body">
+				<form class="fomr-horizontal" #searchForm="ngForm" (ngSubmit)="searchProduct(search.value,status.value,brand.value)">
+					<div class="form-group ">
 
-            <div class="col-sm-4 ">
-              <label class="control-label ">Search Products</label>
-              <input #search class="form-control input-sm " placeholder="Enter keywords here... ">
-            </div>
-            <div class="col-sm-3 ">
-              <label class="control-label ">Product Status</label>
-              <select #status class="form-control input-sm ">
+						<div class="col-sm-4 ">
+							<label class="control-label ">Search Products</label>
+							<input #search class="form-control input-sm " placeholder="Enter keywords here... ">
+						</div>
+						<div class="col-sm-3 ">
+							<label class="control-label ">Product Status</label>
+							<select #status class="form-control input-sm ">
              <option value="0">All</option>
-              <option value="Pending ">Pending</option>
+              <option value="Published ">Published</option>
               <option value="Draft ">Draft</option>
               </select>
-            </div>
-            <div class="col-sm-3 ">
-              <label class="control-label ">Product Brand</label>
-              <select #brand class="form-control input-sm ">
+						</div>
+						<div class="col-sm-3 ">
+							<label class="control-label ">Product Brand</label>
+							<select #brand class="form-control input-sm ">
                 <option value="0">All</option>
                 <option *ngFor="let brand of brandList " [value]="brand.id ">{{brand.brandname}}</option>
               </select>
-            </div>
-            <div class="col-sm-2 ">
-              <label class="control-label ">&nbsp;</label>
-              <button type="submit"  class="btn btn-sm btn-info btn-block "> Search</button>
-            </div>
-          </div>
+						</div>
+						<div class="col-sm-2 ">
+							<label class="control-label ">&nbsp;</label>
+							<button type="submit" class="btn btn-sm btn-info btn-block "> Search</button>
+						</div>
+					</div>
 
 
-        </form>
-      </div>
-    </section>
-  </div>
+				</form>
+			</div>
+		</section>
+	</div>
 </div>
 
-<div class="row animated bounceInUp">
-  <div class=" ">
-    <section class=" ">
-      <div class="col-md-3 animated fadeIn ">
-        <section class="panel ">
-          <div class="panel-body " style="padding-top:0cm;padding-bottom:0cm ">
-            <div class="row ">
-              <div class="hovereffect ">
-                <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Create_with_plus_mail_layer_add_vector_stock.png "
-                  class="img-container-add img-responsive ">
-                <div class="overlay ">
-                  <h2>Actions</h2>
-                  <a class="info " [routerLink]="[ '/', 'product', 'add'] " style="margin-top:19rem ">ADD PRODUCT</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-      <!-- list start -->
-      <div class="col-md-3 animated fadeIn " *ngFor="let product of productList ">
-        <section class="panel ">
-          <div class="panel-body ">
-            <div class="row ">
-              <div class="hovereffect ">
-                <!-- TODO : // get the blob url -->
-                 <img [src]="product.img_url " class="img-container img-responsive ">
-                <div class="overlay ">
-                  <h2>Actions</h2>
-                  
-                  <a class="info " [routerLink]="[ '/', 'product', 'edit', product.id] ">Edit</a>
-                    <!-- TODO : // delete option -->
-                  <a class="info " href="# ">Remove</a>
-                </div>
-              </div>
-            </div>
+<div class="animated bounceInUp">
+	<div class=" row">
+		<section class="col-md-12 ">
+			<div class="col-md-3 animated fadeIn ">
+				<section class="panel ">
+					<div class="panel-body " style="padding-top:0cm;padding-bottom:0cm ">
+						<div class="row ">
+							<div class="hovereffect ">
+								<img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Create_with_plus_mail_layer_add_vector_stock.png "
+									class="img-container-add img-responsive ">
+								<div class="overlay ">
+									<h2>Actions</h2>
+									<a class="info " [routerLink]="[ '/', 'product', 'add'] " style="margin-top:19rem ">ADD PRODUCT</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- list start -->
+			<div class="col-md-3 animated fadeIn " *ngFor="let product of productList ">
+				<section class="panel ">
+					<div class="panel-body ">
+						<div class="row ">
+							<div class="hovereffect ">
+								<!-- TODO : // get the blob url -->
+								<img [src]="product.img_url " class="img-container img-responsive ">
+								<div class="overlay ">
+									<h2>Actions</h2>
+
+									<a class="info " [routerLink]="[ '/', 'product', 'edit', product.id] ">Edit</a>
+									<!-- TODO : // delete option -->
+									<a class="info " href="# ">Remove</a>
+								</div>
+							</div>
+						</div>
 
 
-            <h4 class="product-item ">{{product.name}}
-              <br>
-              <small>{{product.brandname}}</small>
-            </h4>
-            <h5><small class="text-uppercase ">Price Rs.</small> {{product.price | number : '1.2-2'}} </h5>
-            <span class="label pull-right " [ngClass]="{ 'label-success': (product.status=='Published' ),
+						<h4 class="product-item ">{{product.name}}
+							<br>
+							<small>{{product.brandname}}</small>
+						</h4>
+						<h5><small class="text-uppercase ">Price Rs.</small> {{product.price | number : '1.2-2'}} </h5>
+						<span class="label pull-right " [ngClass]="{ 'label-success': (product.status=='Published' ),
           'label-danger':(product.status=='Draft' ) } ">{{product.status}}</span>
-          </div>
-        </section>
-      </div>
+					</div>
+				</section>
+			</div>
 
-      <!-- list end -->
-    </section>
+			<!-- list end -->
+		</section>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-5 col-md-2" [hidden]="!showLoadMore">
+			<button class="btn btn-block btn-primary" (click)="loadMore()">LoadMore</button>
+		</div>
+	</div>
 
-    <div class="row">
-      <div class="col-md-offset-5 col-md-2" [hidden]="!showLoadMore">
-        <button  class="btn btn-block btn-primary" (click)="loadMore()">LoadMore</button>
-      </div>
-    </div>
-  </div>
 </div>

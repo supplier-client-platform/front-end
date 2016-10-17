@@ -10,7 +10,7 @@ import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ImageUploadModule } from 'ng2-imageupload';
 import { NKDatetime } from 'ng2-datetime/ng2-datetime';
-
+import { ToastyModule } from 'ng2-toasty';
 // providers
 import { ProductService } from './shared/services/product.service';
 import { CommonService } from './shared/services/common.service';
@@ -68,7 +68,8 @@ const DROPZONE_CONFIG = {
     AgmCoreModule.forRoot(GMAP_CONFIG),
     ImageUploadModule,
     DropzoneModule.forRoot(DROPZONE_CONFIG),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastyModule.forRoot()
   ],
   declarations: [
     AppComponent,

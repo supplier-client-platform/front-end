@@ -43,12 +43,15 @@
 							Product Details - Main
 						</header>
 						<div class="panel-body">
-
-							<div class="form-group">
+							<div class="alert alert-dismissible alert-info">
+								<strong>Add New Product Details</strong>
+							</div>
+							<div class="form-group" [ngClass]="{'has-error':(!productName.valid &&(productName.touched ))}">
 								<div class="col-sm-12">
 									<label class="   ">Product Name</label>
-									<input type="text" name="productname" id="productname" [(ngModel)]="product.name" class="form-control input-sm" required>									{{productname}}
-
+									<input type="text" #productName="ngModel" name="productname" id="productname" [(ngModel)]="product.name" class="form-control input-sm"
+										required>
+									<span class="help-block" *ngIf="!productName.valid &&(productName.touched)">*Produt Name Required</span>
 								</div>
 							</div>
 							<div class="form-group">
@@ -67,9 +70,11 @@
 										<option [value]='cat.id' *ngFor="let cat of categoryList">{{cat.name}}</option>
                   					</select>
 								</div>
-								<div class="col-sm-5">
+								<div class="col-sm-5" [ngClass]="{'has-error':(!price.valid&&(price.touched))}">
 									<label class="  ">Price</label>
-									<input name="price" [(ngModel)]="product.price" type="text" class="form-control input-sm" required pattern="^[\d\.,]+$">
+									<input name="price" #price="ngModel" [(ngModel)]="product.price" type="text" class="form-control input-sm" required pattern="^[\d\.,]+$">
+									<span class="help-block" *ngIf="!price.valid&&(price.touched)">*Price Required and should be a valid amount</span>
+
 								</div>
 							</div>
 
@@ -103,19 +108,25 @@
 
 							</div>
 
+							<hr style="font-size:10px">
 
 							<div class="form-group row " *ngFor="let atrrib of customAtribs;  let i = index; ">
-								<div class="col-sm-4">
-									<div [hidden]="template.id!=0">
+								<div class="col-sm-4" *ngIf="template.id==0">
+									<div>
 										<label class="   ">Label</label>
 										<input type="text" (keyup)="detectChange(i)" [(ngModel)]="customAtribs[i].label" [name]="'label'+i" class="form-control input-sm">
 
 									</div>
-									<label class="  pull-right " style="margin-top:1.5rem;" [hidden]="template.id==0">{{customAtribs[i].label}}</label>
 								</div>
-								<div class="col-sm-8">
+								<label class=" col-sm-4 control-label " style="margin-top:1.5rem;font-weight:600;" [hidden]="template.id==0">{{customAtribs[i].label}}</label>
+
+								<div class="col-sm-7">
 									<label class="   ">Description</label>
 									<input (keyup)="detectChange(i)" [(ngModel)]="customAtribs[i].value" type="text" [name]="'value'+i" class="form-control input-sm">
+								</div>
+								<div class="col-sm-1" *ngIf="i != ( customAtribs.length-1) && tmp.value == 0">
+									<label class="   ">&nbsp;</label>
+									<button type="button" (click)="removeAttrib(i)" class="btn btn-danger btn-sm btn-block"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
 								</div>
 							</div>
 
