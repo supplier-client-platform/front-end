@@ -14,7 +14,7 @@
 	<div class="panel-body">
 
 		<div class="">
-      <form #advanceSearchForm="ngForm" (ngSubmit)="getSearchOrders(searchForm.value)" class="form-horizontal">
+      <form #advanceSearchForm="ngForm" (ngSubmit)="getAdvanceSearchOrders(advanceSearchForm.value)" class="form-horizontal">
         <div class="row " style="margin-bottom:1rem;">
 
           <div class="col-md-3">
@@ -24,17 +24,17 @@
             <input name="name" id="name" type="text" class="form-control" placeholder="Customer Name" ngModel >
           </div>
           <div class="col-md-4">
-            <input name="customer_mobile" id="customer_mobile" class="form-control" placeholder="Customer Mobile">
+            <input name="customerMobile" id="customerMobile" class="form-control" placeholder="Customer Mobile">
           </div>
 
         </div>
         <div class="row ">
 
           <div class="col-md-3">
-            <datetime name="from" id="from" [timepicker]="false" [(ngModel)]="date"></datetime>
+            <datetime name="startDate" id="startDate" [timepicker]="false" ngModel ></datetime>
           </div>
           <div class="col-md-3">
-            <datetime name="to" id="to" [timepicker]="false" [(ngModel)]="date"></datetime>
+            <datetime name="endDate" id="endDate" [timepicker]="false" ngModel ></datetime>
           </div>
           <div class="col-md-2 col-md-offset-4">
             <button type="submit" class="btn-primary btn btn-block">Search</button>

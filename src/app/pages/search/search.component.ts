@@ -20,15 +20,15 @@ export class SearchComponent implements OnInit {
 
   }
 
-  getSearchOrders(value) {
+  getAdvanceSearchOrders(value) {
+
     let param = this.commonService.addQueryParams({
       marketPlaceId: 1,
       orderId: value.orderId,
       customer_name: value.name,
-      contact_number: value.customer_mobile,
-      startDate: value.from,
-      endDate: value.to
-
+      contact_number: value.customerMobile,
+      startDate: value.startDate ? value.startDate.toISOString() : "",
+      endDate: value.endDate ? value.endDate.toISOString() : ""
     }, ['']);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
