@@ -17,13 +17,13 @@ export class OrderService {
 
   // --Tested
   getOrders(params) {
-    return this.http.get(URL_CONST.DEV_PREFIX_R + 'api/v1/order/all?' + params)
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/order/all?' + params)
       .map((response: Response) => response.json());
   }
 
   // --Tested
   changeOrderStatus(params) {
-    return this.http.post(URL_CONST.DEV_PREFIX_R + 'api/v1/order/update/' + params.orderID, params, this.options)
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/order/update/' + params.orderID, params, this.options)
       .map((response: Response) => response);
   }
 }

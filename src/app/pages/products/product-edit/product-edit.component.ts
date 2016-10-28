@@ -192,6 +192,9 @@ export class ProductEditComponent implements OnInit {
    */
   formSubmit(values) {
 
+    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
+    this.commonService.toasty(this.toastyObject);
+
     // ** Start:Rremove unncessary custom attribs with "" values
     let arr = [];
     this.product['custom_attr'].map((value, key) => {

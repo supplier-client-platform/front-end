@@ -220,6 +220,8 @@ export class ProductAddComponent implements OnInit {
    * Handle form submit on product add
    */
   formSubmit(values) {
+    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
+    this.commonService.toasty(this.toastyObject);
 
     // Build product Object
     let Obj: Object = {

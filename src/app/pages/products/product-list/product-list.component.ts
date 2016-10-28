@@ -186,7 +186,7 @@ export class ProductListComponent implements OnInit {
         }
 
         // if its a pagination request
-        if (data.current_page === data.last_page) {
+        if (data.current_page === data.last_page || data.total === 0) {
           this.showLoadMore = false;
         } else {
           this.showLoadMore = true;
