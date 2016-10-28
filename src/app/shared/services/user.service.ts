@@ -8,6 +8,9 @@ import 'rxjs/Rx';
 export class UserService {
 
   public supplierID: number = 1;
+  public userID: number = 1;
+
+
 
   headers = new Headers({ 'Content-Type': 'application/json' });
   options = new RequestOptions({ headers: this.headers });
@@ -20,6 +23,16 @@ export class UserService {
       .map((response: Response) => response.json());
   }
 
+
+  getUserDetails() {
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/profile/details/user_id/' + this.userID)
+      .map((response: Response) => response.json());
+  }
+
+  getBussinessDetails() {
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/business/details/user_id/' + this.userID)
+      .map((response: Response) => response.json());
+  }
 
 
 }

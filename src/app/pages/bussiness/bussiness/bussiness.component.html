@@ -16,31 +16,31 @@
 			<div class="panel-body profile-information" style="padding-top:0cm">
 				<div class="col-md-2">
 					<div class="profile-pic text-center">
-						<img class="img-responsive" style="height:auto" src="http://orig02.deviantart.net/a23c/f/2013/087/5/5/burger_king_icon_by_slamiticon-d5zblss.png"
+						<img class="img-responsive" style="height:auto" [src]="(bussiness.image === '' || bussiness.image === null)?'http://www.maxtechagency.com/img/team/no-image-available.jpg': bussiness.image"
 							alt="">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="profile-desk">
-						<h1>Burger King</h1>
-						<span class="text-muted" style="padding-bottom:0cm;">Burger Food Chain</span><br>
-						<span style="padding-bottom:0.5rem;"> 163B, Bandranayaka Mw, Asgiriya, Gampaha </span>
+						<h1>{{bussiness.name}}</h1>
+						<span class="text-muted" style="padding-bottom:0cm;">{{bussiness.cat_name}}</span><br>
+						<span style="padding-bottom:0.5rem;min-height: 4rem;"> {{bussinessAdress.address}} </span>
 						<h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp; burgerking@gmail.com</small></h4>
 						<h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; 27292729/01125017603</small></h4>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="profile-desk" style="border:none;">
-						<h1>Nilesh Jayannadana</h1>
-						<span class="text-muted" style="padding-bottom:0cm;">Admin</span><br>
-						<span style="padding-bottom:0.5rem;">  &nbsp;</span>
-						<h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;nilesh@gmail.com</small></h4>
-						<h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; 0715910955</small></h4>
+						<h1>{{user.name}}</h1>
+						<span class="text-muted" style="padding-bottom:0cm;">Owner</span><br>
+						<span style="padding-bottom:0.5rem;min-height: 4rem;">  &nbsp;</span>
+						<h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{user.email}}</small></h4>
+						<h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; {{user.contact === null ? 'Not Available':user.contact}}</small></h4>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="profile-pic text-center">
-						<img class="img-responsive" style="height:auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png"
+						<img class="img-responsive" style="height:auto" [src]="(user.image === null)?'http://www.maxtechagency.com/img/team/no-image-available.jpg':user.src"
 							alt="">
 					</div>
 				</div>
@@ -57,10 +57,11 @@
 				<tabset>
 					<tab>
 						<template tabHeading style="margin-bottom:1rem">Location Information</template>
-
-						<sebm-google-map [latitude]="lat" [longitude]="lng">
-							<sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
-						</sebm-google-map>
+						<div *ngIf="map">
+							<sebm-google-map [latitude]="lat" [longitude]="lng">
+								<sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+							</sebm-google-map>
+						</div>
 					</tab>
 					<tab>
 						<template tabHeading style="margin-bottom:1rem">Edit Bussiness</template>
@@ -81,7 +82,7 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label for="validation-details">Supplier Category</label>
-												<select class="form-control input-sm" type="text"   name="validation-category">
+												<select class="form-control input-sm" type="text" name="validation-category">
                                                         <option value="supermarket">Supermarket</option>
                                                         <option value="food-chain">Food Chain</option>
                                                     </select>
@@ -96,7 +97,7 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label>Company/Bussiness Name</label>
-												<input class="form-control input-sm" type="text"   name="validation-company-name" placeholder="Please enter your Company/Bussiness name">
+												<input class="form-control input-sm" type="text" name="validation-company-name" placeholder="Please enter your Company/Bussiness name">
 
 											</div>
 										</div>
@@ -106,7 +107,7 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label for="validation-email">Company/Bussiness Email</label>
-												<input class="form-control input-sm" type="email"   name="validation-company-email" placeholder="Please enter your Company/Bussiness email address">
+												<input class="form-control input-sm" type="email" name="validation-company-email" placeholder="Please enter your Company/Bussiness email address">
 
 											</div>
 										</div>
@@ -117,7 +118,7 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label for="validation-lastname">Company/Bussiness Contact</label>
-												<input class="form-control input-sm" type="text"   name="validation-company-contact" placeholder="Please enter your personal contact number">
+												<input class="form-control input-sm" type="text" name="validation-company-contact" placeholder="Please enter your personal contact number">
 
 											</div>
 										</div>
