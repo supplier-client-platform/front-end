@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { URL_CONST } from '../config/url.constants';
-import 'rxjs/Rx'; // observables
+import 'rxjs/Rx';
 
 @Injectable()
 export class ProductService {
