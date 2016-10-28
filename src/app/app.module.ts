@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // 3rd party components
 import { DropzoneModule } from 'angular2-dropzone-wrapper';
-import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
+import {TabsModule, CollapseModule} from 'ng2-bootstrap/ng2-bootstrap';
 import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AgmCoreModule } from 'angular2-google-maps/core';
@@ -17,7 +17,7 @@ import { CommonService } from './shared/services/common.service';
 import { OrderService } from './shared/services/order.service';
 import { UserService } from './shared/services/user.service';
 
-// Directives 
+// Directives
 // import { GoogleplaceDirective } from '../../node_modules/angular2-google-map-auto-complete/directives/googleplace.directive';
 
 // custom components
@@ -39,6 +39,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { SearchComponent } from './pages/search/search.component';
 import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandProductsComponent } from './pages/brands/brand-products/brand-products.component';
+import {BrandService} from './shared/services/brand.service';
 
 
 
@@ -69,7 +70,8 @@ const DROPZONE_CONFIG = {
     ImageUploadModule,
     DropzoneModule.forRoot(DROPZONE_CONFIG),
     ReactiveFormsModule,
-    ToastyModule.forRoot()
+    ToastyModule.forRoot(),
+    CollapseModule
   ],
   declarations: [
     AppComponent,
@@ -95,7 +97,8 @@ const DROPZONE_CONFIG = {
     ProductService,
     CommonService,
     OrderService,
-    UserService
+    UserService,
+    BrandService
   ],
   bootstrap: [AppComponent]
 })
