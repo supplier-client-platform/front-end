@@ -93,7 +93,7 @@ export class BussinessComponent implements OnInit {
       this.lat = parseFloat(this.bussinessAdress['latitude']);
       this.lng = parseFloat(this.bussinessAdress['longitude']);
       this.map = true;
-
+       
       if (this.bussiness['image'] !== null && this.bussiness['image'] !== '') {
         this.images['bussiness'] = this.bussiness['image'];
       }
@@ -121,8 +121,8 @@ export class BussinessComponent implements OnInit {
     // build address
     Obj['address'] = JSON.stringify({
       address: this.bussinessAdressEdit,
-      lat: this.lat,
-      lng: this.lng
+      latitude: this.lat,
+      longitude: this.lng
     });
 
     // parse Image 
