@@ -62,7 +62,6 @@ export class OrderListComponent implements OnInit {
   }
 
   orderStatusSubmit(values: any) {
-    console.log(values.reason);
 
     let obj: IOrderStatusSubmit = {
       orderID: this.orderInfo.id,
