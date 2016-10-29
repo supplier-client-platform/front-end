@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonService} from '../../shared/services/common.service';
-import {BrandService} from "../../shared/services/brand.service";
+import {BrandService} from '../../shared/services/brand.service';
+import {IBrandEditInfo, IBrandCreateInfo, IBrand} from '../../shared/models/brands.model';
 
 @Component({
   selector: 'app-brands',
@@ -9,28 +10,31 @@ import {BrandService} from "../../shared/services/brand.service";
 })
 
 export class BrandsComponent implements OnInit {
-  public isCollapsed:boolean = true;
-  public currentBrandID = -1;
-  public currentBrandName = null;
-  public brands;
+  public isCollapsed: boolean;
+  public currentBrandID: number;
+  public currentBrandName: string;
+  public brands: IBrand;
 
-  constructor(private commonService: CommonService, private brandService: BrandService) { }
+  constructor(private commonService: CommonService, private brandService: BrandService) {
+    this.isCollapsed = true;
+    this.currentBrandID = -1;
+    this.currentBrandName = null;
+  }
 
   ngOnInit() {
     this.getBrands();
   }
 
   getBrands() {
-    let param = this.commonService.addQueryParams({ businessID: 1}, []);
+    let param = this.commonService.addQueryParams({supplier_id: 1}, []);
     this.brandService.getBrands(param)
       .subscribe((data: any) => {
-        console.log(data);
         this.brands = data;
       });
   }
 
   editBrand() {
-    let obj = {
+    let obj: IBrandEditInfo = {
       id: this.currentBrandID,
       brandName: this.currentBrandName,
       businessID: 1
@@ -44,13 +48,12 @@ export class BrandsComponent implements OnInit {
   }
 
   public createBrand(values: any) {
-    let obj = {
+    let obj: IBrandCreateInfo = {
       brandName: values.createBrandName,
       businessID: 1
     };
 
     this.brandService.saveBrand(obj).subscribe((data: any) => {
-      console.log(data);
       this.getBrands();
     }, (err) => {
       console.log(err);
@@ -59,16 +62,16 @@ export class BrandsComponent implements OnInit {
     this.isCollapsed = true;
   }
 
-  public collapsed(event:any):void {
+  public collapsed(event: any): void {
     //
   }
 
-  public expanded(event:any):void {
+  public expanded(event: any): void {
     this.currentBrandName = null;
     this.currentBrandID = -1;
   }
 
-  public onRowClick(id){
+  public onRowClick(id) {
     this.isCollapsed = true;
     this.currentBrandID = id;
   }
