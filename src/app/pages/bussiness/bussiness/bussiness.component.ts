@@ -38,14 +38,18 @@ export class BussinessComponent implements OnInit {
 
   src: string = '';
   resizeOptions: ResizeOptions = {
-    resizeMaxHeight: 175,
-    resizeMaxWidth: 175
+    resizeMaxHeight: 275,
+    resizeMaxWidth: 275
   };
 
   selected(imageResult: ImageResult, type) {
 
     if (type === 'bussiness') {
       this.images['bussiness'] = imageResult.resized
+        && imageResult.resized.dataURL
+        || imageResult.dataURL;
+    } else {
+      this.images['user'] = imageResult.resized
         && imageResult.resized.dataURL
         || imageResult.dataURL;
     }
@@ -68,6 +72,10 @@ export class BussinessComponent implements OnInit {
       console.log(data);
       this.user = data.data;
       this.userView = <Object>JSON.parse(JSON.stringify(this.user));
+
+      if (this.user['image'] !== null && this.user['image'] !== '') {
+        this.images['user'] = this.user['image'];
+      }
     }, (err) => {
       console.log(err);
     });
@@ -122,12 +130,35 @@ export class BussinessComponent implements OnInit {
     this.toastyObject = { title: 'Updating....', msg: 'Please wait', type: 'info' };
     this.commonService.toasty(this.toastyObject);
 
-    console.log(Obj);
     this.userService.updateBussiness(Obj)
       .subscribe((data: any) => {
-        this.toastyObject = { title: 'Success', msg: 'Product Successfully Updated!', type: 'success' };
+        this.toastyObject = { title: 'Success', msg: 'Bussiness Successfully Updated!', type: 'success' };
         this.commonService.toasty(this.toastyObject);
         this.getBussinessDetails();
+
+        // TODO: Emit for header
+      }, (err) => {
+        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.commonService.toasty(this.toastyObject);
+      });
+  }
+
+
+  userUpdate() {
+    let Obj = this.user;
+
+    Obj['image'] = this.images['user'];
+
+    this.toastyObject = { title: 'Updating....', msg: 'Please wait', type: 'info' };
+    this.commonService.toasty(this.toastyObject);
+
+    this.userService.updateUser(Obj)
+      .subscribe((data: any) => {
+        this.toastyObject = { title: 'Success', msg: 'User Successfully Updated!', type: 'success' };
+        this.commonService.toasty(this.toastyObject);
+        this.getUserDetails();
+
+        // TODO: Emit for header
       }, (err) => {
         this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
         this.commonService.toasty(this.toastyObject);

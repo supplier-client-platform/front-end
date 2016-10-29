@@ -40,7 +40,7 @@
 				</div>
 				<div class="col-md-2">
 					<div class="profile-pic text-center">
-						<img class="img-responsive" style="height:auto" [src]="(user.image === null)?'http://www.maxtechagency.com/img/team/no-image-available.jpg':user.src"
+						<img class="img-responsive" style="height:auto" [src]="(userView.image === null || userView.image === '' )?'http://www.maxtechagency.com/img/team/no-image-available.jpg':userView.image"
 							alt="">
 					</div>
 				</div>
@@ -158,7 +158,7 @@
 					</tab>
 					<tab>
 						<template tabHeading style="margin-bottom:1rem">Edit User</template>
-						<form class="form-horizontal">
+						<form class="form-horizontal" #userForm="ngForm" (ngSubmit)="userUpdate()">
 							<div style="padding-top:1rem;">
 								<div class="col-md-4">
 									<div class="upload-container">
@@ -195,8 +195,8 @@
 										<div class="col-sm-12">
 											<div class="form-material form-material-primary">
 												<label for="validation-email">Personal Email</label>
-												<input class="form-control input-sm" type="email" [(ngModel)]="user.email" id="validation-email" name="validation-email" placeholder="Please enter your personal email address">
-
+												<input disabled class="form-control input-sm" type="email" [(ngModel)]="user.email" id="validation-email" name="validation-email" placeholder="Please enter your personal email address">
+												<span class="helper-block">This cannot be changed</span>
 											</div>
 										</div>
 									</div>
@@ -216,7 +216,7 @@
 											<button class="btn-danger btn btn-block">Change Password</button>
 										</div>
 										<div class="col-sm-4 ">
-											<button class="btn-primary btn btn-block">Update</button>
+											<button type="submit" class="btn-primary btn btn-block">Update</button>
 										</div>
 									</div>
 

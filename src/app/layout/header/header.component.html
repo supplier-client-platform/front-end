@@ -33,8 +33,8 @@
 				<!-- user login dropdown start-->
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<img alt="" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ce54bf11889067.562541ef7cde4.png">
-						<span class="username">John Doe</span>
+						<img alt="" [src]="(user.image === null || user.image === '' )?'http://www.maxtechagency.com/img/team/no-image-available.jpg':user.image">
+						<span class="username">{{user.name}}</span>
 
 					</a>
 

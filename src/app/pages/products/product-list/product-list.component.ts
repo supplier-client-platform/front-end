@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
+import { UserService } from '../../../shared/services/user.service';
 import { CommonService } from '../../../shared/services/common.service';
 import { IToastyObject } from '../../../shared/interfaces/common.interfaces';
 
@@ -64,13 +65,7 @@ interface QueryObject {
 })
 export class ProductListComponent implements OnInit {
 
-  /**
-   * 
-   * 
-   * @type {number}
-   * @memberOf ProductListComponent
-   */
-  supplierID: number = 1;
+
   /**
    * 
    * 
@@ -128,7 +123,7 @@ export class ProductListComponent implements OnInit {
     status: undefined,
     brand: undefined,
     itemsPerPage: this.itemsPerPage,
-    marketPlaceId: this.supplierID,
+    marketPlaceId: this.userService.supplierID,
     page: this.pageNo
   };
 
@@ -140,7 +135,7 @@ export class ProductListComponent implements OnInit {
    * 
    * @memberOf ProductListComponent
    */
-  constructor(private productService: ProductService, private commonService: CommonService) { }
+  constructor(private productService: ProductService, private commonService: CommonService, private userService: UserService) { }
 
   /**
    * 
@@ -203,7 +198,7 @@ export class ProductListComponent implements OnInit {
    * Get avalaibale brands for a specific supplier
    */
   private getBrands() {
-    this.productService.getBrands(this.supplierID)
+    this.productService.getBrands(this.userService.supplierID)
       .subscribe((data: any) => this.brandList = data, (err) => console.log(err));
   }
 
@@ -237,7 +232,7 @@ export class ProductListComponent implements OnInit {
       brand: brand,
       itemsPerPage: this.itemsPerPage,
       page: this.pageNo,
-      marketPlaceId: this.supplierID,
+      marketPlaceId: this.userService.supplierID,
     };
     this.getProducts('New');
   }

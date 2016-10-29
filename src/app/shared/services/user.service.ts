@@ -45,7 +45,12 @@ export class UserService {
   }
 
   updateBussiness(param) {
-    return this.http.post(URL_CONST.DEV_PREFIX + 'update/business_id/' + this.supplierID, param, this.options)
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/business/update/business_id/' + this.supplierID, param, this.options)
+      .map((response: Response) => response.json());
+  }
+
+  updateUser(param) {
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/profile/update/user_id/' + this.userID, param, this.options)
       .map((response: Response) => response.json());
   }
 
