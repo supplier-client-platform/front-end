@@ -16,26 +16,26 @@
 			<div class="panel-body profile-information" style="padding-top:0cm">
 				<div class="col-md-2">
 					<div class="profile-pic text-center">
-						<img class="img-responsive" style="height:auto" [src]="(bussiness.image === '' || bussiness.image === null)?'http://www.maxtechagency.com/img/team/no-image-available.jpg': bussiness.image"
+						<img class="img-responsive" style="height:auto" [src]="(bussinessView.image === '' || bussinessView.image === null)?'http://www.maxtechagency.com/img/team/no-image-available.jpg': bussinessView.image"
 							alt="">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="profile-desk">
-						<h1>{{bussiness.name}}</h1>
-						<span class="text-muted" style="padding-bottom:0cm;">{{bussiness.cat_name}}</span><br>
+						<h1>{{bussinessView.name}}</h1>
+						<span class="text-muted" style="padding-bottom:0cm;">{{bussinessView.cat_name}}</span><br>
 						<span style="padding-bottom:0.5rem;min-height: 4rem;"> {{bussinessAdress.address}} </span>
-						<h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp; burgerking@gmail.com</small></h4>
-						<h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; 27292729/01125017603</small></h4>
+						<h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp; {{bussinessView.email}}</small></h4>
+						<h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; {{bussinessView.contact}}</small></h4>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="profile-desk" style="border:none;">
-						<h1>{{user.name}}</h1>
+						<h1>{{userView.name}}</h1>
 						<span class="text-muted" style="padding-bottom:0cm;">Owner</span><br>
 						<span style="padding-bottom:0.5rem;min-height: 4rem;">  &nbsp;</span>
-						<h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{user.email}}</small></h4>
-						<h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; {{user.contact === null ? 'Not Available':user.contact}}</small></h4>
+						<h4 style="margin-bottom:0cm"><small><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{userView.email}}</small></h4>
+						<h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; {{userView.contact === null ? 'Not Available':userView.contact}}</small></h4>
 					</div>
 				</div>
 				<div class="col-md-2">
@@ -65,14 +65,14 @@
 					</tab>
 					<tab>
 						<template tabHeading style="margin-bottom:1rem">Edit Bussiness</template>
-						<form class="form-horizontal">
+						<form class="form-horizontal" #bussinessForm="ngForm" (ngSubmit)="bussinessUpdate()">
 							<div style="padding-top:1rem;">
 								<div class="col-md-4">
 									<div class="upload-container">
 										<div class="upload-container">
 
-											<img class="img-responsive" style="margin: 0 auto;" [src]="src" [hidden]="!src"><br>
-											<input class="form-control" type="file" image-upload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions">
+											<img class="img-responsive" style="margin: 0 auto;" [src]="images['bussiness']" [hidden]="!images['bussiness']"><br>
+											<input class="form-control" type="file" image-upload (imageSelected)="selected($event,'bussiness')" [resizeOptions]="resizeOptions">
 										</div>
 
 									</div>
@@ -82,9 +82,8 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label for="validation-details">Supplier Category</label>
-												<select class="form-control input-sm" type="text" name="validation-category">
-                                                        <option value="supermarket">Supermarket</option>
-                                                        <option value="food-chain">Food Chain</option>
+												<select class="form-control input-sm" [(ngModel)]="bussiness.supplier_category_id" type="text" name="validation-category">
+                                                        <option *ngFor="let cat of categories" [value]="cat.id" >{{cat.name}}</option>
                                                     </select>
 
 
@@ -97,7 +96,7 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label>Company/Bussiness Name</label>
-												<input class="form-control input-sm" type="text" name="validation-company-name" placeholder="Please enter your Company/Bussiness name">
+												<input class="form-control input-sm" type="text" [(ngModel)]="bussiness.name" name="validation-company-name" placeholder="Please enter your Company/Bussiness name">
 
 											</div>
 										</div>
@@ -107,7 +106,7 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label for="validation-email">Company/Bussiness Email</label>
-												<input class="form-control input-sm" type="email" name="validation-company-email" placeholder="Please enter your Company/Bussiness email address">
+												<input class="form-control input-sm" type="email" [(ngModel)]="bussiness.email" name="validation-company-email" placeholder="Please enter your Company/Bussiness email address">
 
 											</div>
 										</div>
@@ -118,7 +117,7 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label for="validation-lastname">Company/Bussiness Contact</label>
-												<input class="form-control input-sm" type="text" name="validation-company-contact" placeholder="Please enter your personal contact number">
+												<input class="form-control input-sm" [(ngModel)]="bussiness.contact" type="text" name="validation-company-contact" placeholder="Please enter your personal contact number">
 
 											</div>
 										</div>
@@ -129,7 +128,7 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label for="validation-lastname">Company Address</label>
-												<input class="form-control input-sm" type="text" name="address" [(ngModel)]="address" (setAddress)="getAddress($event)" googleplace/>
+												<textarea class="form-control input-sm" type="text" name="address" [(ngModel)]="bussinessAdressEdit"></textarea>
 
 
 											</div>
@@ -140,8 +139,8 @@
 										<div class="col-sm-12">
 											<div class="form-material">
 												<label for="validation-lastname">Base City</label>
-												<select class="form-control input-sm" type="text" id="validation-city" name="validation-city">
-                                                        <option value="Sri Lanka">Colombo</option>
+												<select class="form-control input-sm" type="text" [(ngModel)]="bussiness.base_city" id="validation-city" name="validation-city">
+                                                        <option [value]="city.id" *ngFor="let city of cities">{{city.city}}</option>
                                                     </select>
 
 											</div>
@@ -150,7 +149,7 @@
 
 									<div class="form-group">
 										<div class="col-md-4 col-md-offset-8">
-											<button class="btn-primary btn btn-block">Update</button>
+											<button type="submit" class="btn-primary btn btn-block">Update</button>
 										</div>
 									</div>
 								</div>
@@ -165,8 +164,8 @@
 									<div class="upload-container">
 										<div class="upload-container">
 
-											<img class="img-responsive" style="margin: 0 auto;" [src]="src" [hidden]="!src"><br>
-											<input class="form-control" type="file" image-upload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions">
+											<img class="img-responsive" style="margin: 0 auto;" [src]="images['user']" [hidden]="!images['user']"><br>
+											<input class="form-control" type="file" image-upload (imageSelected)="selected($event,'user')" [resizeOptions]="resizeOptions">
 										</div>
 
 									</div>
@@ -176,7 +175,7 @@
 										<div class="col-sm-12">
 											<div class="form-material form-material-primary">
 												<label for="validation-firstname">Full Name</label>
-												<input class="form-control input-sm" type="text" id="validation-firstname" name="validation-firstname" placeholder="Please enter your firstname">
+												<input class="form-control input-sm" type="text" [(ngModel)]="user.name" id="validation-firstname" name="validation-firstname" placeholder="Please enter your firstname">
 
 											</div>
 										</div>
@@ -186,7 +185,7 @@
 										<div class="col-sm-12">
 											<div class="form-material form-material-primary">
 												<label for="validation-lastname">NIC</label>
-												<input class="form-control input-sm" type="text" id="validation-nic" name="validation-nic" placeholder="Please enter your NIC number">
+												<input class="form-control input-sm" type="text" [(ngModel)]="user.NIC" id="validation-nic" name="validation-nic" placeholder="Please enter your NIC number">
 
 											</div>
 										</div>
@@ -196,7 +195,7 @@
 										<div class="col-sm-12">
 											<div class="form-material form-material-primary">
 												<label for="validation-email">Personal Email</label>
-												<input class="form-control input-sm" type="email" id="validation-email" name="validation-email" placeholder="Please enter your personal email address">
+												<input class="form-control input-sm" type="email" [(ngModel)]="user.email" id="validation-email" name="validation-email" placeholder="Please enter your personal email address">
 
 											</div>
 										</div>
@@ -206,13 +205,13 @@
 										<div class="col-sm-12">
 											<div class="form-material form-material-primary">
 												<label for="validation-lastname">Personal Contact</label>
-												<input class="form-control input-sm" type="text" id="validation-contact" name="validation-contact" placeholder="Please enter your personal contact number">
+												<input class="form-control input-sm" type="text" [(ngModel)]="user.contact" id="validation-contact" name="validation-contact" placeholder="Please enter your personal contact number">
 
 											</div>
 										</div>
 									</div>
 
-									<div class="form-group">
+									<div class="form-group" style="margin-top:5rem;">
 										<div class="col-sm-offset-4 col-sm-4">
 											<button class="btn-danger btn btn-block">Change Password</button>
 										</div>

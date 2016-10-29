@@ -34,5 +34,19 @@ export class UserService {
       .map((response: Response) => response.json());
   }
 
+  getBussinessCategories() {
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/business/categories/all')
+      .map((response: Response) => response.json());
+  }
+
+  getCities() {
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/cities/all')
+      .map((response: Response) => response.json());
+  }
+
+  updateBussiness(param) {
+    return this.http.post(URL_CONST.DEV_PREFIX + 'update/business_id/' + this.supplierID, param, this.options)
+      .map((response: Response) => response.json());
+  }
 
 }
