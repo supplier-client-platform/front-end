@@ -56,9 +56,9 @@
       <tbody>
 
         <tr *ngFor="let x of orderProducts">
-          <td>{{x.product_name}}</td>
-          <td>{{x.brand}}</td>
-          <td>Rs {{x.unit_price | number : '1.2-2'}} x{{x.qty}}</td>
+          <td>{{x.name}}</td>
+          <td>{{x.brandname}}</td>
+          <td>Rs {{x.price | number : '1.2-2'}} x{{x.product_quantity}}</td>
         </tr>
         <tr class="info">
           <td colspan="2">TOTAL AMOUNT</td>

@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { OrderService } from '../../../shared/services/order.service';
-import { CommonService } from '../../../shared/services/common.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {OrderService} from '../../../shared/services/order.service';
+import {CommonService} from '../../../shared/services/common.service';
+import {IToastyObject} from '../../../shared/interfaces/common.interfaces';
 
 export interface IOrderStatusSubmit {
   orderID: string;
@@ -14,14 +15,16 @@ export interface IOrderStatusSubmit {
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
- @ViewChild('lgModal') lgModal;
+  @ViewChild('lgModal') lgModal;
   pendingOrders: Array<any> = [];
   completedOrders: Array<any> = [];
   searchOrders: Array<any> = [];
   orderInfo: any;
   orderInfoStatus: string;
+  toastyObject: IToastyObject;
 
-  constructor(private commonService: CommonService, private orderService: OrderService) { }
+  constructor(private commonService: CommonService, private orderService: OrderService) {
+  }
 
   ngOnInit() {
     this.getCompletedOrders();
@@ -30,25 +33,39 @@ export class OrderListComponent implements OnInit {
 
   // TODO: Market place id should be available after login
   getPendingOrders() {
-    let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Pending' }, []);
+    let param = this.commonService.addQueryParams({marketPlaceId: 1, status: 'Pending'}, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.pendingOrders = data.data;
+      }, (err) => {
+        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.commonService.toasty(this.toastyObject);
       });
   }
 
   getCompletedOrders() {
-    let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Accepted' }, []);
+    let param = this.commonService.addQueryParams({marketPlaceId: 1, status: 'Accepted'}, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.completedOrders = data.data;
+      }, (err) => {
+        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.commonService.toasty(this.toastyObject);
       });
   }
+
   getSearchOrders(value) {
-    let param = this.commonService.addQueryParams({ marketPlaceId: 1, orderId: value.orderId, customer_name: value.name }, ['']);
+    let param = this.commonService.addQueryParams({
+      marketPlaceId: 1,
+      orderId: value.orderId,
+      customer_name: value.name
+    }, ['']);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.searchOrders = data.data;
+      }, (err) => {
+        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.commonService.toasty(this.toastyObject);
       });
   }
 
@@ -62,21 +79,23 @@ export class OrderListComponent implements OnInit {
   }
 
   orderStatusSubmit(values: any) {
-
     let obj: IOrderStatusSubmit = {
       orderID: this.orderInfo.id,
       status: this.orderInfoStatus,
       reason: values.reason
     };
 
-    // TODO need to handle this after a success response from the server otherwise need to give a proper error message.
-
     this.lgModal.hide();
 
     this.orderService.changeOrderStatus(obj).subscribe((data: any) => {
       this.orderInfo.status = this.orderInfoStatus;
+      this.getPendingOrders();
+      this.getCompletedOrders();
+      this.toastyObject = { title: 'Success', msg: 'Order status changed Successfully!', type: 'success' };
+      this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      console.log(err);
+      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+      this.commonService.toasty(this.toastyObject);
     });
   }
 

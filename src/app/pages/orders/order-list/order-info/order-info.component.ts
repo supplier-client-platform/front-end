@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter  } from '@angular/core';
 import { OrderService } from '../../../../shared/services/order.service';
 import { CommonService } from '../../../../shared/services/common.service';
+import {IToastyObject} from '../../../../shared/interfaces/common.interfaces';
 
 @Component({
   selector: 'app-order-info',
@@ -11,8 +12,8 @@ export class OrderInfoComponent implements OnInit, OnChanges {
   @Input() orderInfo: any = {};
   @Output() orderSelected = new EventEmitter();
   orderProducts: Array<any> = [];
-
   animationStatus: boolean = false;
+  toastyObject: IToastyObject;
 
   constructor(private commonService: CommonService, private orderService: OrderService) { }
 
@@ -22,8 +23,15 @@ export class OrderInfoComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.animationStatus = false;
     if (this.orderInfo) {
-      this.orderProducts = JSON.parse(this.orderInfo.shopping_list);
-      this.animationStatus = true;
+      this.orderService.getProducts({
+        orderID: this.orderInfo.id
+      }).subscribe((data: any) => {
+        this.orderProducts= data.data;
+        this.animationStatus = true;
+      }, (err) => {
+          this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+          this.commonService.toasty(this.toastyObject);
+        });
     }
   }
 
