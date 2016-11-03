@@ -4,15 +4,15 @@ import { ProductService } from '../../../shared/services/product.service';
 import { UserService } from '../../../shared/services/user.service';
 import { IMG_CONST } from '../../../shared/config/img.constants';
 import { CustomAttrib } from '../product.interfaces';
-import { IToastyObject } from '../../../shared/interfaces/common.interfaces';
+import { IToastyObject } from '../../../shared/models/common.model';
 import { CommonService } from '../../../shared/services/common.service';
 import { Router } from '@angular/router';
 
 
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class ProductAddComponent
  * @implements {OnInit}
@@ -28,75 +28,75 @@ export class ProductAddComponent implements OnInit {
 
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {number}
    * @memberOf ProductAddComponent
    */
   supplierID: number;
   /**
-   * 
-   * 
+   *
+   *
    * @type {string}
    * @memberOf ProductAddComponent
    */
   src: string = '';
   /**
-   * 
-   * 
+   *
+   *
    * @type {ResizeOptions}
    * @memberOf ProductAddComponent
    */
   resizeOptions: ResizeOptions = { resizeMaxHeight: 250, resizeMaxWidth: 250 };
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {Object}
    * @memberOf ProductAddComponent
    */
   product: Object = {};
   /**
-   * 
-   * 
+   *
+   *
    * @type {Array<CustomAttrib>}
    * @memberOf ProductAddComponent
    */
   customAtribs: Array<CustomAttrib>;
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {IToastyObject}
    * @memberOf ProductEditComponent
    */
   toastyObject: IToastyObject;
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {Array<Object>}
    * @memberOf ProductAddComponent
    */
   brandList: Array<Object> = [];
   /**
-   * 
-   * 
+   *
+   *
    * @type {Array<Object>}
    * @memberOf ProductAddComponent
    */
   categoryList: Array<Object> = [];
   /**
-   * 
-   * 
+   *
+   *
    * @type {Array<Object>}
    * @memberOf ProductAddComponent
    */
   templateList: Array<Object> = [];
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {Object}
    * @memberOf ProductAddComponent
    */
@@ -105,10 +105,10 @@ export class ProductAddComponent implements OnInit {
 
   /**
    * Creates an instance of ProductAddComponent.
-   * 
+   *
    * @param {ProductService} productService
    * @param {UserService} userService
-   * 
+   *
    * @memberOf ProductAddComponent
    */
   constructor(private productService: ProductService, private userService: UserService, private commonService: CommonService,
@@ -123,9 +123,9 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
-   * 
+   *
+   *
+   *
    * @memberOf ProductAddComponent
    */
   ngOnInit() {
@@ -133,10 +133,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {ImageResult} imageResult
-   * 
+   *
    * @memberOf ProductAddComponent
    * Handle Image Select
    */
@@ -147,10 +147,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} id
-   * 
+   *
    * @memberOf ProductAddComponent
    * Handle custom Attribs adding a new row dynamically upon filling all fileds
    */
@@ -163,10 +163,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @private
-   * 
+   *
    * @memberOf ProductAddComponent
    * Get Brands
    */
@@ -179,10 +179,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @private
-   * 
+   *
    * @memberOf ProductAddComponent
    * Get Categories
    */
@@ -195,10 +195,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @private
-   * 
+   *
    * @memberOf ProductAddComponent
    * Get templates
    */
@@ -211,11 +211,11 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} values
    * @returns
-   * 
+   *
    * @memberOf ProductAddComponent
    * Handle form submit on product add
    */
@@ -270,10 +270,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} value
-   * 
+   *
    * @memberOf ProductAddComponent
    * Change Product Status
    */
@@ -282,10 +282,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {string} id
-   * 
+   *
    * @memberOf ProductAddComponent
    * Change template components for custom Attribs
    */
@@ -311,9 +311,9 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
-   * 
+   *
+   *
+   *
    * @memberOf ProductAddComponent
    * Clean All atrribs
    */
@@ -324,10 +324,10 @@ export class ProductAddComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} i
-   * 
+   *
    * @memberOf ProductAddComponent
    * Remove a Custom Attrib of user's choice
    */
@@ -335,9 +335,9 @@ export class ProductAddComponent implements OnInit {
     this.product['custom_attr'].splice(i, 1);
   }
   /**
-   * 
-   * 
-   * 
+   *
+   *
+   *
    * @memberOf ProductAddComponent
    */
   reset() {

@@ -4,12 +4,12 @@ import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { ProductService } from '../../../shared/services/product.service';
 import { CommonService } from '../../../shared/services/common.service';
 import { UserService } from '../../../shared/services/user.service';
-import { IToastyObject } from '../../../shared/interfaces/common.interfaces';
+import { IToastyObject } from '../../../shared/models/common.model';
 
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class ProductEditComponent
  * @implements {OnInit}
@@ -21,51 +21,51 @@ import { IToastyObject } from '../../../shared/interfaces/common.interfaces';
 })
 export class ProductEditComponent implements OnInit {
   /**
-   * 
-   * 
+   *
+   *
    * @type {number}
    * @memberOf ProductEditComponent
    */
   id: number;
   /**
-   * 
-   * 
+   *
+   *
    * @type {Object}
    * @memberOf ProductEditComponent
    */
   product: Object;
   /**
-   * 
-   * 
+   *
+   *
    * @type {number}
    * @memberOf ProductEditComponent
    */
   supplierID: number;
   /**
-   * 
-   * 
+   *
+   *
    * @type {Array<Object>}
    * @memberOf ProductEditComponent
    */
   brandList: Array<Object> = [];
   /**
-   * 
-   * 
+   *
+   *
    * @type {Array<Object>}
    * @memberOf ProductEditComponent
    */
   categoryList: Array<Object> = [];
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {IToastyObject}
    * @memberOf ProductEditComponent
    */
   toastyObject: IToastyObject;
   /**
-   * 
-   * 
+   *
+   *
    * @type {ResizeOptions}
    * @memberOf ProductEditComponent
    */
@@ -73,12 +73,12 @@ export class ProductEditComponent implements OnInit {
 
   /**
    * Creates an instance of ProductEditComponent.
-   * 
+   *
    * @param {ProductService} productService
    * @param {ActivatedRoute} activatedRoute
    * @param {CommonService} commonService
    * @param {UserService} userService
-   * 
+   *
    * @memberOf ProductEditComponent
    */
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private commonService: CommonService,
@@ -93,9 +93,9 @@ export class ProductEditComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
-   * 
+   *
+   *
+   *
    * @memberOf ProductEditComponent
    */
   ngOnInit() {
@@ -104,10 +104,10 @@ export class ProductEditComponent implements OnInit {
 
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {ImageResult} imageResult
-   * 
+   *
    * @memberOf ProductEditComponent
    * Converts the updated image to base64 dataURL
    */
@@ -118,10 +118,10 @@ export class ProductEditComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @private
-   * 
+   *
    * @memberOf ProductEditComponent
    * Invokes the getProduct Service by catching the product ID from URL
    */
@@ -139,10 +139,10 @@ export class ProductEditComponent implements OnInit {
 
 
   /**
-   * 
-   * 
+   *
+   *
    * @private
-   * 
+   *
    * @memberOf ProductEditComponent
    * Gets all the brands related to a certain supplier
    */
@@ -153,10 +153,10 @@ export class ProductEditComponent implements OnInit {
 
 
   /**
-   * 
-   * 
+   *
+   *
    * @private
-   * 
+   *
    * @memberOf ProductEditComponent
    * Gets All the categories related to a certain supplier
    */
@@ -166,10 +166,10 @@ export class ProductEditComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} id
-   * 
+   *
    * @memberOf ProductEditComponent
    * Detects changes in custom attributes and adds an empty row to the UI
    */
@@ -183,10 +183,10 @@ export class ProductEditComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} values
-   * 
+   *
    * @memberOf ProductEditComponent
    * Submit the updated product module
    */
@@ -224,10 +224,10 @@ export class ProductEditComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} value
-   * 
+   *
    * @memberOf ProductEditComponent
    * Change between Draft/Published on product status
    */
@@ -235,10 +235,10 @@ export class ProductEditComponent implements OnInit {
     this.product['status'] = value;
   }
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} i
-   * 
+   *
    * @memberOf ProductEditComponent
    * Remove a Custom Attrib of user's choice
    */
@@ -247,9 +247,9 @@ export class ProductEditComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
-   * 
+   *
+   *
+   *
    * @memberOf ProductEditComponent
    * Reset the product module to it's previous state
    */

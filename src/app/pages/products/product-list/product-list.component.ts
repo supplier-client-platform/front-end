@@ -2,49 +2,49 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
 import { UserService } from '../../../shared/services/user.service';
 import { CommonService } from '../../../shared/services/common.service';
-import { IToastyObject } from '../../../shared/interfaces/common.interfaces';
+import { IToastyObject } from '../../../shared/models/common.model';
 
 
 
 interface QueryObject {
   /**
-   * 
-   * 
+   *
+   *
    * @type {*}
    * @memberOf QueryObject
    */
   query: any;
   /**
-   * 
-   * 
+   *
+   *
    * @type {*}
    * @memberOf QueryObject
    */
   status: any;
   /**
-   * 
-   * 
+   *
+   *
    * @type {*}
    * @memberOf QueryObject
    */
   brand: any;
   /**
-   * 
-   * 
+   *
+   *
    * @type {number}
    * @memberOf QueryObject
    */
   itemsPerPage: number;
   /**
-   * 
-   * 
+   *
+   *
    * @type {number}
    * @memberOf QueryObject
    */
   marketPlaceId: number;
   /**
-   * 
-   * 
+   *
+   *
    * @type {number}
    * @memberOf QueryObject
    */
@@ -52,8 +52,8 @@ interface QueryObject {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @class ProductListComponent
  * @implements {OnInit}
@@ -67,54 +67,54 @@ export class ProductListComponent implements OnInit {
 
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {Array<Object>}
    * @memberOf ProductListComponent
    */
   productList: Array<Object> = [];
   /**
-   * 
-   * 
+   *
+   *
    * @type {Array<Object>}
    * @memberOf ProductListComponent
    */
   brandList: Array<Object> = [];
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {number}
    * @memberOf ProductListComponent
    */
   itemsPerPage: number = 11;
   /**
-   * 
-   * 
+   *
+   *
    * @type {number}
    * @memberOf ProductListComponent
    */
   pageNo: number = 1;
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {boolean}
    * @memberOf ProductListComponent
    */
   showLoadMore: boolean = false;
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {IToastyObject}
    * @memberOf ProductListComponent
    */
   toastyObject: IToastyObject;
 
   /**
-   * 
-   * 
+   *
+   *
    * @type {QueryObject}
    * @memberOf ProductListComponent
    */
@@ -129,18 +129,18 @@ export class ProductListComponent implements OnInit {
 
   /**
    * Creates an instance of ProductListComponent.
-   * 
+   *
    * @param {ProductService} productService
    * @param {CommonService} commonService
-   * 
+   *
    * @memberOf ProductListComponent
    */
   constructor(private productService: ProductService, private commonService: CommonService, private userService: UserService) { }
 
   /**
-   * 
-   * 
-   * 
+   *
+   *
+   *
    * @memberOf ProductListComponent
    * Lifecycle Hook of OnInit component
    */
@@ -151,11 +151,11 @@ export class ProductListComponent implements OnInit {
 
 
   /**
-   * 
-   * 
+   *
+   *
    * @private
    * @param {any} type
-   * 
+   *
    * @memberOf ProductListComponent
    * Get Product List
    */
@@ -190,10 +190,10 @@ export class ProductListComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @private
-   * 
+   *
    * @memberOf ProductListComponent
    * Get avalaibale brands for a specific supplier
    */
@@ -203,9 +203,9 @@ export class ProductListComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
-   * 
+   *
+   *
+   *
    * @memberOf ProductListComponent
    * Load the next page of pagination
    */
@@ -215,12 +215,12 @@ export class ProductListComponent implements OnInit {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @param {any} query
    * @param {any} status
    * @param {any} brand
-   * 
+   *
    * @memberOf ProductListComponent
    * Build the search product object
    */

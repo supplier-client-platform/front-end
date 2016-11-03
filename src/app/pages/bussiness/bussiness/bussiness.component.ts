@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { CommonService } from '../../../shared/services/common.service';
 import { UserService } from '../../../shared/services/user.service';
-import { IToastyObject } from '../../../shared/interfaces/common.interfaces';
-
+import {IToastyObject} from '../../../shared/models/common.model';
 
 
 @Component({
@@ -93,7 +92,7 @@ export class BussinessComponent implements OnInit {
       this.lat = parseFloat(this.bussinessAdress['latitude']);
       this.lng = parseFloat(this.bussinessAdress['longitude']);
       this.map = true;
-       
+
       if (this.bussiness['image'] !== null && this.bussiness['image'] !== '') {
         this.images['bussiness'] = this.bussiness['image'];
       }
@@ -125,7 +124,7 @@ export class BussinessComponent implements OnInit {
       longitude: this.lng
     });
 
-    // parse Image 
+    // parse Image
     Obj['image'] = this.images['bussiness'];
     this.toastyObject = { title: 'Updating....', msg: 'Please wait', type: 'info' };
     this.commonService.toasty(this.toastyObject);

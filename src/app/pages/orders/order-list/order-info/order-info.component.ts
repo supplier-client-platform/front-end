@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter  } from '@angular/core';
 import { OrderService } from '../../../../shared/services/order.service';
 import { CommonService } from '../../../../shared/services/common.service';
-import {IToastyObject} from '../../../../shared/interfaces/common.interfaces';
+import {IToastyObject} from '../../../../shared/models/common.model';
+
 
 @Component({
   selector: 'app-order-info',
