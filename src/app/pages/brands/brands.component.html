@@ -1,79 +1,69 @@
 <div class="row">
-  <div class="col-sm-12">
+	<div class="col-sm-12">
 
-    <ul class="breadcrumbs-alt">
-      <li><a class="text-uppercase"> Brands</a></li>
-      <li class="text-uppercase"><a class="current"> All</a></li>
+		<ul class="breadcrumbs-alt">
+			<li><a class="text-uppercase"> Brands</a></li>
+			<li class="text-uppercase"><a class="current"> All</a></li>
 
-    </ul>
+		</ul>
 
-  </div>
+	</div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <section class="panel animated bounceInUp">
-      <div class="panel-body">
+	<div class="col-md-10 col-md-offset-1">
+		<section class="panel animated bounceInUp">
+			<div class="panel-body">
 
-        <div (collapsed)="collapsed($event)"
-             (expanded)="expanded($event)"
-             [collapse]="isCollapsed"
-             class="card card-block card-header" style="margin-bottom: 10%">
 
-          <form class="from-horizontal" #createForm="ngForm" (ngSubmit)="createBrand(createForm.value)">
-            <div class="form-group ">
+				<form #createForm="ngForm" (ngSubmit)="createBrand(createForm.value)">
+					<table class="table table-hover table-condensed table-striped table general-table" style="align-items: center">
+						<thead>
+							<tr>
 
-              <div class="col-sm-8 ">
-                <label class="control-label ">Brand Name</label>
-                <input name="createBrandName" id="createBrandName" class="form-control input-sm " placeholder="" required ngModel>
-              </div>
+								<td>Brand Name</td>
+								<td style="width:18rem;text-align:right">Actions</td>
+							</tr>
+						</thead>
 
-              <div class="col-sm-2 ">
-                <label class="control-label ">&nbsp;</label>
-                <button type="submit" class="btn btn-sm btn-primary btn-block " [disabled] = ""> APPLY</button>
-              </div>
+						<tbody style="margin-top:5rem">
 
-              <div class="col-sm-2 ">
-                <label class="control-label ">&nbsp;</label>
-                <button type="button" class="btn btn-sm btn-warning btn-block" (click)="isCollapsed = !isCollapsed"> CANCEL</button>
-              </div>
-            </div>
+							<tr>
 
-          </form>
-        </div>
 
-        <hr>
 
-        <div>
-          <button class="btn-info btn btn-block btn-sm" (click)="isCollapsed = !isCollapsed"><i
-            class="glyphicon glyphicon-plus"></i> ADD NEW BRAND
-          </button>
-        </div>
 
-        <table class="table table-hover table-condensed table-striped table general-table" style="align-items: center">
-          <thead>
-          <tr>
-            <td>Brand#</td>
-            <td>Brand Name</td>
-            <td>Actions</td>
-          </tr>
-          </thead>
+								<td colspan="1">
+									<input name="createBrandName" placeholder="Enter Brand Name" id="createBrandName" class="form-control input-sm " required
+										ngModel>
+								</td>
+								<td style="text-align:right">
+									<button type="submit" class="btn btn-xs btn-primary   "><i class="glyphicon glyphicon-save" ></i> SAVE</button>
+									<button type="reset" class="btn btn-xs btn-warning "><i class="glyphicon glyphicon-cancel"></i>   RESET</button>
 
-          <tbody style="margin-top:5rem">
-          <tr *ngFor="let brand of brands">
-              <td>{{brand.id}}</td>
-              <td colspan="1"  *ngIf = 'brand.id != currentBrandID'> {{brand.brandname}}</td>
-              <td colspan="1"  *ngIf = 'brand.id == currentBrandID'> <input name="brandname" id="brandname" type="text" class="form-control input-sm" [(ngModel)]="currentBrandName" required ></td>
-              <td>
-                <button class="btn-info btn btn-sm" *ngIf = 'brand.id != currentBrandID' (click)="onRowClick(brand.id)"><i class="glyphicon glyphicon-edit"></i> EDIT</button>
-                <button class="btn-primary btn btn-sm"  *ngIf = 'brand.id == currentBrandID' [disabled] = "!currentBrandName" (click)="edit()"><i class="glyphicon glyphicon-save" ></i> SAVE</button>
-                <button class="btn-warning btn btn-sm" *ngIf = 'brand.id == currentBrandID' (click)="cancel()" ><i class="glyphicon glyphicon-cancel"></i> CANCEL</button>
-              </td>
-          </tr>
-          </tbody>
-        </table>
+								</td>
 
-      </div>
-    </section>
-  </div>
+
+
+							</tr>
+
+							<tr *ngFor="let brand of brands">
+ 
+								<td colspan="1" *ngIf='brand.id != currentBrandID'> {{brand.brandname}}</td>
+								<td colspan="1" *ngIf='brand.id == currentBrandID'> <input name="brandname" id="brandname" type="text" class="form-control input-sm" [(ngModel)]="currentBrandName" required></td>
+								<td style="text-align:right">
+									<button type="button" class="btn-info   btn btn-xs pull-right" [disabled]="brand.brandname==='N/A'" *ngIf='brand.id != currentBrandID'
+										(click)="onRowClick(brand.id)"><i class="glyphicon glyphicon-edit"></i> EDIT</button>
+									<button type="button" class="btn-primary   btn btn-xs" *ngIf='brand.id == currentBrandID' [disabled]="!currentBrandName"
+										(click)="edit()"><i class="glyphicon glyphicon-save" ></i> UPDATE</button>
+									<button type="button" class="btn-warning    btn btn-xs" *ngIf='brand.id == currentBrandID' (click)="cancel()"><i class="glyphicon glyphicon-cancel"></i> CANCEL</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+
+			</div>
+		</section>
+	</div>
 </div>

@@ -40,6 +40,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandProductsComponent } from './pages/brands/brand-products/brand-products.component';
 import {BrandService} from './shared/services/brand.service';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 
@@ -91,7 +92,8 @@ const DROPZONE_CONFIG = {
     NKDatetime,
     SearchComponent,
     BrandsComponent,
-    BrandProductsComponent
+    BrandProductsComponent,
+    DashboardComponent
   ],
   providers: [
     ProductService,
