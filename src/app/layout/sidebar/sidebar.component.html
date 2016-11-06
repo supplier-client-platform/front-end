@@ -1,31 +1,30 @@
-
 <aside class="feed-box text-center profile-nav alt">
-  <section class="panel   ">
-    <div class="panel-body">
-      <div class="corner-ribon blue-ribon">
-        <i class="fa fa-building-o"></i>
-      </div>
-      <a href="#">
-        <img alt="" src="http://orig02.deviantart.net/a23c/f/2013/087/5/5/burger_king_icon_by_slamiticon-d5zblss.png">
-      </a>
-      <h1>Burger King</h1>
-      <p>Admin Panel</p>
-    </div>
-    <ul class="nav nav-pills nav-stacked">
-      <li>
-        <a href="javascript:;"> <i class="fa fa-envelope-o"></i> Notifications<span class="badge label-success pull-right r-activity">10</span></a>
-      </li>
-      <li>
-        <a href="javascript:;"> <i class="fa fa-tasks"></i> Products <span class="badge label-danger pull-right r-activity">15</span></a>
-      </li>
-      <li>
-        <a href="javascript:;"> <i class="fa fa-bell-o"></i> Pending <span class="badge label-success pull-right r-activity">11</span></a>
-      </li>
-      <li>
-        <a href="javascript:;"> <i class="fa fa-comments-o"></i> Accepted <span class="badge label-warning pull-right r-activity">03</span></a>
-      </li>
-    </ul>
-  </section>
+	<section class="panel   ">
+		<div class="panel-body">
+			<div class="corner-ribon blue-ribon">
+				<i class="fa fa-building-o"></i>
+			</div>
+			<a href="#">
+				<img alt="" [src]="img">
+			</a>
+			<h1>Burger King</h1>
+			<p>Admin Panel</p>
+		</div>
+		<ul class="nav nav-pills nav-stacked">
+			<li>
+				<a href="javascript:;"> <i class="fa fa-envelope-o"></i> Notifications<span class="badge label-success pull-right r-activity">10</span></a>
+			</li>
+			<li>
+				<a href="javascript:;"> <i class="fa fa-tasks"></i> Products <span class="badge label-danger pull-right r-activity">15</span></a>
+			</li>
+			<li>
+				<a href="javascript:;"> <i class="fa fa-bell-o"></i> Pending <span class="badge label-success pull-right r-activity">11</span></a>
+			</li>
+			<li>
+				<a href="javascript:;"> <i class="fa fa-comments-o"></i> Accepted <span class="badge label-warning pull-right r-activity">03</span></a>
+			</li>
+		</ul>
+	</section>
 
-  <button class="btn btn-danger btn-block">Logout</button>
+	<button class="btn btn-danger btn-block" type="button" (click)="logout()">Logout</button>
 </aside>

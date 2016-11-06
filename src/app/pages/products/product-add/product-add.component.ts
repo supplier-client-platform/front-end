@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ImageResult, ResizeOptions} from 'ng2-imageupload';
-import {ProductService} from '../../../shared/services/product.service';
-import {UserService} from '../../../shared/services/user.service';
-import {IMG_CONST} from '../../../shared/config/img.constants';
-import {CustomAttrib} from '../product.interfaces';
-import {IToastyObject} from '../../../shared/models/common.model';
-import {CommonService} from '../../../shared/services/common.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
+import { ProductService } from '../../../shared/services/product.service';
+import { UserService } from '../../../shared/services/user.service';
+import { IMG_CONST } from '../../../shared/config/img.constants';
+import { CustomAttrib } from '../product.interfaces';
+import { IToastyObject } from '../../../shared/models/common.model';
+import { CommonService } from '../../../shared/services/common.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
@@ -17,7 +17,7 @@ export class ProductAddComponent implements OnInit {
 
   supplierID: number;
   src: string = '';
-  resizeOptions: ResizeOptions = {resizeMaxHeight: 250, resizeMaxWidth: 250};
+  resizeOptions: ResizeOptions = { resizeMaxHeight: 250, resizeMaxWidth: 250 };
   product: Object = {};
   customAtribs: Array<CustomAttrib>;
   toastyObject: IToastyObject;
@@ -27,7 +27,7 @@ export class ProductAddComponent implements OnInit {
   template: Object;
 
   constructor(private productService: ProductService, private userService: UserService, private commonService: CommonService,
-              private router: Router) {
+    private router: Router) {
     this.supplierID = userService.supplierID;
     this.reset();
 
@@ -50,7 +50,7 @@ export class ProductAddComponent implements OnInit {
   detectChange(id) {
     if ((this.customAtribs.length - 1) === id && this.template['id'] === 0) {
       if (this.customAtribs[id].label.trim() !== '' && this.customAtribs[id].value.trim() !== '') {
-        this.customAtribs.push({label: '', value: ''});
+        this.customAtribs.push({ label: '', value: '' });
       }
     }
   }
@@ -80,7 +80,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   formSubmit(values) {
-    this.toastyObject = {title: 'Saving....', msg: 'Please wait', type: 'info'};
+    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
     this.commonService.toasty(this.toastyObject);
 
     // Build product Object
@@ -117,12 +117,12 @@ export class ProductAddComponent implements OnInit {
       console.log(data);
       this.reset();
       this.getTemplates();
-      this.toastyObject = {title: 'Success', msg: 'Product Successfully Added!', type: 'success'};
+      this.toastyObject = { title: 'Success', msg: 'Product Successfully Added!', type: 'success' };
       this.commonService.toasty(this.toastyObject);
       this.router.navigate(['/', 'product', 'list']);
     }, (err) => {
       console.log(err);
-      this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
+      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
       this.commonService.toasty(this.toastyObject);
     });
 
@@ -138,7 +138,7 @@ export class ProductAddComponent implements OnInit {
     this.template['id'] = id;
 
     if (this.template['id'] === 0) {
-      this.customAtribs = [{label: '', value: ''}];
+      this.customAtribs = [{ label: '', value: '' }];
     } else {
       this.templateList.map((value, key) => {
         console.log('for', value['id']);
@@ -165,8 +165,8 @@ export class ProductAddComponent implements OnInit {
   }
 
   reset() {
-    this.customAtribs = [{label: '', value: ''}];
-    this.template = {id: 0, name: ''};
+    this.customAtribs = [{ label: '', value: '' }];
+    this.template = { id: 0, name: '' };
     this.src = IMG_CONST.IMG_PRODUCT;
 
   }

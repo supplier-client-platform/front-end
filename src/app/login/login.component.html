@@ -12,8 +12,11 @@
 		<form class="form-signin" #searchForm="ngForm" (ngSubmit)="login(username.value,password.value)" style="margin-top:0rem;">
 			<h2 class="form-signin-heading">sign in now</h2>
 			<div class="login-wrap col-sm-12">
+				<div *ngIf="error" class="alert alert-dismissible alert-danger">
+					<strong>Oh snap!</strong> <a href="#" class="alert-link">Sorry!</a> Invalid Username or Password.
+				</div>
 				<div class="user-login-info">
-					<input type="text" class="form-control" #username placeholder="User ID" autofocus>
+					<input type="text" class="form-control" #username placeholder="Email" autofocus>
 					<input type="password" class="form-control" #password placeholder="Password">
 				</div>
 				<label class="checkbox">
@@ -24,10 +27,10 @@
                 </span>
             </label>
 				<button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
-                <br>
+				<br>
 				<div class="">
 					Don't have an account yet?
-					<a class="" href="registration.html">
+					<a class="" href="http://dev.sc-platform.reactive-solutions.xyz/register/">
                     Create an account
                 </a>
 				</div>

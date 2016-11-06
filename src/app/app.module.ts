@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // 3rd party components
 import { DropzoneModule } from 'angular2-dropzone-wrapper';
-import {TabsModule, CollapseModule} from 'ng2-bootstrap/ng2-bootstrap';
+import { TabsModule, CollapseModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AgmCoreModule } from 'angular2-google-maps/core';
@@ -16,6 +16,7 @@ import { ProductService } from './shared/services/product.service';
 import { CommonService } from './shared/services/common.service';
 import { OrderService } from './shared/services/order.service';
 import { UserService } from './shared/services/user.service';
+import { LoginGuard } from './shared/guards/login.guard';
 
 // Directives
 // import { GoogleplaceDirective } from '../../node_modules/angular2-google-map-auto-complete/directives/googleplace.directive';
@@ -39,7 +40,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { SearchComponent } from './pages/search/search.component';
 import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandProductsComponent } from './pages/brands/brand-products/brand-products.component';
-import {BrandService} from './shared/services/brand.service';
+import { BrandService } from './shared/services/brand.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
@@ -100,7 +101,8 @@ const DROPZONE_CONFIG = {
     CommonService,
     OrderService,
     UserService,
-    BrandService
+    BrandService,
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { URL_CONST } from '../config/url.constants';
 import 'rxjs/Rx';
-
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 @Injectable()
 export class UserService {
 
-  public supplierID: number = 1;
-  public userID: number = 1;
-
+  public supplierID: number;
+  public userID: number;
+  public token: string;
 
 
   headers = new Headers({ 'Content-Type': 'application/json' });
@@ -19,7 +19,7 @@ export class UserService {
 
 
   login(params) {
-    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/product/all?' + params)
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/users/regen_auth', params, this.options)
       .map((response: Response) => response.json());
   }
 
@@ -54,4 +54,35 @@ export class UserService {
       .map((response: Response) => response.json());
   }
 
+
+  isAuthorized() {
+    return (this.userID && this.token);
+  }
+
+
+  saveToken(tokenString, id) {
+    Cookie.set('_token', tokenString);
+    Cookie.set('_user', id);
+
+
+  }
+
+  saveBussiness(id) {
+    Cookie.set('_bussiness', id);
+    this.setBussiness();
+  }
+
+  setBussiness() {
+    this.supplierID = parseInt(Cookie.get('_bussiness'), 10);
+    this.setToken();
+  }
+
+  setToken() {
+    this.token = Cookie.get('_token');
+    this.userID = parseInt(Cookie.get('_user'), 10);
+  }
+
+  logout() {
+    Cookie.deleteAll();
+  }
 }

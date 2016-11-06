@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.getProducts('New');
     this.getBrands();
+    console.log(this.userService.supplierID);
   }
 
   private getProducts(type) {

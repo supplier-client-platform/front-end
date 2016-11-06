@@ -1,4 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
+import { UserService } from './shared/services/user.service';
 
 
 @Component({
@@ -14,9 +15,11 @@ export class AppComponent {
   iconType: string = 'border';
   sizes: string[] = ['x-small', 'small', 'large'];
 
-  public constructor(viewContainerRef: ViewContainerRef) {
+  public constructor(viewContainerRef: ViewContainerRef, private userService: UserService) {
     // You need this small hack in order to catch application root view container ref
     this.viewContainerRef = viewContainerRef;
+    this.userService.setBussiness();
+
   }
 
   change() {
