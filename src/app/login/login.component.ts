@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     this.error = false;
     this.userService.login({ email: username, password: pass })
       .subscribe((data) => {
+        console.log(data);
         this.userService.saveToken(data.data['token'], data.data['id']);
         this.getSupplier();
       }, (err) => {
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
   getSupplier() {
     this.userService.getBussinessDetails()
       .subscribe((data) => {
+        console.log(data);
         this.userService.saveBussiness(data.data[0].id);
         this.router.navigate(['/', 'product']);
       });

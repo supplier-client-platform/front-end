@@ -63,7 +63,7 @@ export class UserService {
   saveToken(tokenString, id) {
     Cookie.set('_token', tokenString);
     Cookie.set('_user', id);
-
+    this.setToken();
 
   }
 
