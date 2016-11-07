@@ -9,11 +9,15 @@ export class OrderListTableComponent implements OnInit {
   @Input() showSearch: boolean;
   @Input() orders: Array<any>;
   @Output() rowSelected = new EventEmitter();
+  @Output() orderSelected = new EventEmitter();
 
   activatedRow: number = 0;
   hideSearch: boolean;
 
-  constructor() { }
+  constructor() {
+
+
+  }
 
   ngOnInit() {
     this.hideSearch = this.showSearch;
@@ -28,4 +32,11 @@ export class OrderListTableComponent implements OnInit {
   activateRowClass(id) {
     return (id === this.activatedRow);
   }
+
+  transmitParent(obj) {
+    console.log('called');
+    this.orderSelected.emit(obj);
+  }
+
+
 }

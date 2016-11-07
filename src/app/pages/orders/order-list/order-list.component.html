@@ -8,7 +8,7 @@
 		</ul>
 
 		<div class="row animated bounceInUp">
-			<div class="col-sm-7">
+			<div class="col-sm-12">
 				<section class="panel">
 					<div class="panel-body">
 						<tabset>
@@ -16,14 +16,14 @@
 								<template tabHeading style="margin-bottom:1rem">Pending</template>
 
 
-								<app-order-list-table (rowSelected)="loadOrder($event)" [showSearch]="true" [orders]="pendingOrders"></app-order-list-table>
+								<app-order-list-table (rowSelected)="loadOrder($event)" (orderSelected)="loadModal($event)" [showSearch]="true" [orders]="pendingOrders"></app-order-list-table>
 
 							</tab>
 							<tab>
 								<template tabHeading>Accepted / Not Collected</template>
 
 
-								<app-order-list-table (rowSelected)="loadOrder($event)" [showSearch]="true" [orders]="completedOrders"></app-order-list-table>
+								<app-order-list-table (rowSelected)="loadOrder($event)" (orderSelected)="loadModal($event)" [showSearch]="true" [orders]="completedOrders"></app-order-list-table>
 
 							</tab>
 
@@ -36,12 +36,12 @@
 
 											<div class="col-md-4">
 												<label class="acontrol-label">Order ID</label>
-												<input name="orderId" id="orderId" type="text" placeholder="Order Id" class="form-control input-sm" ngModel >
+												<input name="orderId" id="orderId" type="text" placeholder="Order Id" class="form-control input-sm" ngModel>
 											</div>
 
 											<div class="col-md-6 ">
 												<label class="acontrol-label">Customer Name</label>
-												<input name="name" id="name" type="text" placeholder="Customer Name" class="form-control input-sm" ngModel >
+												<input name="name" id="name" type="text" placeholder="Customer Name" class="form-control input-sm" ngModel>
 											</div>
 
 
@@ -55,7 +55,7 @@
 									</form>
 								</div>
 
-								<app-order-list-table (rowSelected)="loadOrder($event)" [showSearch]="false" [orders]="searchOrders"></app-order-list-table>
+								<app-order-list-table (orderSelected)="loadModal($event)" (rowSelected)="loadOrder($event)" [showSearch]="false" [orders]="searchOrders"></app-order-list-table>
 
 							</tab>
 						</tabset>
@@ -65,40 +65,48 @@
 
 			</div>
 
-			<div class="col-sm-5">
+			<!--<div class="col-sm-5">
 				<app-order-info [orderInfo]="orderInfo" (orderSelected)="loadModal($event)"></app-order-info>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div>
 
 <!-- Peek Modal -->
 
-<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" *ngIf="orderInfo">
-	<div class="modal-dialog modal-lg" style="z-index:1050;">
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div *ngIf="orderInfo" class="modal-dialog" style="z-index:1050;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-				<h4 class="modal-title"> Order - #{{orderInfo.id}} </h4>
+				<h4 class="modal-title"> Are you sure? </h4>
 			</div>
-		<form #orderReason="ngForm" (ngSubmit)="orderStatusSubmit(orderReason.value)" class="form-horizontal">
+			<form #orderReason="ngForm" (ngSubmit)="orderStatusSubmit(orderReason.value)" class="form-horizontal">
 				<div class="modal-body">
-					<div class="form-group" >
-						<div class="col-sm-12 info"><h3>Confirm your action!</h3></div>
-						<div class="col-sm-12" *ngIf="orderInfoStatus == 'Cancelled' || orderInfoStatus == 'Rejected'">
-							<label class="   ">Reason</label>
-							<input type="text" name="reason" id="reason" class="form-control input-sm" ngModel required>
+					<p>Are you sure you want to {{orderInfoStatus == 'Accepted'?'Accept / Complete':orderInfoStatus == 'Cancelled'||orderInfoStatus
+						== 'Rejected'?'Cancel / Reject':''}}
+						<strong> Order #{{orderInfo.id}} ?</strong> 
+
+					</p>
+					<div class="form-group" *ngIf="orderInfoStatus == 'Cancelled' || orderInfoStatus == 'Rejected'">
+
+
+						<label class=" col-sm-4 control-label  ">Reason</label>
+						<div class="col-sm-8">
+							<textarea type="text" name="reason" placeholder="Why are you doing this?" id="reason" class="form-control input-sm" ngModel
+								required></textarea>
 						</div>
 					</div>
 				</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-sm btn-success">Apply</button>
-				<button type="button" class="btn btn-sm btn-danger" (click)="lgModal.hide()">Cancel</button>
-			</div>
-		</form>
+	 
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-sm btn-success">Yes</button>
+			<button type="button" class="btn btn-sm" (click)="lgModal.hide()">Cancel</button>
 		</div>
+		</form>
 	</div>
+</div>
 </div>
 <!-- End Modal -->

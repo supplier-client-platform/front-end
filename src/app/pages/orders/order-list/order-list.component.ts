@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {OrderService} from '../../../shared/services/order.service';
-import {CommonService} from '../../../shared/services/common.service';
-import {IToastyObject} from '../../../shared/models/common.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { OrderService } from '../../../shared/services/order.service';
+import { CommonService } from '../../../shared/services/common.service';
+import { IToastyObject } from '../../../shared/models/common.model';
 
 
 export interface IOrderStatusSubmit {
@@ -34,9 +34,10 @@ export class OrderListComponent implements OnInit {
 
   // TODO: Market place id should be available after login
   getPendingOrders() {
-    let param = this.commonService.addQueryParams({marketPlaceId: 1, status: 'Pending'}, []);
+    let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Pending' }, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
+        console.log(data.data);
         this.pendingOrders = data.data;
       }, (err) => {
         this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
@@ -45,10 +46,11 @@ export class OrderListComponent implements OnInit {
   }
 
   getCompletedOrders() {
-    let param = this.commonService.addQueryParams({marketPlaceId: 1, status: 'Accepted'}, []);
+    let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Accepted' }, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.completedOrders = data.data;
+        console.log(this.completedOrders);
       }, (err) => {
         this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
         this.commonService.toasty(this.toastyObject);
@@ -74,8 +76,9 @@ export class OrderListComponent implements OnInit {
     this.orderInfo = order;
   }
 
-  loadModal(status) {
-    this.orderInfoStatus = status;
+  loadModal(obj) {
+    this.orderInfoStatus = obj.status;
+    this.orderInfo = obj.orderInfo;
     this.lgModal.show();
   }
 

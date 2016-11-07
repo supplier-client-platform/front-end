@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { OrderService } from '../../../../shared/services/order.service';
 import { CommonService } from '../../../../shared/services/common.service';
-import {IToastyObject} from '../../../../shared/models/common.model';
+import { IToastyObject } from '../../../../shared/models/common.model';
 
 
 @Component({
@@ -15,28 +15,44 @@ export class OrderInfoComponent implements OnInit, OnChanges {
   orderProducts: Array<any> = [];
   animationStatus: boolean = false;
   toastyObject: IToastyObject;
+  loading: boolean = true;
 
   constructor(private commonService: CommonService, private orderService: OrderService) { }
 
   ngOnInit() {
+    console.log(this.orderInfo);
+    this.getOrderDetails();
   }
 
   ngOnChanges() {
     this.animationStatus = false;
+
+  }
+
+  changeOrderStatus(status: string): void {
+
+    let obj = {
+      status: status,
+      orderInfo: this.orderInfo
+    };
+    this.orderSelected.emit(obj);
+  }
+
+
+  getOrderDetails() {
     if (this.orderInfo) {
       this.orderService.getProducts({
         orderID: this.orderInfo.id
       }).subscribe((data: any) => {
-        this.orderProducts= data.data;
+        console.log(data);
+        this.orderProducts = data.data;
         this.animationStatus = true;
+        this.loading = false;
       }, (err) => {
-          this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
-          this.commonService.toasty(this.toastyObject);
-        });
+        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.commonService.toasty(this.toastyObject);
+        this.loading = false;
+      });
     }
-  }
-
-  changeOrderStatus(status: string): void {
-    this.orderSelected.emit(status);
   }
 }
