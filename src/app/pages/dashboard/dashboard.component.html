@@ -53,14 +53,15 @@
 				<div class="panel-body">
 					<div class="top-stats-panel">
 						<h4 class="widget-h">Sales Summary</h4>
-						<div class="bar-stats" style="display:block;height:auto">
+						<app-loading *ngIf="ordersLoading"></app-loading>
+						<div *ngIf="!ordersLoading" class="bar-stats" style="display:block;height:auto">
 
-							<canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+							<canvas baseChart width="400" height="250" [datasets]="ordersData" [labels]="ordersDataLabel" [options]="lineChartOptions"
 								[colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
 								(chartClick)="chartClicked($event)"></canvas>
 
 							<div class="daily-sales-info">
-								<span class="sales-count">1200 </span> <span class="sales-label">Products Sold</span>
+								<span class="sales-count"> {{ordersTotal | number}} Orders</span> <br><span class="sales-label">For the past 6 months.</span>
 							</div>
 						</div>
 					</div>
@@ -72,15 +73,16 @@
 			<section class="panel">
 				<div class="panel-body">
 					<div class="top-stats-panel">
-						<h4 class="widget-h">Sales Summary</h4>
-						<div class="bar-stats" style="display:block;height:auto">
+						<h4 class="widget-h">Income Summary</h4>
+						<app-loading *ngIf="salesLoading"></app-loading>
+						<div *ngIf="!salesLoading" class="bar-stats" style="display:block;height:auto">
 
-							<canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+							<canvas baseChart width="400" height="250" [datasets]="salesData" [labels]="salesDataLabel" [options]="lineChartOptions"
 								[colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
 								(chartClick)="chartClicked($event)"></canvas>
 
 							<div class="daily-sales-info">
-								<span class="sales-count">1200 </span> <span class="sales-label">Income Genearted</span>
+								<span class="sales-count">RS. {{salesTotal | number : '1.2-2' }}</span><br> <span class="sales-label">Income Generated Past six months.</span>
 							</div>
 						</div>
 					</div>

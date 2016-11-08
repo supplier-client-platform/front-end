@@ -9,13 +9,16 @@ import { DashboardService } from '../../shared/services/dashboard.service';
 export class DashboardComponent implements OnInit {
 
   stats: Object = {};
+  ordersLoading: boolean = true;
+  salesLoading: boolean = true;
+  ordersTotal: number;
+  salesTotal: number;
+  public ordersData: Array<any> = [];
+  public ordersDataLabel: Array<any> = [];
 
-  public lineChartData: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
-  ];
-  public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public salesData: Array<any> = [];
+  public salesDataLabel: Array<any> = [];
+
   public lineChartOptions: any = {
     animation: false,
     responsive: true
@@ -85,7 +88,31 @@ export class DashboardComponent implements OnInit {
   getOrders() {
     this.dashboardService.getOrders()
       .subscribe((data) => {
-        console.log('Orders', data);
+
+
+        let completed = { data: [], label: 'Completed' };
+        let rejected = { data: [], label: 'Cancelled' };
+        let months = [];
+        let total = 0;
+
+        for (let item of data.data.completed) {
+          completed.data.push(parseFloat(item.orders));
+          total += parseFloat(item.orders);
+          months.push(item.month_name);
+        }
+
+        for (let item of data.data.rejected) {
+          rejected.data.push(parseFloat(item.orders));
+        }
+        this.ordersTotal = total;
+        this.ordersDataLabel = months.reverse();
+        completed.data = completed.data.reverse();
+        rejected.data = rejected.data.reverse();
+        this.ordersData.push(completed);
+        this.ordersData.push(rejected);
+
+        this.ordersLoading = false;
+
       }, (err) => {
         console.log(err);
       });
@@ -95,6 +122,24 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getSales()
       .subscribe((data) => {
         console.log('Sales', data);
+
+        let income = { data: [], label: 'Gross Total' };
+        let months = [];
+        let total = 0;
+
+        for (let item of data.data.sales) {
+          income.data.push(parseFloat(item.gross_total));
+          months.push(item.month_name);
+          total += parseFloat(item.gross_total);
+        }
+
+        console.log('asd', months);
+        income.data = income.data.reverse();
+        this.salesDataLabel = months.reverse();
+        this.salesData.push(income);
+        this.salesTotal = total;
+        this.salesLoading = false;
+
       }, (err) => {
         console.log(err);
       });
