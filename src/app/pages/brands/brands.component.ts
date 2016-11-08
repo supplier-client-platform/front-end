@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CommonService} from '../../shared/services/common.service';
 import {BrandService} from '../../shared/services/brand.service';
 import {IBrandEditInfo, IBrandCreateInfo, IBrand} from '../../shared/models/brands.model';
+import {IToastyObject} from '../../shared/models/common.model';
+
 
 @Component({
   selector: 'app-brands',
@@ -14,6 +16,9 @@ export class BrandsComponent implements OnInit {
   public currentBrandID: number;
   public currentBrandName: string;
   public brands: IBrand;
+  public toastyObject: IToastyObject;
+  public newBrand: string;
+  public showLoadMore: boolean = false;
 
   constructor(private commonService: CommonService, private brandService: BrandService) {
     this.isCollapsed = true;
@@ -30,6 +35,9 @@ export class BrandsComponent implements OnInit {
     this.brandService.getBrands(param)
       .subscribe((data: any) => {
         this.brands = data;
+      }, (err) => {
+        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.commonService.toasty(this.toastyObject);
       });
   }
 
@@ -42,8 +50,11 @@ export class BrandsComponent implements OnInit {
 
     this.brandService.editBrand(obj).subscribe((data: any) => {
       this.getBrands();
+      this.toastyObject = { title: 'Success', msg: 'Brand Successfully Edited!', type: 'success' };
+      this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      console.log(err);
+      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+      this.commonService.toasty(this.toastyObject);
     });
   }
 
@@ -52,11 +63,14 @@ export class BrandsComponent implements OnInit {
       brandName: values.createBrandName,
       businessID: 1
     };
-
+    this.newBrand = null;
     this.brandService.saveBrand(obj).subscribe((data: any) => {
       this.getBrands();
+      this.toastyObject = { title: 'Success', msg: 'Brand Successfully Added!', type: 'success' };
+      this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      console.log(err);
+      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+      this.commonService.toasty(this.toastyObject);
     });
 
     this.isCollapsed = true;
@@ -71,9 +85,10 @@ export class BrandsComponent implements OnInit {
     this.currentBrandID = -1;
   }
 
-  public onRowClick(id) {
+  public onRowClick(id, name) {
     this.isCollapsed = true;
     this.currentBrandID = id;
+    this.currentBrandName = name;
   }
 
   public cancel() {

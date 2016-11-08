@@ -35,10 +35,10 @@
 
 								<td colspan="1">
 									<input name="createBrandName" placeholder="Enter Brand Name" id="createBrandName" class="form-control input-sm " required
-										ngModel>
+										[(ngModel)] = "newBrand">
 								</td>
 								<td style="text-align:right">
-									<button type="submit" class="btn btn-xs btn-primary   "><i class="glyphicon glyphicon-save" ></i> SAVE</button>
+									<button type="submit" class="btn btn-xs btn-primary "><i class="glyphicon glyphicon-save" ></i> SAVE</button>
 									<button type="reset" class="btn btn-xs btn-warning "><i class="glyphicon glyphicon-cancel"></i>   RESET</button>
 
 								</td>
@@ -48,12 +48,12 @@
 							</tr>
 
 							<tr *ngFor="let brand of brands">
- 
+
 								<td colspan="1" *ngIf='brand.id != currentBrandID'> {{brand.brandname}}</td>
 								<td colspan="1" *ngIf='brand.id == currentBrandID'> <input name="brandname" id="brandname" type="text" class="form-control input-sm" [(ngModel)]="currentBrandName" required></td>
 								<td style="text-align:right">
 									<button type="button" class="btn-info   btn btn-xs pull-right" [disabled]="brand.brandname==='N/A'" *ngIf='brand.id != currentBrandID'
-										(click)="onRowClick(brand.id)"><i class="glyphicon glyphicon-edit"></i> EDIT</button>
+										(click)="onRowClick(brand.id, brand.brandname)"><i class="glyphicon glyphicon-edit"></i> EDIT</button>
 									<button type="button" class="btn-primary   btn btn-xs" *ngIf='brand.id == currentBrandID' [disabled]="!currentBrandName"
 										(click)="edit()"><i class="glyphicon glyphicon-save" ></i> UPDATE</button>
 									<button type="button" class="btn-warning    btn btn-xs" *ngIf='brand.id == currentBrandID' (click)="cancel()"><i class="glyphicon glyphicon-cancel"></i> CANCEL</button>

@@ -13,6 +13,11 @@ export class SearchComponent implements OnInit {
   searchOrders: Array<any> = [];
   orderInfo: any;
   orderInfoStatus: string;
+  dateFrom;
+  dateTo;
+  datepickerToOpts = {};
+  datepickerFromOpts = {};
+
 
   constructor(private commonService: CommonService, private orderService: OrderService) { }
 
@@ -65,4 +70,23 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  handleDateFromChange(dateFrom) {
+    // update the model
+    this.dateFrom = dateFrom;
+    // do not mutate the object or angular won't detect the changes
+    this.datepickerToOpts = {
+      startDate: dateFrom,
+      endDate: new Date()
+    };
+  }
+
+  handleDateToChange(dateTo) {
+    // update the model
+    this.dateTo = dateTo;
+    // do not mutate the object or angular won't detect the changes
+    this.datepickerFromOpts = {
+      startDate: new Date(),
+      endDate: dateTo
+    };
+  }
 }
