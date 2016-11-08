@@ -80,87 +80,89 @@
   <td></td>
   <td></td>
 </tr>-->
-<div class="row">
-  <div class="col-md-5">
-    <div class="row">
-      <div class="col-md-4">
-        <img alt="" class="img-responsive" style="height:auto" src="https://medshousing.com/wp-content/themes/mh/images/empty_avatar.jpg"
-        />
+<div class="order-info">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-4">
+          <img alt="" class="img-responsive" style="height:auto" src="https://medshousing.com/wp-content/themes/mh/images/empty_avatar.jpg"
+          />
+
+        </div>
+        <div class="col-md-8">
+          <h5 style="margin-top:0cm">Order Details</h5>
+          <hr>
+          <h6>
+            <i class="fa fa-hashtag" aria-hidden="true"></i>&nbsp; {{orderInfo.id}} &nbsp;&nbsp;&nbsp; <span class="label "
+              [ngClass]="{'label-info': orderInfo.status=='Accepted','label-success':orderInfo.status=='Completed','label-danger':orderInfo.status=='Pending'}">{{orderInfo.status}}</span>
+          </h6>
+          <h6> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{orderInfo.date}} </h6>
+          <h6> <i class="fa fa-user" aria-hidden="true"></i>&nbsp; {{orderInfo.name}} </h6>
+          <h6> <i class="fa fa-phone" aria-hidden="true"></i> &nbsp;{{orderInfo.contact}}</h6>
+          <h6><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;{{orderInfo.email}}</h6>
+
+
+
+
+        </div>
+      </div>
+      <div class="profile-pic text-center">
+
 
       </div>
-      <div class="col-md-8">
-        <h5 style="margin-top:0cm">Order Details</h5>
-        <hr>
-        <h6>
-          <i class="fa fa-hashtag" aria-hidden="true"></i>&nbsp; {{orderInfo.id}} &nbsp;&nbsp;&nbsp; <span class="label "
-            [ngClass]="{'label-info': orderInfo.status=='Accepted','label-success':orderInfo.status=='Completed','label-danger':orderInfo.status=='Pending'}">{{orderInfo.status}}</span>
-        </h6>
-        <h6> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{orderInfo.date}} </h6>
-        <h6> <i class="fa fa-user" aria-hidden="true"></i>&nbsp; {{orderInfo.name}} </h6>
-        <h6> <i class="fa fa-phone" aria-hidden="true"></i> &nbsp;{{orderInfo.contact}}</h6>
-        <h6><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;{{orderInfo.email}}</h6>
+    </div>
+    <div class="col-md-7">
+
+      <app-loading *ngIf="loading"></app-loading>
+      <table *ngIf="!loading" class="table table-hover table-condensed table-striped table  general-table">
+        <thead>
+          <tr class="">
+            <td>Product Name</td>
+            <td>Brand</td>
+            <td>Quantity</td>
+            <td align="right">Price</td>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of orderProducts">
+            <td>{{x.name}}</td>
+            <td>{{x.brandname}}</td>
+            <td>x{{x.product_quantity}}</td>
+            <td align="right">Rs {{x.price | number : '1.2-2'}} </td>
+          </tr>
+          <tr class="" style="border-top:1px solid #E0E0E0; border-bottom:1px double  #E0E0E0">
+            <td colspan="3"><strong>TOTAL AMOUNT</strong></td>
+            <td align="right"><strong>Rs {{orderInfo.net_total | number : '1.2-2'}}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 
 
 
-
+  <div *ngIf="!loading">
+    <div class="row" *ngIf="orderInfo.status=='Pending'">
+      <div class="col-md-offset-8 col-md-2">
+        <button class="btn btn-sm btn-block btn-primary" (click)="changeOrderStatus('Accepted')">Accept</button>
+      </div>
+      <div class="  col-md-2">
+        <button class="btn  btn-sm btn-block btn-danger" (click)="changeOrderStatus('Rejected')">Reject</button>
       </div>
     </div>
-    <div class="profile-pic text-center">
-
-
-    </div>
-  </div>
-  <div class="col-md-7">
-
-    <app-loading *ngIf="loading"></app-loading>
-    <table *ngIf="!loading" class="table table-hover table-condensed table-striped table  general-table">
-      <thead>
-        <tr class="">
-          <td>Product Name</td>
-          <td>Brand</td>
-          <td>Quantity</td>
-          <td align="right">Price</td>
-
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let x of orderProducts">
-          <td>{{x.name}}</td>
-          <td>{{x.brandname}}</td>
-          <td>x{{x.product_quantity}}</td>
-          <td align="right">Rs {{x.price | number : '1.2-2'}} </td>
-        </tr>
-        <tr class="" style="border-top:1px solid #E0E0E0; border-bottom:1px double  #E0E0E0">
-          <td colspan="3"><strong>TOTAL AMOUNT</strong></td>
-          <td align="right"><strong>Rs {{orderInfo.net_total | number : '1.2-2'}}</strong></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-
-
-
-<div *ngIf="!loading">
-  <div class="row" *ngIf="orderInfo.status=='Pending'">
-    <div class="col-md-offset-8 col-md-2">
-      <button class="btn btn-sm btn-block btn-primary" (click)="changeOrderStatus('Accepted')">Accept</button>
-    </div>
-    <div class="  col-md-2">
-      <button class="btn  btn-sm btn-block btn-danger" (click)="changeOrderStatus('Rejected')">Reject</button>
-    </div>
-  </div>
 
 
 
 
-  <div class="row" *ngIf="orderInfo.status=='Accepted'">
-    <div class="col-md-offset-8 col-md-2">
-      <button class="btn btn-sm btn-block btn-primary" (click)="changeOrderStatus('Completed')">Collect</button>
-    </div>
-    <div class="col-md-2">
-      <button class="btn  btn-sm btn-block btn-danger" (click)="changeOrderStatus('Cancelled')">Cancel</button>
+    <div class="row" *ngIf="orderInfo.status=='Accepted'">
+      <div class="col-md-offset-8 col-md-2">
+        <button class="btn btn-sm btn-block btn-primary" (click)="changeOrderStatus('Completed')">Collect</button>
+      </div>
+      <div class="col-md-2">
+        <button class="btn  btn-sm btn-block btn-danger" (click)="changeOrderStatus('Cancelled')">Cancel</button>
+      </div>
     </div>
   </div>
 </div>
