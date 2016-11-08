@@ -17,17 +17,17 @@ export class DashboardService {
     }
 
     getSales() {
-        return this.http.get(URL_CONST.DEV_PREFIX_R + 'api/v1/dashboard/sales_stats/supplier/' + this.userService.supplierID)
+        return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/dashboard/sales_stats/supplier/' + this.userService.supplierID)
             .map((response: Response) => response.json());
     }
 
     getOrders() {
-        return this.http.get(URL_CONST.DEV_PREFIX_R + 'api/v1/dashboard/order_stats/supplier/' + this.userService.supplierID)
+        return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/dashboard/order_stats/supplier/' + this.userService.supplierID)
             .map((response: Response) => response.json());
     }
 
     getStats() {
-        return this.http.get(URL_CONST.DEV_PREFIX_R + 'api/v1/dashboard/widget_stats/supplier/' + this.userService.supplierID)
+        return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/dashboard/widget_stats/supplier/' + this.userService.supplierID)
             .map((response: Response) => response.json());
     }
 
