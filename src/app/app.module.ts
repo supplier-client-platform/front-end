@@ -11,12 +11,14 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { ImageUploadModule } from 'ng2-imageupload';
 import { NKDatetime } from 'ng2-datetime/ng2-datetime';
 import { ToastyModule } from 'ng2-toasty';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 // providers
 import { ProductService } from './shared/services/product.service';
 import { CommonService } from './shared/services/common.service';
 import { OrderService } from './shared/services/order.service';
 import { UserService } from './shared/services/user.service';
 import { LoginGuard } from './shared/guards/login.guard';
+import { DashboardService } from './shared/services/dashboard.service';
 
 // Directives
 // import { GoogleplaceDirective } from '../../node_modules/angular2-google-map-auto-complete/directives/googleplace.directive';
@@ -42,6 +44,7 @@ import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandProductsComponent } from './pages/brands/brand-products/brand-products.component';
 import { BrandService } from './shared/services/brand.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
 
 
 
@@ -73,7 +76,8 @@ const DROPZONE_CONFIG = {
     DropzoneModule.forRoot(DROPZONE_CONFIG),
     ReactiveFormsModule,
     ToastyModule.forRoot(),
-    CollapseModule
+    CollapseModule,
+    ChartsModule
   ],
   declarations: [
     AppComponent,
@@ -102,6 +106,7 @@ const DROPZONE_CONFIG = {
     OrderService,
     UserService,
     BrandService,
+    DashboardService,
     LoginGuard
   ],
   bootstrap: [AppComponent]

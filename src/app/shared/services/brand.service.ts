@@ -1,15 +1,17 @@
-import {Injectable} from '@angular/core';
-import {Http, Response, RequestOptions, Headers} from '@angular/http';
-import {URL_CONST} from '../config/url.constants';
+import { Injectable } from '@angular/core';
+import { Http, Response, RequestOptions } from '@angular/http';
+import { URL_CONST } from '../config/url.constants';
 import 'rxjs/Rx';
+import { UserService } from './user.service';
 
 @Injectable()
 export class BrandService {
 
-  headers = new Headers({'Content-Type': 'application/json'});
-  options = new RequestOptions({headers: this.headers});
 
-  constructor(private http: Http) {
+  options: RequestOptions;
+
+  constructor(private http: Http, private userService: UserService) {
+    this.options = this.userService.options;
   }
 
   getBrands(params) {

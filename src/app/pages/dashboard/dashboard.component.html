@@ -10,5 +10,84 @@
 	</div>
 </div>
 
-<div class="row animated bounceInUp">
+<div class=" animated bounceInUp">
+
+	<div class="row">
+		<div class="col-md-3">
+			<div class="mini-stat clearfix">
+				<span class="mini-stat-icon orange"><i class="fa fa-gavel"></i></span>
+				<div class="mini-stat-info">
+					<span>{{stats.orders | number}}</span> Orders this Year
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="mini-stat clearfix">
+				<span class="mini-stat-icon tar"><i class="fa fa-tag"></i></span>
+				<div class="mini-stat-info">
+					<span>{{stats.sold | number }}</span> Products Sold Today
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="mini-stat clearfix">
+				<span class="mini-stat-icon pink"><i class="fa fa-money"></i></span>
+				<div class="mini-stat-info">
+					<span>{{stats.profit | number : '1.2-2'}}</span> RS Profit Today
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="mini-stat clearfix">
+				<span class="mini-stat-icon green"><i class="fa fa-eye"></i></span>
+				<div class="mini-stat-info">
+					<span>{{stats.customers | number  }}</span> Customers
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<section class="panel">
+				<div class="panel-body">
+					<div class="top-stats-panel">
+						<h4 class="widget-h">Sales Summary</h4>
+						<div class="bar-stats" style="display:block;height:auto">
+
+							<canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+								[colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+								(chartClick)="chartClicked($event)"></canvas>
+
+							<div class="daily-sales-info">
+								<span class="sales-count">1200 </span> <span class="sales-label">Products Sold</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="col-md-6">
+			<section class="panel">
+				<div class="panel-body">
+					<div class="top-stats-panel">
+						<h4 class="widget-h">Sales Summary</h4>
+						<div class="bar-stats" style="display:block;height:auto">
+
+							<canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+								[colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+								(chartClick)="chartClicked($event)"></canvas>
+
+							<div class="daily-sales-info">
+								<span class="sales-count">1200 </span> <span class="sales-label">Income Genearted</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+
+	</div>
 </div>

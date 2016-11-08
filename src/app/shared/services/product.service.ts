@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { URL_CONST } from '../config/url.constants';
 import 'rxjs/Rx';
+import { UserService } from './user.service';
 
 @Injectable()
 export class ProductService {
 
-  headers = new Headers({ 'Content-Type': 'application/json' });
-  options = new RequestOptions({ headers: this.headers });
+  options: RequestOptions;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private userService: UserService) {
+    this.options = this.userService.options;
+  }
+
 
   // --Tested
   getProducts(params) {
