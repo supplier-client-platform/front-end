@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-order-list-table',
@@ -13,10 +13,9 @@ export class OrderListTableComponent implements OnInit {
 
   activatedRow: number = 0;
   hideSearch: boolean;
+  searchText: string;
 
   constructor() {
-
-
   }
 
   ngOnInit() {
@@ -37,6 +36,4 @@ export class OrderListTableComponent implements OnInit {
     console.log('called');
     this.orderSelected.emit(obj);
   }
-
-
 }

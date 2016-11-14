@@ -12,18 +12,21 @@ import {IToastyObject} from '../../shared/models/common.model';
 })
 
 export class BrandsComponent implements OnInit {
-  public isCollapsed: boolean;
+  public showAddNewBrand: boolean;
   public currentBrandID: number;
   public currentBrandName: string;
   public brands: IBrand;
   public toastyObject: IToastyObject;
   public newBrand: string;
   public showLoadMore: boolean = false;
+  public originalBrandName: string;
+  public searchTerm: string;
 
   constructor(private commonService: CommonService, private brandService: BrandService) {
-    this.isCollapsed = true;
+    this.showAddNewBrand = false;
     this.currentBrandID = -1;
     this.currentBrandName = null;
+    this.originalBrandName = null;
   }
 
   ngOnInit() {
@@ -36,7 +39,7 @@ export class BrandsComponent implements OnInit {
       .subscribe((data: any) => {
         this.brands = data;
       }, (err) => {
-        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
         this.commonService.toasty(this.toastyObject);
       });
   }
@@ -47,13 +50,12 @@ export class BrandsComponent implements OnInit {
       brandName: this.currentBrandName,
       businessID: 1
     };
-
     this.brandService.editBrand(obj).subscribe((data: any) => {
       this.getBrands();
-      this.toastyObject = { title: 'Success', msg: 'Brand Successfully Edited!', type: 'success' };
+      this.toastyObject = {title: 'Success', msg: 'Brand Successfully Edited!', type: 'success'};
       this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+      this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
       this.commonService.toasty(this.toastyObject);
     });
   }
@@ -66,14 +68,14 @@ export class BrandsComponent implements OnInit {
     this.newBrand = null;
     this.brandService.saveBrand(obj).subscribe((data: any) => {
       this.getBrands();
-      this.toastyObject = { title: 'Success', msg: 'Brand Successfully Added!', type: 'success' };
+      this.toastyObject = {title: 'Success', msg: 'Brand Successfully Added!', type: 'success'};
       this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+      this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
       this.commonService.toasty(this.toastyObject);
     });
 
-    this.isCollapsed = true;
+    this.showAddNewBrand = false;
   }
 
   public collapsed(event: any): void {
@@ -82,23 +84,27 @@ export class BrandsComponent implements OnInit {
 
   public expanded(event: any): void {
     this.currentBrandName = null;
+    this.originalBrandName = null;
     this.currentBrandID = -1;
   }
 
   public onRowClick(id, name) {
-    this.isCollapsed = true;
+    this.showAddNewBrand = false;
     this.currentBrandID = id;
     this.currentBrandName = name;
+    this.originalBrandName = name;
   }
 
   public cancel() {
     this.currentBrandID = -1;
     this.currentBrandName = null;
+    this.originalBrandName = null;
   }
 
   public edit() {
     this.editBrand();
     this.currentBrandID = -1;
     this.currentBrandName = null;
+    this.originalBrandName = null;
   }
 }
