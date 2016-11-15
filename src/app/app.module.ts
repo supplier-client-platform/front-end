@@ -12,6 +12,7 @@ import { ImageUploadModule } from 'ng2-imageupload';
 import { NKDatetime } from 'ng2-datetime/ng2-datetime';
 import { ToastyModule } from 'ng2-toasty';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 // providers
 import { ProductService } from './shared/services/product.service';
 import { CommonService } from './shared/services/common.service';
@@ -77,7 +78,8 @@ const DROPZONE_CONFIG = {
     ReactiveFormsModule,
     ToastyModule.forRoot(),
     CollapseModule,
-    ChartsModule
+    ChartsModule,
+    SlimLoadingBarModule.forRoot()
   ],
   declarations: [
     AppComponent,
