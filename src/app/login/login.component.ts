@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   error: boolean = false;
+  loading: boolean = false;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -17,14 +18,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(username, pass) {
+    this.loading = true;
     this.error = false;
     this.userService.login({ email: username, password: pass })
       .subscribe((data) => {
+        // this.loading = false;
         console.log(data);
         this.userService.saveToken(data.data['token'], data.data['id']);
         this.getSupplier();
       }, (err) => {
         this.error = true;
+        this.loading = false;
       });
 
   }

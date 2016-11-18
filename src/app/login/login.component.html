@@ -67,16 +67,16 @@
 		<h1 style="color:#fff">Login |</h1>
 		<div class="form">
 			<div *ngIf="error" class="alert alert-dismissible alert-danger">
-				<strong>Oh snap!</strong> <a href="#" class="alert-link">Sorry!</a> Invalid Username or Password.
+				<strong>Sorry!</strong> Invalid Username or Password.
 			</div>
-			<form class="login-form" #searchForm="ngForm" (ngSubmit)="login(username.value,password.value)">
-				<input type="text" placeholder="username" #username/>
-				<input type="password" placeholder="password" #password />
+			<form *ngIf="!loading" class="login-form" #searchForm="ngForm" (ngSubmit)="login(username.value,password.value)">
+				<input type="email" placeholder="Email" #username required/>
+				<input type="password" placeholder="Password" #password  required/>
 				<button>login</button>
 				<p class="message">Not registered? <a href="http://dev.sc-platform.reactive-solutions.xyz/register/">Create an account</a></p>
-
-
 			</form>
+
+			<app-loading *ngIf="loading"></app-loading>
 		</div>
 	</div>
 </div>

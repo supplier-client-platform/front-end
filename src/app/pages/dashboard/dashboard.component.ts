@@ -78,8 +78,14 @@ export class DashboardComponent implements OnInit {
   getStats() {
     this.dashboardService.getStats()
       .subscribe((data) => {
-        console.log('stats', data);
+
         this.stats = data.data;
+
+        for (let key in this.stats) {
+          if (this.stats.hasOwnProperty(key)) {
+            this.stats[key] = (this.stats[key] === null || this.stats[key] === undefined) ? 0 : this.stats[key];
+          }
+        }
       }, (err) => {
         console.log(err);
       });
