@@ -2,7 +2,7 @@
   <div class="row search-item form-group">
     <label class="col-md-offset-7 col-md-1 search-label control-label" style="padding-top:1rem">Search</label>
     <div class="col-md-4 ">
-      <input type="text" placeholder="Search Pending Orders" class="form-control input-sm">
+      <input type="text" placeholder="Search Pending Orders" class="form-control input-sm" [(ngModel)] = 'searchText'>
     </div>
   </div>
 </div>
@@ -23,7 +23,7 @@
       </tr>
     </thead>
   </table>
-  <div *ngFor="let order of orders">
+  <div *ngFor="let order of (orders | searchOrder: searchText)">
     <table class="table table-hover table-condensed table-striped table    general-table">
       <tbody>
         <tr [ngClass]="{info:activateRowClass(order.id)}" (click)="order.show = !order.show">

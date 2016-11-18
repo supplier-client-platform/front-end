@@ -45,6 +45,8 @@ import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandProductsComponent } from './pages/brands/brand-products/brand-products.component';
 import { BrandService } from './shared/services/brand.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import {SearchOrderPipe} from './shared/pipes/order-search.pipe';
+import {SearchBrandPipe} from './shared/pipes/brand-search.pipe';
 
 
 
@@ -100,7 +102,9 @@ const DROPZONE_CONFIG = {
     SearchComponent,
     BrandsComponent,
     BrandProductsComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchOrderPipe,
+    SearchBrandPipe
   ],
   providers: [
     ProductService,
