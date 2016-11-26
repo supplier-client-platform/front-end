@@ -1,37 +1,40 @@
 <div class="row">
-	<div class="col-sm-12">
+  <div class="col-sm-12">
 
-		<ul class="breadcrumbs-alt">
-			<li><a class="text-uppercase"> Reports</a></li>
-			<li class="text-uppercase"><a class="current"> All</a></li>
+    <ul class="breadcrumbs-alt">
+      <li><a class="text-uppercase"> Reports</a></li>
+      <li class="text-uppercase"><a class="current"> All</a></li>
 
-		</ul>
+    </ul>
 
-	</div>
+  </div>
 </div>
 
 <section class="panel animated bounceInUp">
-	<div class="panel-body">
-		<div class="row ">
-
-			<div class="col-md-3">
-				<datetime [timepicker]="false" [(ngModel)]="date"></datetime>
-			</div>
-			<div class="col-md-3">
-				<datetime [timepicker]="false" [(ngModel)]="date"></datetime>
-			</div>
-			<div class="col-md-4">
-				<select class="form-control">
-			<option value="product-report">Product Sales Report</option>
-			<option value="product-report">Order Income  Report</option>
-		</select>
-			</div>
-			<div class="col-md-2"><button class="btn-primary btn btn-block">Generate</button></div>
-		</div>
-	</div>
+  <form #reportForm="ngForm" (ngSubmit)="getReports(reportForm.value)" class="form-horizontal">
+    <div class="panel-body">
+      <div class="row ">
+        <div class="col-md-3">
+          <datetime name="startDate" id="startDate" [timepicker]="false" ngModel ></datetime>
+        </div>
+        <div class="col-md-3">
+          <datetime name="endDate" id="endDate" [timepicker]="false" ngModel ></datetime>
+        </div>
+        <div class="col-md-4">
+          <select name="reportType" style="height: 4.3rem;" id="reportType" class="form-control" ngModel >
+            <option value="product-sales-report">Product Sales Report</option>
+            <option value="brand-sales-report">Brand Sales Report</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn-primary btn btn-block">Generate</button>
+        </div>
+      </div>
+    </div>
+   </form>
 </section>
 <section class="panel animated bounceInUp">
-	<div class="panel-body">
-		Result Table
-	</div>
+  <div class="panel-body">
+    Result Table
+  </div>
 </section>

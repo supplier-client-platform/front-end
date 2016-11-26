@@ -47,10 +47,10 @@ import { BrandService } from './shared/services/brand.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {SearchOrderPipe} from './shared/pipes/order-search.pipe';
 import {SearchBrandPipe} from './shared/pipes/brand-search.pipe';
-
-
-
-
+import { BrandReportListTableComponent } from './pages/reports/brand-report-list-table/brand-report-list-table.component';
+import { OrderReportListTableComponent } from './pages/reports/order-report-list-table/order-report-list-table.component';
+import { ProductReportListTableComponent } from './pages/reports/product-report-list-table/product-report-list-table.component';
+import {ReportService} from './shared/services/report.service';
 
 const GMAP_KEY = 'AIzaSyCwkmAAikH-IoW8ZTNaqz73qhddfm9rOrE';
 
@@ -104,7 +104,10 @@ const DROPZONE_CONFIG = {
     BrandProductsComponent,
     DashboardComponent,
     SearchOrderPipe,
-    SearchBrandPipe
+    SearchBrandPipe,
+    BrandReportListTableComponent,
+    OrderReportListTableComponent,
+    ProductReportListTableComponent
   ],
   providers: [
     ProductService,
@@ -113,7 +116,8 @@ const DROPZONE_CONFIG = {
     UserService,
     BrandService,
     DashboardService,
-    LoginGuard
+    LoginGuard,
+    ReportService
   ],
   bootstrap: [AppComponent]
 })
