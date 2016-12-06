@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^2.0.0",
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/store": "^2.2.1",
     "@salesforce-ux/design-system": "^2.1.2",
     "@types/google-maps": "^3.1.28",
     "@types/googlemaps": "^3.25.35",

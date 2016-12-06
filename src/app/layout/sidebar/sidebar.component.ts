@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services/user.service';
 import { Router } from '@angular/router';
+import { UPDATE_BUSSINESS, UserState } from '../../shared/reducers/user.reducer';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,10 +10,12 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  img: string = '';
+  bussiness: Object;
   constructor(private userService: UserService, private router: Router) {
 
     this.getBussiness();
+
+
   }
 
   ngOnInit() {
@@ -24,12 +27,22 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/', 'login']);
   }
 
+  subscribe() {
+    this.userService.userInfo
+      .subscribe((data: UserState) => {
+        this.bussiness = data.bussiness;
+      });
+  }
+
   getBussiness() {
     this.userService.getBussinessDetails()
       .subscribe((data) => {
-        this.img = data.data[0].image;
+        this.userService.dispatch(UPDATE_BUSSINESS, data.data[0]);
+        this.subscribe();
       });
   }
+
+
 
 
 }

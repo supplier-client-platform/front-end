@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { CommonService } from '../../../shared/services/common.service';
 import { UserService } from '../../../shared/services/user.service';
-import {IToastyObject} from '../../../shared/models/common.model';
-
+import { IToastyObject } from '../../../shared/models/common.model';
+import { UPDATE_BUSSINESS, UserState } from '../../../shared/reducers/user.reducer';
 
 @Component({
   selector: 'app-bussiness',
@@ -27,6 +27,9 @@ export class BussinessComponent implements OnInit {
   title: string = '';
   lat: number;
   lng: number;
+
+  userInfoLoading: boolean = true;
+  bussinessInfoLoading: boolean = true;
 
   map: boolean = false;
 
@@ -67,13 +70,15 @@ export class BussinessComponent implements OnInit {
 
 
   getUserDetails() {
-    this.userService.getUserDetails().subscribe((data) => {
-      console.log(data);
-      this.user = data.data;
-      this.userView = <Object>JSON.parse(JSON.stringify(this.user));
+    this.userService.userInfo.subscribe((data: UserState) => {
+      this.user = data.user;
+      if (Object.getOwnPropertyNames(this.user).length > 0) {
+        this.userView = <Object>JSON.parse(JSON.stringify(this.user));
 
-      if (this.user['image'] !== null && this.user['image'] !== '') {
-        this.images['user'] = this.user['image'];
+        if (this.user['image'] !== null && this.user['image'] !== '') {
+          this.images['user'] = this.user['image'];
+        }
+        this.userInfoLoading = false;
       }
     }, (err) => {
       console.log(err);
@@ -81,22 +86,24 @@ export class BussinessComponent implements OnInit {
   }
 
   getBussinessDetails() {
-    this.userService.getBussinessDetails().subscribe((data) => {
-      console.log(data);
-      this.bussiness = data.data[0];
-      this.bussinessView = <Object>JSON.parse(JSON.stringify(this.bussiness));
+    this.userService.userInfo.subscribe((data: UserState) => {
+      this.bussiness = data.bussiness;
+      console.log(data , this.bussiness['address']);
+      if (Object.getOwnPropertyNames(this.bussiness).length > 0) {
+        this.bussinessView = <Object>JSON.parse(JSON.stringify(this.bussiness));
 
-      this.bussinessAdress = JSON.parse(this.bussiness['address']);
-      this.bussinessAdressEdit = this.bussinessAdress['address'];
-      this.title = this.bussiness['name'];
-      this.lat = parseFloat(this.bussinessAdress['latitude']);
-      this.lng = parseFloat(this.bussinessAdress['longitude']);
-      this.map = true;
+        this.bussinessAdress = JSON.parse(this.bussiness['address']);
+        this.bussinessAdressEdit = this.bussinessAdress['address'];
+        this.title = this.bussiness['name'];
+        this.lat = parseFloat(this.bussinessAdress['latitude']);
+        this.lng = parseFloat(this.bussinessAdress['longitude']);
+        this.map = true;
+        this.bussinessInfoLoading = false;
 
-      if (this.bussiness['image'] !== null && this.bussiness['image'] !== '') {
-        this.images['bussiness'] = this.bussiness['image'];
+        if (this.bussiness['image'] !== null && this.bussiness['image'] !== '') {
+          this.images['bussiness'] = this.bussiness['image'];
+        }
       }
-
     }, (err) => {
       console.log(err);
     });

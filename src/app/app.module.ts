@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+
+
+// Reducers
+import { UserReducer } from './shared/reducers/user.reducer';
+
 
 // 3rd party components
 import { DropzoneModule } from 'angular2-dropzone-wrapper';
@@ -13,7 +19,9 @@ import { NKDatetime } from 'ng2-datetime/ng2-datetime';
 import { ToastyModule } from 'ng2-toasty';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-// providers
+
+
+// Providers
 import { ProductService } from './shared/services/product.service';
 import { CommonService } from './shared/services/common.service';
 import { OrderService } from './shared/services/order.service';
@@ -45,8 +53,8 @@ import { BrandsComponent } from './pages/brands/brands.component';
 import { BrandProductsComponent } from './pages/brands/brand-products/brand-products.component';
 import { BrandService } from './shared/services/brand.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import {SearchOrderPipe} from './shared/pipes/order-search.pipe';
-import {SearchBrandPipe} from './shared/pipes/brand-search.pipe';
+import { SearchOrderPipe } from './shared/pipes/order-search.pipe';
+import { SearchBrandPipe } from './shared/pipes/brand-search.pipe';
 
 
 
@@ -81,7 +89,8 @@ const DROPZONE_CONFIG = {
     ToastyModule.forRoot(),
     CollapseModule,
     ChartsModule,
-    SlimLoadingBarModule.forRoot()
+    SlimLoadingBarModule.forRoot(),
+    StoreModule.provideStore({ user: UserReducer })
   ],
   declarations: [
     AppComponent,

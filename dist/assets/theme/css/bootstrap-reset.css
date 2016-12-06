@@ -117,26 +117,6 @@ a:hover {
 
 /*text input*/
 
-.form-control {
-    border: 1px solid #e2e2e4;
-    box-shadow: none;
-    color: #c2c2c2;
-}
-
-
-.form-control:focus, #focusedInput {
-    border: 1px solid #00A8B3;
-    box-shadow: none;
-}
-
-.form-horizontal .control-label {
-    font-weight: 300;
-    font-size: 14px;
-}
-
-input, textarea, select, button {
-    outline: none !important;
-}
 
 /*list*/
 
@@ -377,12 +357,7 @@ ul {
 }
 
 
-/*--*/
-
-.has-success .form-control:focus, .has-error .form-control:focus, .has-warning .form-control:focus {
-    box-shadow: none;
-}
-
+ 
 .panel-group .panel + .panel {
     margin-top: 1px;
 }

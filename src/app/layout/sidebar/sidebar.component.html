@@ -1,16 +1,21 @@
 <aside class="feed-box text-center profile-nav alt">
 	<section class="panel   ">
 		<div class="panel-body">
+			<app-loading *ngIf="!bussiness"></app-loading>
 			<div class="corner-ribon black-ribon">
 				<i class="fa fa-th-large"></i>
 			</div>
-			<a href="#">
-				<img alt="" [src]="img">
-			</a>
-			<h1>Burger King</h1>
-			<p>Admin Panel</p>
+			<div *ngIf="bussiness">
+
+
+				<a>
+					<img alt="" [src]="bussiness.image">
+				</a>
+				<h1>{{bussiness.name}}</h1>
+				<p>{{bussiness.cat_name}}</p>
+			</div>
 		</div>
-		<ul class="nav nav-pills nav-stacked">
+		<ul class="nav nav-pills nav-stacked" *ngIf="bussiness">
 			<li>
 				<a href="javascript:;"> <i class="fa fa-envelope-o"></i> Notifications<span class="badge label-success pull-right r-activity">10</span></a>
 			</li>

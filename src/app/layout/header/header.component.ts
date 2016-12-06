@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services/user.service';
+import { UPDATE_USER, UserState } from '../../shared/reducers/user.reducer';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,22 +16,18 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
-  // items = [
-  //   { value: 'Logout', icon: 'power', url: 'login' }
-  // ];
-
-  // onToggle($event: Event) {
-  //   $event.stopPropagation();
-  //   this.open = true;
-  // }
+  subscribe() {
+    this.userService.userInfo
+      .subscribe((data: UserState) => {
+        this.user = data.user;
+      });
+  }
 
   getUser() {
     this.userService.getUserDetails()
       .subscribe((data) => {
-        this.user = data.data;
-        console.log(data);
+        this.userService.dispatch(UPDATE_USER, data.data);
+        this.subscribe();
       });
   }
 

@@ -14,14 +14,15 @@
 	<div class="col-md-12">
 		<section class="panel">
 			<div class="panel-body profile-information" style="padding-top:0cm">
-				<div class="col-md-2">
-					<div class="profile-pic text-center">
+				<div class="col-md-2" >
+					<div class="profile-pic text-center" *ngIf="!bussinessInfoLoading">
 						<img class="img-responsive" style="height:auto" [src]="(bussinessView.image === '' || bussinessView.image === null)?'http://www.maxtechagency.com/img/team/no-image-available.jpg': bussinessView.image"
 							alt="">
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="profile-desk">
+					<app-loading *ngIf="bussinessInfoLoading"></app-loading>
+					<div class="profile-desk" *ngIf="!bussinessInfoLoading">
 						<h1>{{bussinessView.name}}</h1>
 						<span class="text-muted" style="padding-bottom:0cm;">{{bussinessView.cat_name}}</span><br>
 						<span style="padding-bottom:0.5rem;min-height: 4rem;"> {{bussinessAdress.address}} </span>
@@ -30,7 +31,8 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="profile-desk" style="border:none;">
+					<app-loading *ngIf="userInfoLoading"></app-loading>
+					<div class="profile-desk" *ngIf="!userInfoLoading" style="border:none;">
 						<h1>{{userView.name}}</h1>
 						<span class="text-muted" style="padding-bottom:0cm;">Owner</span><br>
 						<span style="padding-bottom:0.5rem;min-height: 4rem;">  &nbsp;</span>
@@ -38,8 +40,8 @@
 						<h4 style="margin-top:0.2rem;"><small><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp; {{userView.contact === null ? 'Not Available':userView.contact}}</small></h4>
 					</div>
 				</div>
-				<div class="col-md-2">
-					<div class="profile-pic text-center">
+				<div class="col-md-2" >
+					<div class="profile-pic text-center" *ngIf="!userInfoLoading">
 						<img class="img-responsive" style="height:auto" [src]="(userView.image === null || userView.image === '' )?'http://www.maxtechagency.com/img/team/no-image-available.jpg':userView.image"
 							alt="">
 					</div>

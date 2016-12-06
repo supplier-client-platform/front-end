@@ -1,8 +1,12 @@
+
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { URL_CONST } from '../config/url.constants';
-import 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
+import { Store } from '@ngrx/store';
+import { UPDATE_USER, UPDATE_BUSSINESS, UserState } from '../reducers/user.reducer';
+
 
 @Injectable()
 export class UserService {
@@ -11,11 +15,14 @@ export class UserService {
   public userID: number;
   public token: string;
 
+  public userInfo: Observable<Object>;
 
   headers = new Headers({ 'Content-Type': 'application/json' });
   options = new RequestOptions({ headers: this.headers });
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private store: Store<UserState>) {
+    this.userInfo = store.select('user');
+  }
 
 
   login(params) {
@@ -84,5 +91,22 @@ export class UserService {
 
   logout() {
     Cookie.deleteAll();
+  }
+
+
+
+  dispatch(type, data) {
+    switch (type) {
+      case UPDATE_USER:
+        this.store.dispatch({ type: UPDATE_USER, payload: data });
+        return;
+
+      case UPDATE_BUSSINESS:
+        this.store.dispatch({ type: UPDATE_BUSSINESS, payload: data });
+        return;
+
+      default:
+        return;
+    }
   }
 }
