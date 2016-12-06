@@ -36,8 +36,8 @@ daterangepicker .input-mini, .daterangepicker .input-mini.active {
 .form-control {
   display: block;
   width: 100%;
- 
- 
+
+
   font-size: 15px;
   line-height: 1.42857143;
   color: #acb6c0;
@@ -65,7 +65,7 @@ daterangepicker .input-mini, .daterangepicker .input-mini.active {
  {
    color: #e74c3c!important;
   font-weight: 600 !important;
- 
+
 }
 
 
@@ -207,4 +207,8 @@ label {
 
 ::-webkit-input-placeholder {
 	color: #ccc;
+}
+
+.datepicker-dropdown{
+  z-index:10000;
 }

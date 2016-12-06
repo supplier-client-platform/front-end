@@ -23,8 +23,10 @@ export class OrderListComponent implements OnInit {
   orderInfo: any;
   orderInfoStatus: string;
   toastyObject: IToastyObject;
+  loading: boolean;
 
   constructor(private commonService: CommonService, private orderService: OrderService) {
+      this.loading = true;
   }
 
   ngOnInit() {
@@ -37,8 +39,8 @@ export class OrderListComponent implements OnInit {
     let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Pending' }, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
-        console.log(data.data);
         this.pendingOrders = data.data;
+        this.loading=false;
       }, (err) => {
         this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
         this.commonService.toasty(this.toastyObject);
@@ -50,7 +52,6 @@ export class OrderListComponent implements OnInit {
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.completedOrders = data.data;
-        console.log(this.completedOrders);
       }, (err) => {
         this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
         this.commonService.toasty(this.toastyObject);
@@ -83,6 +84,9 @@ export class OrderListComponent implements OnInit {
   }
 
   orderStatusSubmit(values: any) {
+    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
+    this.commonService.toasty(this.toastyObject);
+
     let obj: IOrderStatusSubmit = {
       orderID: this.orderInfo.id,
       status: this.orderInfoStatus,

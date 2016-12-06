@@ -21,8 +21,10 @@ export class BrandsComponent implements OnInit {
   public showLoadMore: boolean = false;
   public originalBrandName: string;
   public searchTerm: string;
+  loading: boolean;
 
   constructor(private commonService: CommonService, private brandService: BrandService) {
+    this.loading = true;
     this.showAddNewBrand = false;
     this.currentBrandID = -1;
     this.currentBrandName = null;
@@ -38,6 +40,7 @@ export class BrandsComponent implements OnInit {
     this.brandService.getBrands(param)
       .subscribe((data: any) => {
         this.brands = data;
+        this.loading=false;
       }, (err) => {
         this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
         this.commonService.toasty(this.toastyObject);
@@ -45,6 +48,9 @@ export class BrandsComponent implements OnInit {
   }
 
   editBrand() {
+    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
+    this.commonService.toasty(this.toastyObject);
+
     let obj: IBrandEditInfo = {
       id: this.currentBrandID,
       brandName: this.currentBrandName,
@@ -61,6 +67,9 @@ export class BrandsComponent implements OnInit {
   }
 
   public createBrand(values: any) {
+    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
+    this.commonService.toasty(this.toastyObject);
+
     let obj: IBrandCreateInfo = {
       brandName: values.createBrandName,
       businessID: 1
