@@ -1,3 +1,35 @@
-<p>
-  brand-report-list-table works!
-</p>
+<div [hidden]="brandSales.length === 0">
+  <table style="margin-top:1rem" class="table table-hover table-condensed table-striped table general-table">
+    <thead>
+    <tr>
+      <td></td>
+      <td>Brand ID#</td>
+      <td>Brand Name</td>
+      <td>Quantity</td>
+      <td>Total</td>
+    </tr>
+    </thead>
+  </table>
+  <div *ngFor="let sales of brandSales">
+    <table class="table table-hover table-condensed table-striped table    general-table">
+      <tbody>
+      <tr>
+        <td></td>
+        <td>{{sales.brand_id}}</td>
+        <td>{{sales.brand_name}}</td>
+        <td>{{sales.quantity}}</td>
+        <td>Rs. {{sales.total | number : '1.2-2'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="brandSales.length === 0">
+  <div class="col-md-12">
+    <div class="alert alert-dismissible alert-warning">
+
+      <h4>Sorry!</h4>
+      <p>Seems You don't have any sales for this period.</p>
+    </div>
+  </div>
+</div>
