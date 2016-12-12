@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { CommonService } from '../../../shared/services/common.service';
 import { UserService } from '../../../shared/services/user.service';
 import { IToastyObject } from '../../../shared/models/common.model';
-import { UPDATE_BUSSINESS, UserState } from '../../../shared/reducers/user.reducer';
+import { UserState } from '../../../shared/reducers/user.reducer';
+import { ModalDirective } from 'ng2-bootstrap';
+
+
 
 @Component({
   selector: 'app-bussiness',
@@ -11,6 +14,7 @@ import { UPDATE_BUSSINESS, UserState } from '../../../shared/reducers/user.reduc
   styleUrls: ['./bussiness.component.scss']
 })
 export class BussinessComponent implements OnInit {
+  @ViewChild('passwordModal') public passwordModal: ModalDirective;
 
   toastyObject: IToastyObject;
 
@@ -20,7 +24,12 @@ export class BussinessComponent implements OnInit {
   bussinessAdressEdit: String;
   categories: Array<Object> = [];
   cities: Array<Object> = [];
-
+  passMatch: boolean = true;
+  authPass: boolean = true;
+  loading: boolean = false;
+  unauthorizeCount: number = 0;
+  saveSuccess: boolean = false;
+  userPass: Object = { new: '', old: '', confirm: '' };
   userView: Object = {};
   bussinessView: Object = {};
 
@@ -88,7 +97,7 @@ export class BussinessComponent implements OnInit {
   getBussinessDetails() {
     this.userService.userInfo.subscribe((data: UserState) => {
       this.bussiness = data.bussiness;
-      console.log(data , this.bussiness['address']);
+      console.log(data, this.bussiness['address']);
       if (Object.getOwnPropertyNames(this.bussiness).length > 0) {
         this.bussinessView = <Object>JSON.parse(JSON.stringify(this.bussiness));
 
@@ -169,6 +178,40 @@ export class BussinessComponent implements OnInit {
         this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
         this.commonService.toasty(this.toastyObject);
       });
+  }
+
+  changePassword() {
+    this.passMatch = true;
+    this.authPass = true;
+    this.loading = false;
+    this.saveSuccess = false;
+
+    console.log(this.userPass);
+    if (this.userPass['new'] !== this.userPass['confirm'] || this.userPass['new'] === '' || this.userPass['new'] === this.userPass['old']) {
+      this.passMatch = false;
+      return;
+    } else {
+      this.loading = true;
+      this.userService.changePass({ password: this.userPass['old'], newPassword: this.userPass['new'] }).subscribe((data) => {
+        console.log(data);
+        this.unauthorizeCount = 0;
+        this.saveSuccess = true;
+        this.userPass = { new: '', old: '', confirm: '' };
+        setTimeout(() => {
+          this.saveSuccess = false;
+        }, 4000);
+
+        this.loading = false;
+
+      }, (err) => {
+        this.authPass = false;
+        this.unauthorizeCount++;
+        this.loading = false;
+        if (this.unauthorizeCount > 2) {
+          console.log('Failed attempts 3. Logging out');
+        }
+      });
+    }
   }
 
 }

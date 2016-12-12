@@ -93,7 +93,11 @@ export class UserService {
     Cookie.deleteAll();
   }
 
-
+  changePass(param) {
+    param.id = this.userID;
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/users/password/change', param, this.options)
+      .map((response: Response) => response.json());
+  }
 
   dispatch(type, data) {
     switch (type) {
