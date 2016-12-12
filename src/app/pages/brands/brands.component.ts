@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../shared/services/common.service';
-import { BrandService } from '../../shared/services/brand.service';
-import { IBrandEditInfo, IBrandCreateInfo, IBrand } from '../../shared/models/brands.model';
-import { IToastyObject } from '../../shared/models/common.model';
+import {Component, OnInit} from '@angular/core';
+import {CommonService} from '../../shared/services/common.service';
+import {BrandService} from '../../shared/services/brand.service';
+import {IBrandEditInfo, IBrandCreateInfo, IBrand} from '../../shared/models/brands.model';
+import {IToastyObject} from '../../shared/models/common.model';
+import {UserService} from '../../shared/services/user.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class BrandsComponent implements OnInit {
   public searchTerm: string;
   loading: boolean;
 
-  constructor(private commonService: CommonService, private brandService: BrandService) {
+  constructor(private commonService: CommonService, private brandService: BrandService, private userService: UserService) {
     this.loading = true;
     this.showAddNewBrand = false;
     this.currentBrandID = -1;
@@ -36,7 +37,7 @@ export class BrandsComponent implements OnInit {
   }
 
   getBrands() {
-    let param = this.commonService.addQueryParams({ supplier_id: 1 }, []);
+    let param = this.commonService.addQueryParams({supplier_id: this.userService.supplierID}, []);
     this.brandService.getBrands(param)
       .subscribe((data: any) => {
         this.brands = data;
@@ -54,7 +55,7 @@ export class BrandsComponent implements OnInit {
     let obj: IBrandEditInfo = {
       id: this.currentBrandID,
       brandName: this.currentBrandName,
-      businessID: 1
+      businessID: this.userService.supplierID
     };
     this.brandService.editBrand(obj).subscribe((data: any) => {
       this.getBrands();
@@ -72,7 +73,7 @@ export class BrandsComponent implements OnInit {
 
     let obj: IBrandCreateInfo = {
       brandName: values.createBrandName,
-      businessID: 1
+      businessID: this.userService.supplierID
     };
     this.newBrand = null;
     this.brandService.saveBrand(obj).subscribe((data: any) => {
