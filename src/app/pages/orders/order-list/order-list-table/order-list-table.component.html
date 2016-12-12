@@ -32,7 +32,7 @@
           <td>{{order.created_at}}</td>
           <td>{{order.name}}</td>
           <td>{{order.contact}}</td>
-          <td> <span class="label " [ngClass]="{'label-info': order.status=='Accepted','label-success':order.status=='Completed','label-danger':order.status=='Pending'}">{{order.status}}</span></td>
+          <td> <span class="label " [ngClass]="{'label-primary': order.status=='Accepted','label-success':order.status=='Completed','label-warning':order.status=='Pending' , 'label-danger':order.status =='Cancelled'}">{{order.status}}</span></td>
           <td>Rs. {{order.net_total | number : '1.2-2'}}</td>
           <!--<td><button (click)="activateRow(order)" class="btn btn-xs btn-block btn-warning">Select</button></td>-->
         </tr>

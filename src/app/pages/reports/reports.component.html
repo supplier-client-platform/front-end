@@ -33,12 +33,13 @@
     </div>
    </form>
 </section>
-<section class="panel animated bounceInUp">
+<section class="panel animated bounceInUp" *ngIf="!emptyTable">
   <div class="panel-body">
 
     <app-loading *ngIf="loading"></app-loading>
 
     <div *ngIf="!loading">
+
       <div *ngIf="selectedReportType === 'product-sales-report' && productSales">
         <app-product-report-list-table [productSales]="productSales"></app-product-report-list-table>
       </div>

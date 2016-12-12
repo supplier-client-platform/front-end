@@ -59,7 +59,22 @@
 				<tabset>
 					<tab>
 						<template tabHeading style="margin-bottom:1rem">Location Information</template>
-						<div *ngIf="map">
+						<div class="col-md-6">
+							<h5> Branches </h5>
+							<hr style="margin-top:0cm">
+							<table class="table table-hover table-striped">
+								<tbody>
+									<tr>
+										<td>Head Office </td>
+										<td>Address </td>
+										<td>Phone </td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+
+						<div class="col-md-6" *ngIf="map">
 							<sebm-google-map [latitude]="lat" [longitude]="lng">
 								<sebm-google-map-marker [markerDraggable]="false" [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
 							</sebm-google-map>
@@ -218,7 +233,7 @@
 
 									<div class="form-group" style="margin-top:5rem;">
 										<div class="col-sm-offset-4 col-sm-4">
-											<button type="button" class="btn-danger btn btn-block"  (click)="smModal.show()">Change Password</button>
+											<button type="button" class="btn-danger btn btn-block" (click)="smModal.show()">Change Password</button>
 										</div>
 										<div class="col-sm-4 ">
 											<button type="submit" class="btn-primary btn btn-block">Update</button>
@@ -235,7 +250,7 @@
 	</div>
 </div>
 
- 
+
 
 <div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
@@ -265,7 +280,7 @@
 					<div *ngIf="loading">
 						<app-loading></app-loading>
 					</div>
-	 
+
 					<div *ngIf="!loading" [hidden]="saveSuccess">
 						<div class="form-group">
 							<label class="control-label">Current Password</label>
@@ -286,7 +301,7 @@
 
 				</div>
 				<div class="modal-footer">
-					<div *ngIf="!loading && !saveSuccess" >
+					<div *ngIf="!loading && !saveSuccess">
 						<button type="button" class="btn btn-default" (click)="smModal.hide()">Cancel</button>
 						<button type="submit" class="btn btn-primary">Update</button>
 					</div>

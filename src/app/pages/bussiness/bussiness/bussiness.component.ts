@@ -209,6 +209,7 @@ export class BussinessComponent implements OnInit {
         this.loading = false;
         if (this.unauthorizeCount > 2) {
           console.log('Failed attempts 3. Logging out');
+          this.userService.logout();
         }
       });
     }

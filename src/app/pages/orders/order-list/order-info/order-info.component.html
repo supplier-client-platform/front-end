@@ -143,7 +143,7 @@
 
 
 
-  <div *ngIf="!loading">
+  <div *ngIf="!loading" style="padding-bottom:1rem;">
     <div class="row" *ngIf="orderInfo.status=='Pending'">
       <div class="col-md-offset-8 col-md-2">
         <button class="btn btn-sm btn-block btn-primary" (click)="changeOrderStatus('Accepted')">Accept</button>

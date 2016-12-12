@@ -161,7 +161,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   removeAttrib(i) {
-    this.product['custom_attr'].splice(i, 1);
+    this.customAtribs.splice(i, 1);
   }
 
   reset() {

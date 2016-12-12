@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CommonService} from "../../shared/services/common.service";
-import {ReportService} from "../../shared/services/report.service";
+import { CommonService } from "../../shared/services/common.service";
+import { ReportService } from "../../shared/services/report.service";
 
 @Component({
   selector: 'app-reports',
@@ -14,6 +14,7 @@ export class ReportsComponent implements OnInit {
   public productSales: any;
   public brandSales: any;
   public loading: boolean;
+  emptyTable: boolean = true;
 
   constructor(private commonService: CommonService, private reportService: ReportService) {
     this.selectedReportType = "product-sales-report";
@@ -38,6 +39,8 @@ export class ReportsComponent implements OnInit {
           .subscribe((data: any) => {
             this.brandSales = data.data.brand_sales;
             this.loading = false;
+            this.emptyTable = false;
+
             console.log(data);
           });
         break;
@@ -45,7 +48,8 @@ export class ReportsComponent implements OnInit {
         this.reportService.getProductSales(param)
           .subscribe((data: any) => {
             this.productSales = data.data.product_sales;
-            this.loading = false
+            this.loading = false;
+            this.emptyTable = false;
             console.log(data);
           });
         break;

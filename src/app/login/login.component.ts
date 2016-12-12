@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         this.userService.saveBussiness(data.data[0].id);
-        this.router.navigate(['/', 'product']);
+        this.router.navigate(['/', 'dashboard']);
       });
   }
 
