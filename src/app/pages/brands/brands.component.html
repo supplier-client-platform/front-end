@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-sm-8">
 
 		<ul class="breadcrumbs-alt">
 			<li><a class="text-uppercase"> Brands</a></li>
@@ -8,26 +8,86 @@
 		</ul>
 
 	</div>
+	<div class="col-sm-4 ">
+		<input name="searchText" type="text" placeholder="Search Brands" class="form-control input-sm" [(ngModel)]="searchTerm">
+	</div>
 </div>
+ 
+<div class="row">
 
+
+	<div class="col-md-4">
+		<div class="panel">
+			<div class="panel-body">
+				<div class="col-md-3" style="padding-left:0cm">
+					<div class="profileImage" style="">+</div>
+				</div>
+				<div class="col-md-9">
+					<input name="createBrandName" placeholder="Enter Brand Name" id="createBrandName" class="form-control input-sm " required
+						[(ngModel)]="newBrand">
+
+					<div style=" padding-top: 2rem;">
+
+
+
+						<button type="submit" class="btn btn-xs btn-primary  pull-right "> Add New </button>
+						<button type="reset" class="btn btn-xs btn-warning   pull-right" style="margin-right:1rem"><i class="fa fa-ban"></i></button>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4" ng-if="brand.brandname != 'N/A'" *ngFor="let brand of (brands | searchBrand : searchTerm)">
+		<div class="panel">
+			<div class="panel-body">
+				<div class="col-md-3" style="padding-left:0cm">
+					<div class="profileImage">{{brand.brandname.substring(0,2)}}</div>
+				</div>
+				<div class="col-md-9">
+					<form #createForm="ngForm" (ngSubmit)="createBrand(createForm.value)" *ngIf="!loading">
+						<h5 *ngIf='brand.id != currentBrandID'>{{brand.brandname}}</h5>
+						<input *ngIf='brand.id == currentBrandID' name="brandname" id="brandname" type="text" class="form-control input-sm" [(ngModel)]="currentBrandName"
+							required style="margin-bottom: 2.4rem;">
+						<h6 *ngIf='brand.id != currentBrandID'>{{brand.count}} Products</h6>
+						<div>
+
+							<button [disabled]="brand.count>0" class="btn btn-xs btn-danger pull-right">Delete</button>
+
+							<button type="button" class="btn btn-xs  btn-primary  btn btn-xs pull-right" style="margin-right:1rem" [disabled]="brand.brandname==='N/A'"
+								*ngIf='brand.id != currentBrandID' (click)="onRowClick(brand.id, brand.brandname)">  Edit</button>
+							<button type="button" class="btn-primary   btn btn-xs" *ngIf='brand.id == currentBrandID' [disabled]="!currentBrandName || this.currentBrandName == this.originalBrandName"
+								(click)="edit()"><i class="fa fa-upload" ></i> </button>
+							<button type="button" class="btn-warning    btn btn-xs" *ngIf='brand.id == currentBrandID' (click)="cancel()"><i class="fa fa-ban"></i></button>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!--
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
 		<section class="panel animated bounceInUp">
 			<div class="panel-body">
 
-        <app-loading *ngIf="loading"></app-loading>
+				<app-loading *ngIf="loading"></app-loading>
 
-				<form #createForm="ngForm" (ngSubmit)="createBrand(createForm.value)" *ngIf="!loading">
+				<form #creat11eForm="ngForm" (ngSubmit)="createBrand(createForm.value)" *ngIf="!loading">
 					<table class="table table-hover table-condensed table-striped table general-table" style="align-items: center">
 						<thead>
-              <tr  style=" border-bottom: 1px solid #eceff1;">
-                  <td class="col-md-7">
-                    <button type="button" class="btn btn-sm btn-info" (click)="showAddNewBrand = !showAddNewBrand"><i class="glyphicon glyphicon-plus" ></i> ADD NEW</button>
-                  </td>
-                  <td class="col-md-5">
-                    <input name="searchText" type="text" placeholder="Search Brands" class="form-control input-sm" [(ngModel)] = "searchTerm">
-                  </td>
-              </tr>
+							<tr style=" border-bottom: 1px solid #eceff1;">
+								<td class="col-md-7">
+									<button type="button" class="btn btn-sm btn-info" (click)="showAddNewBrand = !showAddNewBrand"><i class="glyphicon glyphicon-plus" ></i> ADD NEW</button>
+								</td>
+								<td class="col-md-5">
+									<input name="searchText" type="text" placeholder="Search Brands" class="form-control input-sm" [(ngModel)]="searchTerm">
+								</td>
+							</tr>
 
 							<tr style=" border-bottom: 1px solid #eceff1;">
 
@@ -42,12 +102,12 @@
 
 								<td colspan="1" class="col-md-7">
 									<input name="createBrandName" placeholder="Enter Brand Name" id="createBrandName" class="form-control input-sm " required
-										[(ngModel)] = "newBrand">
+										[(ngModel)]="newBrand">
 								</td>
 								<td style="text-align:right" class="col-md-5">
 									<button type="submit" class="btn btn-xs btn-primary "><i class="glyphicon glyphicon-save" ></i> SAVE</button>
 									<button type="reset" class="btn btn-xs btn-warning "><i class="glyphicon glyphicon-cancel"></i>   RESET</button>
-                  <button type="reset" class="btn btn-xs btn-default " (click)="showAddNewBrand = !showAddNewBrand"><i class="glyphicon glyphicon-cancel"></i>   CANCEL</button>
+									<button type="reset" class="btn btn-xs btn-default " (click)="showAddNewBrand = !showAddNewBrand"><i class="glyphicon glyphicon-cancel"></i>   CANCEL</button>
 								</td>
 
 
@@ -72,4 +132,4 @@
 			</div>
 		</section>
 	</div>
-</div>
+</div>-->

@@ -1,7 +1,9 @@
+import { DashboardService } from './../../shared/services/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services/user.service';
 import { Router } from '@angular/router';
 import { UPDATE_BUSSINESS, UserState } from '../../shared/reducers/user.reducer';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -11,9 +13,11 @@ import { UPDATE_BUSSINESS, UserState } from '../../shared/reducers/user.reducer'
 export class SidebarComponent implements OnInit {
 
   bussiness: Object;
-  constructor(private userService: UserService, private router: Router) {
+  sidebar: Object = {};
+  constructor(private userService: UserService, private router: Router, private dashboardService: DashboardService) {
 
     this.getBussiness();
+    this.getSidebar();
 
 
   }
@@ -42,6 +46,12 @@ export class SidebarComponent implements OnInit {
       });
   }
 
+  getSidebar() {
+    this.dashboardService.getSidebar().subscribe((data) => {
+      this.sidebar = data.data;
+      console.log(this.sidebar);
+    });
+  }
 
 
 

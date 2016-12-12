@@ -31,6 +31,12 @@ export class DashboardService {
             .map((response: Response) => response.json());
     }
 
+    getSidebar() {
+        return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/dashboard/sidebar/supplier/' + this.userService.supplierID)
+            .map((response: Response) => response.json());
+
+    }
+
 }
 
 

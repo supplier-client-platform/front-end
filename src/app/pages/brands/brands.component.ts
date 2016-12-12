@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonService} from '../../shared/services/common.service';
-import {BrandService} from '../../shared/services/brand.service';
-import {IBrandEditInfo, IBrandCreateInfo, IBrand} from '../../shared/models/brands.model';
-import {IToastyObject} from '../../shared/models/common.model';
+import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../../shared/services/common.service';
+import { BrandService } from '../../shared/services/brand.service';
+import { IBrandEditInfo, IBrandCreateInfo, IBrand } from '../../shared/models/brands.model';
+import { IToastyObject } from '../../shared/models/common.model';
 
 
 @Component({
@@ -36,13 +36,13 @@ export class BrandsComponent implements OnInit {
   }
 
   getBrands() {
-    let param = this.commonService.addQueryParams({supplier_id: 1}, []);
+    let param = this.commonService.addQueryParams({ supplier_id: 1 }, []);
     this.brandService.getBrands(param)
       .subscribe((data: any) => {
         this.brands = data;
-        this.loading=false;
+        this.loading = false;
       }, (err) => {
-        this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
+        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
         this.commonService.toasty(this.toastyObject);
       });
   }
@@ -58,10 +58,10 @@ export class BrandsComponent implements OnInit {
     };
     this.brandService.editBrand(obj).subscribe((data: any) => {
       this.getBrands();
-      this.toastyObject = {title: 'Success', msg: 'Brand Successfully Edited!', type: 'success'};
+      this.toastyObject = { title: 'Success', msg: 'Brand Successfully Edited!', type: 'success' };
       this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
+      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
       this.commonService.toasty(this.toastyObject);
     });
   }
@@ -77,10 +77,10 @@ export class BrandsComponent implements OnInit {
     this.newBrand = null;
     this.brandService.saveBrand(obj).subscribe((data: any) => {
       this.getBrands();
-      this.toastyObject = {title: 'Success', msg: 'Brand Successfully Added!', type: 'success'};
+      this.toastyObject = { title: 'Success', msg: 'Brand Successfully Added!', type: 'success' };
       this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
+      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
       this.commonService.toasty(this.toastyObject);
     });
 
