@@ -1,20 +1,9 @@
-<!--<div class="row">-->
-	<!--<div class="col-sm-12">-->
+<section class="panel">
+  <div class="panel-body">
 
-		<!--<ul class="breadcrumbs-alt">-->
-			<!--<li><a class="text-uppercase"> Search</a></li>-->
-			<!--<li class="text-uppercase"><a class="current"> Advanced</a></li>-->
-
-		<!--</ul>-->
-
-	<!--</div>-->
-<!--</div>-->
-
-<section class="panel ">
-	<div class="panel-body">
-
-		<div class="">
-      <form #advanceSearchForm="ngForm" (ngSubmit)="getAdvanceSearchOrders(advanceSearchForm.value)" class="form-horizontal">
+    <div class="">
+      <form #advanceSearchForm="ngForm" (ngSubmit)="getAdvanceSearchOrders(advanceSearchForm.value)"
+            class="form-horizontal">
         <div class="row " style="margin-bottom:1rem;">
 
           <div class="col-md-3">
@@ -24,7 +13,7 @@
             <input name="name" id="name" type="text" class="form-control" placeholder="Customer Name" ngModel >
           </div>
           <div class="col-md-4">
-            <input name="customerMobile" id="customerMobile" class="form-control" placeholder="Customer Mobile" ngModel>
+            <input name="customerMobile" id="customerMobile" class="form-control" placeholder="Customer Mobile" ngModel >
           </div>
 
         </div>
@@ -41,26 +30,37 @@
           </div>
 
         </div>
-    </form>
-		</div>
-	</div>
+      </form>
+    </div>
+  </div>
 </section>
 
 <div class="row ">
 
-	<div class="col-md-12">
+  <div class="col-md-12">
 
-		<section class="panel">
-			<div class="panel-body">
-				<app-order-list-table (rowSelected)="loadOrder($event)" [showSearch]="false" [orders]="searchOrders"></app-order-list-table>
-			</div>
-		</section>
-	</div>
+    <section class="panel">
+      <div class="panel-body">
+        <app-order-list-table (rowSelected)="loadOrder($event)" [showSearch]="false"
+                              [orders]="searchOrders"></app-order-list-table>
+      </div>
+
+      <div *ngIf="searchOrders.length === 0 && searched">
+        <div class="col-md-12">
+          <div class="alert alert-dismissible alert-warning">
+            <h4>Sorry!</h4>
+            <p>Seems You don't have any search results.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
 
 <!-- Peek Modal -->
 
-<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" *ngIf="orderInfo">
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true" *ngIf="orderInfo">
   <div class="modal-dialog modal-lg" style="z-index:1050;">
     <div class="modal-content">
       <div class="modal-header">
@@ -71,7 +71,7 @@
       </div>
       <form #orderReason="ngForm" (ngSubmit)="orderStatusSubmit(orderReason.value)" class="form-horizontal">
         <div class="modal-body">
-          <div class="form-group" >
+          <div class="form-group">
             <div class="col-sm-12 info"><h3>Confirm your action!</h3></div>
             <div class="col-sm-12" *ngIf="orderInfoStatus == 'Cancelled' || orderInfoStatus == 'Rejected'">
               <label class="   ">Reason</label>

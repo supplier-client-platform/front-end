@@ -18,18 +18,18 @@ export class SearchComponent implements OnInit {
   dateTo;
   datepickerToOpts = {};
   datepickerFromOpts = {};
+  searched: boolean;
 
 
-  constructor(private commonService: CommonService, private orderService: OrderService, private userService: UserService) { }
+  constructor(private commonService: CommonService, private orderService: OrderService, private userService: UserService) {
+    this.searched = false;
+  }
 
   ngOnInit() {
 
   }
 
   getAdvanceSearchOrders(value) {
-
-    console.log(value.cutomerMobile);
-
     let param = this.commonService.addQueryParams({
       marketPlaceId: this.userService.supplierID,
       orderId: value.orderId,
@@ -41,6 +41,7 @@ export class SearchComponent implements OnInit {
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.searchOrders = data.data;
+        this.searched = true;
       });
   }
 
