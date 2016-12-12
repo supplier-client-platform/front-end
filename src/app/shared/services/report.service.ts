@@ -15,7 +15,7 @@ export class ReportService {
   }
 
   getBrandSales(params) {
-    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/reports/brand_reports/supplier/1', params, this.options)
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/reports/brand_reports/supplier/'+ params.marketPlaceId, params, this.options)
       .map((response: Response) => response.json());
   }
 

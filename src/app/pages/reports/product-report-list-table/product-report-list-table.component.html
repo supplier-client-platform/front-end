@@ -9,20 +9,16 @@
       <td>Total</td>
     </tr>
     </thead>
+    <tbody>
+    <tr *ngFor="let sales of productSales">
+      <td></td>
+      <td>{{sales.product_id}}</td>
+      <td>{{sales.product_name}}</td>
+      <td>{{sales.quantity}}</td>
+      <td>Rs. {{sales.total | number : '1.2-2'}}</td>
+    </tr>
+    </tbody>
   </table>
-  <div *ngFor="let sales of productSales">
-    <table class="table table-hover table-condensed table-striped table    general-table">
-      <tbody>
-      <tr>
-        <td></td>
-        <td>{{sales.product_id}}</td>
-        <td>{{sales.product_name}}</td>
-        <td>{{sales.quantity}}</td>
-        <td>Rs. {{sales.total | number : '1.2-2'}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
 </div>
 <div *ngIf="productSales.length === 0">
   <div class="col-md-12">
