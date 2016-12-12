@@ -15,19 +15,19 @@
     <div class="panel-body">
       <div class="row ">
         <div class="col-md-3">
-          <datetime name="startDate" id="startDate" [timepicker]="false" ngModel ></datetime>
+          <datetime name="startDate" id="startDate" [timepicker]="false" required ngModel #startDate="ngModel" ></datetime>
         </div>
         <div class="col-md-3">
-          <datetime name="endDate" id="endDate" [timepicker]="false" ngModel ></datetime>
+          <datetime name="endDate" id="endDate" [timepicker]="false" required ngModel #endDate="ngModel"></datetime>
         </div>
         <div class="col-md-4">
-          <select name="reportType" style="height: 4.3rem;" id="reportType" class="form-control" ngModel >
+          <select name="reportType" style="height: 4.3rem;" id="reportType" class="form-control" [(ngModel)]="selectedReportType" >
             <option value="product-sales-report">Product Sales Report</option>
             <option value="brand-sales-report">Brand Sales Report</option>
           </select>
         </div>
         <div class="col-md-2">
-          <button type="submit" class="btn-primary btn btn-block">Generate</button>
+          <button type="submit" class="btn-primary btn btn-block" [disabled]="!startDate.valid || !endDate.valid">Generate</button>
         </div>
       </div>
     </div>
@@ -35,6 +35,17 @@
 </section>
 <section class="panel animated bounceInUp">
   <div class="panel-body">
-    Result Table
+
+    <app-loading *ngIf="loading"></app-loading>
+
+    <div *ngIf="!loading">
+      <div *ngIf="selectedReportType === 'product-sales-report' && productSales">
+        <app-product-report-list-table [productSales]="productSales"></app-product-report-list-table>
+      </div>
+
+      <div *ngIf="selectedReportType === 'brand-sales-report' && brandSales">
+        <app-brand-report-list-table [brandSales]="brandSales"></app-brand-report-list-table>
+      </div>
+    </div>
   </div>
 </section>
