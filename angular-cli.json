@@ -34,7 +34,8 @@
         "../node_modules/bootstrap-timepicker/js/bootstrap-timepicker.js",
         "../node_modules/chart.js/dist/Chart.js",
         "../node_modules/jspdf/dist/jspdf.min.js",
-        "../node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
+        "../node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",
+        "../node_modules/moment/min/moment.min.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
