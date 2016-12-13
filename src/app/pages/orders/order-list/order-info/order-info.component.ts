@@ -20,7 +20,7 @@ export class OrderInfoComponent implements OnInit, OnChanges {
   constructor(private commonService: CommonService, private orderService: OrderService) { }
 
   ngOnInit() {
-    console.log(this.orderInfo);
+
     this.getOrderDetails();
   }
 
@@ -44,10 +44,11 @@ export class OrderInfoComponent implements OnInit, OnChanges {
       this.orderService.getProducts({
         orderID: this.orderInfo.id
       }).subscribe((data: any) => {
-        console.log(data);
-        this.orderProducts = data.data;
+
+        this.orderProducts = data;
         this.animationStatus = true;
         this.loading = false;
+
       }, (err) => {
         this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
         this.commonService.toasty(this.toastyObject);
