@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {OrderService} from '../../shared/services/order.service';
-import {CommonService} from '../../shared/services/common.service';
-import {IOrderStatusSubmit} from '../orders/order-list/order-list.component';
-import {UserService} from '../../shared/services/user.service';
-import {IToastyObject} from '../../shared/models/common.model';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { OrderService } from '../../shared/services/order.service';
+import { CommonService } from '../../shared/services/common.service';
+import { IOrderStatusSubmit } from '../orders/order-list/order-list.component';
+import { UserService } from '../../shared/services/user.service';
+import { IToastyObject } from '../../shared/models/common.model';
 
 @Component({
   selector: 'app-search',
@@ -11,7 +11,9 @@ import {IToastyObject} from '../../shared/models/common.model';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  @ViewChild('lgModal_search') lgModal;
+
+  @Output() rowSelected = new EventEmitter();
+  @Output() orderSelected = new EventEmitter();
   searchOrders: Array<any> = [];
   orderInfo: any;
   orderInfoStatus: string;
@@ -50,11 +52,11 @@ export class SearchComponent implements OnInit {
     this.orderInfo = order;
   }
 
-  loadModal(obj) {
-    this.orderInfoStatus = obj.status;
-    this.orderInfo = obj.orderInfo;
-    this.lgModal.show();
-  }
+  // loadModal(obj) {
+  //   this.orderInfoStatus = obj.status;
+  //   this.orderInfo = obj.orderInfo;
+  //   this.lgModal.show();
+  // }
 
   orderStatusSubmit(values: any) {
     this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
@@ -66,7 +68,7 @@ export class SearchComponent implements OnInit {
       reason: values.reason
     };
 
-    this.lgModal.hide();
+    // this.lgModal.hide();
 
     this.orderService.changeOrderStatus(obj).subscribe((data: any) => {
       this.orderInfo.status = this.orderInfoStatus;
@@ -78,6 +80,14 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  activateRow(order) {
+    this.rowSelected.emit(order);
+  }
+
+  transmitParent(obj) {
+    console.log('called');
+    this.orderSelected.emit(obj);
+  }
 
   handleDateFromChange(dateFrom: Date) {
     this.dateFrom = dateFrom;
