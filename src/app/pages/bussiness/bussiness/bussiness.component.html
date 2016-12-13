@@ -60,23 +60,41 @@
 					<tab>
 						<template tabHeading style="margin-bottom:1rem">Location Information</template>
 						<div class="col-md-6">
-							<h5> Branches </h5>
+
+							<h5> Branches <button type="button" class="btn btn-xs btn-primary btn-round pull-right" (click)="loadMap()"> <i class="fa fa-plus"></i></button>								</h5>
 							<hr style="margin-top:0cm">
 							<table class="table table-hover table-striped">
+								<tr>
+									<th>Branch</th>
+									<th>Address</th>
+									<th>Contact</th>
+									<th></th>
+								</tr>
 								<tbody>
 									<tr>
-										<td>Head Office </td>
-										<td>Address </td>
-										<td>Phone </td>
+										<td>Main Office</td>
+										<td>{{bussinessAdress.address}} </td>
+										<td>{{bussinessView.contact}}</td>
+										<td></td>
+									</tr>
+									<tr *ngFor="let x of branchList">
+										<td>{{x.branchname}}</td>
+										<td>{{x.address}}</td>
+										<td>{{x.phone}}</td>
+										<td>
+											<button type="button" (click)="onUpdateClick(x)" class=" btn-block btn-primary btn btn-xs">Edit</button>
+											<button type="button" (click)="onDelClick(x)" class=" btn-block btn-danger btn btn-xs">Delete</button>
+
+										</td>
 									</tr>
 								</tbody>
 							</table>
 
 						</div>
 
-						<div class="col-md-6" *ngIf="map">
+						<div class="col-md-6" *ngIf="map" style="padding-top:1rem">
 							<sebm-google-map [latitude]="lat" [longitude]="lng">
-								<sebm-google-map-marker [markerDraggable]="false" [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+								<sebm-google-map-marker *ngFor="let pin of pinList" [markerDraggable]="false" [latitude]="pin.lat" [longitude]="pin.lng"></sebm-google-map-marker>
 							</sebm-google-map>
 						</div>
 					</tab>
@@ -306,6 +324,93 @@
 						<button type="submit" class="btn btn-primary">Update</button>
 					</div>
 					<div *ngIf="saveSuccess"><button type="button" class="btn btn-default" (click)="smModal.hide()">Close</button></div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div bsModal #delModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" aria-label="Close" (click)="delModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title">Delete? </h4>
+			</div>
+
+			<div class="modal-body">
+				Delete Branch?
+			</div>
+			<div class="modal-footer">
+
+				<button type="button" class="btn btn-default" (click)="delModal.hide()">Cancel</button>
+				<button type="button" class="btn btn-danger" (click)="deleteBranch()">Delete</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<div bsModal #branchModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" aria-label="Close" (click)="branchModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title">Add Branch</h4>
+			</div>
+			<form class="form-horizontal" #branchForm="ngForm" (ngSubmit)="branchSave()">
+
+				<div class="modal-body">
+
+
+					<div class="row">
+						<div class="col-md-7">
+							<div class="form-group">
+								<div class="col-md-12">
+									<label class="control-label">Branch Name</label>
+
+									<input class="form-control" required [(ngModel)]="branch.name" name="branchname" id="branchname" type="text" placeholder="Branch Name">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-12">
+									<label class="control-label">Branch Address</label>
+
+									<textarea class="form-control" required [(ngModel)]="branch.address" name="branchaddress" id="branchaddress" type="text"
+										placeholder="Branch Address"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-12">
+									<label class="control-label" for="disabledInput">Phone Number</label>
+
+									<input class="form-control" required [(ngModel)]="branch.phone" name="phone" id="phone" type="text" placeholder="Branch Phone Number">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="form-group">
+								<label class="control-label" for="disabledInput">Branch Location</label>
+								<div *ngIf="branchMap">
+									<sebm-google-map [usePanning]="true" [latitude]="branch.lat" [longitude]="branch.lng">
+										<sebm-google-map-marker (dragEnd)="latChange($event)" [markerDraggable]="true" [latitude]="branch.lat" [longitude]="branch.lng"></sebm-google-map-marker>
+									</sebm-google-map>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-default" (click)="branchModal.hide()">Cancel</button>
+					<button type="submit" class="btn btn-primary">Save</button>
+
 				</div>
 			</form>
 		</div>

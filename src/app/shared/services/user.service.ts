@@ -93,11 +93,32 @@ export class UserService {
     Cookie.deleteAll();
   }
 
+  saveBranch(param) {
+    return this.http.post(URL_CONST.DEV_PREFIX+ 'api/v1/business/branch/create/' + this.supplierID, param, this.options)
+      .map((response: Response) => response.json());
+  }
+  updateBranch(param) {
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/business/branch/update/' + param.id, param, this.options)
+      .map((response: Response) => response.json());
+  }
+
+  getBranches() {
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/business/branch/list/' + this.supplierID)
+      .map((response: Response) => response.json());
+  }
+
+  deleteBranch(param) {
+    return this.http.get(URL_CONST.DEV_PREFIX + 'api/v1/business/branch/delete/' + param)
+      .map((response: Response) => response.json());
+  }
+
   changePass(param) {
     param.id = this.userID;
     return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/users/password/change', param, this.options)
       .map((response: Response) => response.json());
   }
+
+
 
   dispatch(type, data) {
     switch (type) {

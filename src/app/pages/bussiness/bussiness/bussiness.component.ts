@@ -15,6 +15,11 @@ import { ModalDirective } from 'ng2-bootstrap';
 })
 export class BussinessComponent implements OnInit {
   @ViewChild('passwordModal') public passwordModal: ModalDirective;
+  @ViewChild('delModal') public delModal: ModalDirective;
+  @ViewChild('branchModal') public branchModal: ModalDirective;
+
+
+
 
   toastyObject: IToastyObject;
 
@@ -32,13 +37,18 @@ export class BussinessComponent implements OnInit {
   userPass: Object = { new: '', old: '', confirm: '' };
   userView: Object = {};
   bussinessView: Object = {};
-
+  branch: Object = { name: '', phone: '', address: '', lat: '', lng: '' };
+  coords: Object;
+  branchMap: Boolean = false;
   title: string = '';
   lat: number;
   lng: number;
-
+  branchList: Array<Object> = [];
   userInfoLoading: boolean = true;
   bussinessInfoLoading: boolean = true;
+  pinList: Array<Object> = [];
+  delObject: Object = {};
+  updateFlag: Boolean = false;
 
   map: boolean = false;
 
@@ -72,6 +82,7 @@ export class BussinessComponent implements OnInit {
     this.getBussinessDetails();
     this.getCategories();
     this.getCities();
+    this.loadBranches();
   }
 
   ngOnInit() {
@@ -97,7 +108,7 @@ export class BussinessComponent implements OnInit {
   getBussinessDetails() {
     this.userService.userInfo.subscribe((data: UserState) => {
       this.bussiness = data.bussiness;
-      console.log(data, this.bussiness['address']);
+
       if (Object.getOwnPropertyNames(this.bussiness).length > 0) {
         this.bussinessView = <Object>JSON.parse(JSON.stringify(this.bussiness));
 
@@ -107,6 +118,8 @@ export class BussinessComponent implements OnInit {
         this.lat = parseFloat(this.bussinessAdress['latitude']);
         this.lng = parseFloat(this.bussinessAdress['longitude']);
         this.map = true;
+        this.branch['lat'] = this.lat;
+        this.branch['lng'] = this.lng;
         this.bussinessInfoLoading = false;
 
         if (this.bussiness['image'] !== null && this.bussiness['image'] !== '') {
@@ -150,8 +163,8 @@ export class BussinessComponent implements OnInit {
         this.toastyObject = { title: 'Success', msg: 'Bussiness Successfully Updated!', type: 'success' };
         this.commonService.toasty(this.toastyObject);
         this.getBussinessDetails();
+        this.loadBranches();
 
-        // TODO: Emit for header
       }, (err) => {
         this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
         this.commonService.toasty(this.toastyObject);
@@ -215,4 +228,95 @@ export class BussinessComponent implements OnInit {
     }
   }
 
+  test() {
+
+  }
+  loadMap() {
+    this.onCreateClick();
+    setTimeout(() => {
+      this.branchMap = true;
+    }, 2000);
+
+  }
+
+  branchSave() {
+
+    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
+    this.commonService.toasty(this.toastyObject);
+    if (this.coords) {
+      this.branch['lat'] = this.coords['lat'];
+      this.branch['lng'] = this.coords['lng'];
+    } else {
+      this.branch['lat'] = this.lat;
+      this.branch['lng'] = this.lng;
+    }
+    if (this.updateFlag) {
+      this.userService.updateBranch(this.branch).subscribe((data) => {
+        this.branchModal.hide();
+        this.branchMap = false;
+        this.toastyObject = { title: 'Updated', msg: 'Successfully Updated', type: 'success' };
+        this.commonService.toasty(this.toastyObject);
+        this.loadBranches();
+      });
+
+    } else {
+      this.userService.saveBranch(this.branch).subscribe((data) => {
+        this.branchModal.hide();
+        this.branchMap = false;
+        this.toastyObject = { title: 'Saved', msg: 'Successfully Saved', type: 'success' };
+        this.commonService.toasty(this.toastyObject);
+        this.loadBranches();
+      });
+    }
+  }
+
+  loadBranches() {
+    this.userService.getBranches().subscribe((data) => {
+      this.branchList = data;
+      this.pinList = [];
+      this.pinList.push({ lat: this.lat, lng: this.lng });
+      this.branchList.map((item) => {
+        this.pinList.push({ lat: parseFloat(item['lat']), lng: parseFloat(item['lng']) });
+      });
+    });
+  }
+
+  onDelClick(obj) {
+    this.delObject = obj;
+    this.delModal.show();
+  }
+
+  onUpdateClick(obj) {
+    obj['name'] = obj['branchname'];
+    obj['lat'] = parseFloat(obj.lat);
+    obj['lng'] = parseFloat(obj.lng);
+    this.branch = obj;
+    this.coords = undefined;
+    this.updateFlag = true;
+    this.branchModal.show();
+
+    setTimeout(() => {
+      this.branchMap = true;
+    }, 2000);
+  }
+
+  onCreateClick() {
+    this.coords = undefined;
+    this.updateFlag = false;
+    this.branchModal.show();
+  }
+
+  deleteBranch() {
+    this.userService.deleteBranch(this.delObject['id']).subscribe((data) => {
+      this.delModal.hide();
+      this.loadBranches();
+      this.toastyObject = { title: 'Deleted', msg: 'Successfully Deleted', type: 'success' };
+      this.commonService.toasty(this.toastyObject);
+    });
+  }
+
+  latChange(event) {
+    console.log(event);
+    this.coords = event.coords;
+  }
 }
