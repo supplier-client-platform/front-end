@@ -16,10 +16,10 @@
       <div class="row ">
         <div class="col-md-5">
           <div class="col-md-6" style="padding:0cm;padding-right:1rem">
-            <datetime name="startDate" id="startDate" [timepicker]="false" required [(ngModel)]="startDateModel" #startDate="ngModel" (ngModelchange)="onReportChange()"></datetime>
+            <datetime name="startDate" id="startDate" [ngModel]="startDateModel" (ngModelChange)="handleDateFromChange($event)" [timepicker]="false" required  #startDate="ngModel"></datetime>
           </div>
           <div class="col-md-6" style="padding:0cm;padding-left:1rem">
-            <datetime name="endDate" id="endDate" [timepicker]="false" required [(ngModel)]="endDateModel" #endDate="ngModel" (ngModelchange)="onReportChange()"></datetime>
+            <datetime name="endDate" id="endDate" [(ngModel)]="endDateModel" [datepicker]="datepickerToOpts" [timepicker]="false" required #endDate="ngModel" (ngModelChange)="handleDateToChange($event)"></datetime>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
           </select>
         </div>
         <div class="col-md-2">
-          <button type="submit" class="btn-primary btn btn-block" [disabled]="!startDate.valid || !endDate.valid">Generate</button>
+          <button type="submit" class="btn-primary btn btn-block" [disabled]="!startDateModel || !endDateModel">Generate</button>
         </div>
         <div class="col-md-2">
           <button type="button" class="btn-warning btn btn-block" [disabled]="!exportPdf" (click)="exportToPdf()">Export</button>
