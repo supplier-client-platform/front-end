@@ -2,7 +2,7 @@
   <div class="row search-item form-group">
     <label class="col-md-offset-7 col-md-1 search-label control-label" style="padding-top:1rem">Search</label>
     <div class="col-md-4 ">
-      <input type="text" placeholder="Search Pending Orders" class="form-control input-sm" [(ngModel)] = 'searchText'>
+      <input type="text" placeholder="Search Pending Orders" class="form-control input-sm" [(ngModel)]='searchText'>
     </div>
   </div>
 </div>
@@ -32,7 +32,7 @@
           <td>{{order.created_at}}</td>
           <td>{{order.name}}</td>
           <td>{{order.contact}}</td>
-          <td> <span class="label " [ngClass]="{'label-primary': order.status=='Accepted','label-success':order.status=='Completed','label-warning':order.status=='Pending' , 'label-danger':order.status =='Cancelled'}">{{order.status}}</span></td>
+          <td> <span class="label " [ngClass]="{'label-primary': order.status=='Accepted','label-success':order.status=='Completed','label-warning':order.status=='Pending' , 'label-danger':order.status =='Cancelled' ||order.status =='Rejected' }">{{order.status}}</span></td>
           <td>Rs. {{order.net_total | number : '1.2-2'}}</td>
           <!--<td><button (click)="activateRow(order)" class="btn btn-xs btn-block btn-warning">Select</button></td>-->
         </tr>

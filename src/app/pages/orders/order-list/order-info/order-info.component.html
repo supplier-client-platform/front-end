@@ -94,7 +94,7 @@
           <hr>
           <h6>
             <i class="fa fa-hashtag" aria-hidden="true"></i>&nbsp; {{orderInfo.id}} &nbsp;&nbsp;&nbsp; <span class="label "
-              [ngClass]="{'label-primary': orderInfo.status=='Accepted','label-success':orderInfo.status=='Completed','label-warning':orderInfo.status=='Pending','label-danger':orderInfo.status =='Cancelled' }">{{orderInfo.status}}</span>
+              [ngClass]="{'label-primary': orderInfo.status=='Accepted','label-success':orderInfo.status=='Completed','label-warning':orderInfo.status=='Pending','label-danger':orderInfo.status =='Cancelled' ||orderInfo.status =='Rejected'  }">{{orderInfo.status}}</span>
           </h6>
           <h6> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{orderInfo.date}} </h6>
           <h6> <i class="fa fa-user" aria-hidden="true"></i>&nbsp; {{orderInfo.name}} </h6>
@@ -102,7 +102,7 @@
           <h6><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;{{orderInfo.email}}</h6>
 
 
- 
+
 
         </div>
       </div>

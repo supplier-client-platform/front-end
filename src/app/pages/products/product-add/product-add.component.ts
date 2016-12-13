@@ -94,7 +94,8 @@ export class ProductAddComponent implements OnInit {
       'img_url': this.src,
       'category_id': values.catname,
       'template_id': this.template['id'],
-      'template_name': this.template['name']
+      'template_name': (this.template['name'] === '' || this.template['name'] === undefined) ?
+        'template - ' + values.productname : this.template['name']
     };
 
     // ** Start:Remove unncessary custom attributes with "" values
@@ -121,8 +122,8 @@ export class ProductAddComponent implements OnInit {
       this.commonService.toasty(this.toastyObject);
       this.router.navigate(['/', 'product', 'list']);
     }, (err) => {
-      console.log(err);
-      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+      let error = JSON.parse(err._body);
+      this.toastyObject = { title: 'Oops!', msg: error.data.message, type: 'error' };
       this.commonService.toasty(this.toastyObject);
     });
 

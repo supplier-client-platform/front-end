@@ -104,7 +104,8 @@ export class ProductEditComponent implements OnInit {
         this.commonService.toasty(this.toastyObject);
         this.reset();
       }, (err) => {
-        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        let error = JSON.parse(err._body);
+        this.toastyObject = { title: 'Oops!', msg: error.data.message, type: 'error' };
         this.commonService.toasty(this.toastyObject);
       });
   }
