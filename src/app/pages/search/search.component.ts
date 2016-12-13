@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { OrderService } from '../../shared/services/order.service';
-import { CommonService } from '../../shared/services/common.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {OrderService} from '../../shared/services/order.service';
+import {CommonService} from '../../shared/services/common.service';
 import {IOrderStatusSubmit} from '../orders/order-list/order-list.component';
 import {UserService} from '../../shared/services/user.service';
+import {IToastyObject} from '../../shared/models/common.model';
 
 @Component({
   selector: 'app-search',
@@ -10,16 +11,15 @@ import {UserService} from '../../shared/services/user.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  @ViewChild('lgModal') lgModal;
+  @ViewChild('lgModal_search') lgModal;
   searchOrders: Array<any> = [];
   orderInfo: any;
   orderInfoStatus: string;
-  dateFrom;
-  dateTo;
+  dateFrom: Date;
+  dateTo: Date;
   datepickerToOpts = {};
-  datepickerFromOpts = {};
   searched: boolean;
-
+  toastyObject: IToastyObject;
 
   constructor(private commonService: CommonService, private orderService: OrderService, private userService: UserService) {
     this.searched = false;
@@ -30,6 +30,7 @@ export class SearchComponent implements OnInit {
   }
 
   getAdvanceSearchOrders(value) {
+    this.dateFrom = value.startDate;
     let param = this.commonService.addQueryParams({
       marketPlaceId: this.userService.supplierID,
       orderId: value.orderId,
@@ -49,13 +50,15 @@ export class SearchComponent implements OnInit {
     this.orderInfo = order;
   }
 
-  loadModal(status) {
-    this.orderInfoStatus = status;
+  loadModal(obj) {
+    this.orderInfoStatus = obj.status;
+    this.orderInfo = obj.orderInfo;
     this.lgModal.show();
   }
 
   orderStatusSubmit(values: any) {
-
+    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
+    this.commonService.toasty(this.toastyObject);
 
     let obj: IOrderStatusSubmit = {
       orderID: this.orderInfo.id,
@@ -63,34 +66,24 @@ export class SearchComponent implements OnInit {
       reason: values.reason
     };
 
-    // TODO need to handle this after a success response from the server otherwise need to give a proper error message.
-
     this.lgModal.hide();
 
     this.orderService.changeOrderStatus(obj).subscribe((data: any) => {
       this.orderInfo.status = this.orderInfoStatus;
+      this.toastyObject = { title: 'Success', msg: 'Order status changed Successfully!', type: 'success' };
+      this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      console.log(err);
+      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+      this.commonService.toasty(this.toastyObject);
     });
   }
 
-  handleDateFromChange(dateFrom) {
-    // update the model
-    this.dateFrom = dateFrom;
-    // do not mutate the object or angular won't detect the changes
-    this.datepickerToOpts = {
-      startDate: dateFrom,
-      endDate: new Date()
-    };
-  }
 
-  handleDateToChange(dateTo) {
-    // update the model
-    this.dateTo = dateTo;
-    // do not mutate the object or angular won't detect the changes
-    this.datepickerFromOpts = {
-      startDate: new Date(),
-      endDate: dateTo
+  handleDateFromChange(dateFrom: Date) {
+    this.dateFrom = dateFrom;
+    this.datepickerToOpts = {
+      startDate: dateFrom
     };
+    this.dateTo = dateFrom;
   }
 }

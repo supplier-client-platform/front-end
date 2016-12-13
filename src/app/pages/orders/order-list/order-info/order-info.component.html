@@ -1,85 +1,4 @@
-<!--<section class="panel" *ngIf="!orderInfo">
-  <div class="panel-body">
-    <div class="alert alert-dismissible alert-info">
 
-      <strong>Heads up!</strong> This <a class="alert-link">No order is selected</a>, but it's not super important.
-    </div>
-  </div>
-</section>
-<section class="panel panel-info "   *ngIf="orderInfo">
-  <header _ngcontent-ktc-12="" class="panel-heading  ">
-    Order - #{{orderInfo.id}}
-  </header>
-  <div class="panel-body animated fadeIn" *ngIf="orderInfo && animationStatus">
-    <table class="table table-hover table-condensed table-striped table  general-table">
-      <tr *ngIf="orderInfo.status=='Pending'">
-        <td><button class="btn btn-sm btn-block btn-success" (click)="changeOrderStatus('Accepted')">Accept</button></td>
-        <td><button class="btn  btn-sm btn-block btn-danger" (click)="changeOrderStatus('Rejected')">Reject</button></td>
-      </tr>
-      <tr *ngIf="orderInfo.status=='Accepted'">
-        <td><button class="btn btn-sm btn-block btn-success" (click)="changeOrderStatus('Completed')">Collect</button></td>
-        <td><button class="btn  btn-sm btn-block btn-danger" (click)="changeOrderStatus('Cancelled')">Cancel</button></td>
-      </tr>
-      <tr class="success" *ngIf="orderInfo.status=='Completed'">
-        <td>Completed Order</td>
-
-      </tr>
-    </table>
-    <table class="table table-hover table-condensed table-striped table  general-table">
-      <tr>
-        <td>{{orderInfo.date}}</td>
-      </tr>
-      <tr>
-        <td> <span class="label " [ngClass]="{'label-info': orderInfo.status=='Accepted','label-success':orderInfo.status=='Completed','label-danger':orderInfo.status=='Pending'}">{{orderInfo.status}}</span></td>
-
-      </tr>
-      <tr>
-        <td>{{orderInfo.customer_name}}</td>
-      </tr>
-      <tr>
-        <td>{{orderInfo.contact}}</td>
-      </tr>
-      <tr>
-        <td>{{orderInfo.email}}</td>
-      </tr>
-    </table>
-
-    <table class="table table-hover table-condensed table-striped table  general-table">
-      <thead>
-        <tr class="warning">
-          <td>Product Name</td>
-          <td>Brand</td>
-          <td>Price</td>
-
-        </tr>
-      </thead>
-      <tbody>
-
-        <tr *ngFor="let x of orderProducts">
-          <td>{{x.name}}</td>
-          <td>{{x.brandname}}</td>
-          <td>Rs {{x.price | number : '1.2-2'}} x{{x.product_quantity}}</td>
-        </tr>
-        <tr class="info">
-          <td colspan="2">TOTAL AMOUNT</td>
-          <td>{{orderInfo.net_total | number : '1.2-2'}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>-->
-
-<!--<tr *ngFor="let x of orderProducts">
-  <td>{{x.name}}</td>
-  <td>{{x.brandname}}</td>
-  <td>Rs {{x.price | number : '1.2-2'}} x{{x.product_quantity}}</td>
-</tr>
-<tr class="info">
-  <td colspan="2">TOTAL AMOUNT</td>
-  <td>{{orderInfo.net_total | number : '1.2-2'}}</td>
-  <td></td>
-  <td></td>
-</tr>-->
 <div class="order-info">
   <div class="row">
     <div class="col-md-5">
@@ -96,13 +15,13 @@
             <i class="fa fa-hashtag" aria-hidden="true"></i>&nbsp; {{orderInfo.id}} &nbsp;&nbsp;&nbsp; <span class="label "
               [ngClass]="{'label-primary': orderInfo.status=='Accepted','label-success':orderInfo.status=='Completed','label-warning':orderInfo.status=='Pending','label-danger':orderInfo.status =='Cancelled' }">{{orderInfo.status}}</span>
           </h6>
-          <h6> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{orderInfo.date}} </h6>
+          <h6> <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{orderInfo.created_at}} </h6>
           <h6> <i class="fa fa-user" aria-hidden="true"></i>&nbsp; {{orderInfo.name}} </h6>
           <h6> <i class="fa fa-phone" aria-hidden="true"></i> &nbsp;{{orderInfo.contact}}</h6>
           <h6><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;{{orderInfo.email}}</h6>
 
 
- 
+
 
         </div>
       </div>

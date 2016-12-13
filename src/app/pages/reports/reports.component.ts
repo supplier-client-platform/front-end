@@ -3,6 +3,7 @@ import {CommonService} from '../../shared/services/common.service';
 import {ReportService} from '../../shared/services/report.service';
 import {UserService} from '../../shared/services/user.service';
 import {PdfService} from "../../shared/services/pdf.service";
+declare var jQuery:any;
 
 @Component({
   selector: 'app-reports',
@@ -10,14 +11,15 @@ import {PdfService} from "../../shared/services/pdf.service";
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
-  public startDateModel: string;
-  public endDateModel: string;
+  public startDateModel: Date;
+  public endDateModel: Date;
   public selectedReportType: string;
   public productSales: any;
   public brandSales: any;
   public loading: boolean;
   emptyTable: boolean = true;
   exportPdf: boolean;
+  datepickerToOpts: any = { startDate: ''};
 
   constructor(private commonService: CommonService, private reportService: ReportService, private userService: UserService, private pdfService: PdfService) {
     this.selectedReportType = 'product-sales-report';
@@ -31,6 +33,7 @@ export class ReportsComponent implements OnInit {
   getReports(value) {
     this.emptyTable = false;
     this.loading = true;
+    this.endDateModel = value.endDate;
 
     let param = {
       marketPlaceId: this.userService.supplierID,
@@ -88,5 +91,19 @@ export class ReportsComponent implements OnInit {
     this.productSales = null;
     this.exportPdf = false;
     this.emptyTable = true;
+  }
+
+  handleDateFromChange(dateFrom: Date) {
+    this.onReportChange();
+    this.startDateModel = dateFrom;
+    this.datepickerToOpts = {
+      startDate: dateFrom
+    };
+    this.endDateModel = dateFrom;
+  }
+
+  handleDateToChange(dateTo: Date) {
+    this.onReportChange();
+    this.endDateModel = dateTo;
   }
 }

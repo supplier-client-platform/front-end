@@ -16,7 +16,7 @@ export class PdfService {
     });
   }
 
-  generatePdf(columns: Array<any>, rows: Array<any>, startDate: string, endDate: string, type: string) {
+  generatePdf(columns: Array<any>, rows: Array<any>, startDate: Date, endDate: Date, type: string) {
     this.jsPdfDoc = new jsPDF('p', 'pt', 'a4');
     this.jsPdfDoc.autoTable(columns, rows, {
       addPageContent: (data) => {
