@@ -51,7 +51,7 @@
 						<h6 *ngIf='brand.id != currentBrandID'>{{brand.count}} Products</h6>
 						<div>
 
-							<button [disabled]="brand.count>0" class="btn btn-xs btn-danger pull-right">Delete</button>
+							<button [disabled]="brand.count>0" class="btn btn-xs btn-danger pull-right" (click)="onDelClick(brand.id)">Delete</button>
 
 							<button type="button" class="btn btn-xs  btn-primary  btn btn-xs pull-right" style="margin-right:1rem" [disabled]="brand.brandname==='N/A'"
 								*ngIf='brand.id != currentBrandID' (click)="onRowClick(brand.id, brand.brandname)">  Edit</button>
@@ -65,4 +65,27 @@
 		</div>
 	</div>
 
+</div>
+
+<div bsModal #delBrandModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="delModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Delete? </h4>
+      </div>
+
+      <div class="modal-body">
+        Delete Brand?
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" (click)="delBrandModal.hide()">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+      </div>
+
+    </div>
+  </div>
 </div>

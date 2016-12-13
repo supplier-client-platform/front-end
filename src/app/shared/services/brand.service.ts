@@ -28,4 +28,9 @@ export class BrandService {
     return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/brand/create/new', params, this.options)
       .map((response: Response) => response);
   }
+
+  deleteBrand(params) {
+    return this.http.post(URL_CONST.DEV_PREFIX + 'api/v1/brand/delete/brand_id/'+ params.id, params, this.options)
+      .map((response: Response) => response);
+  }
 }
