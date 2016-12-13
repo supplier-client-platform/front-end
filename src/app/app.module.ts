@@ -59,6 +59,7 @@ import { BrandReportListTableComponent } from './pages/reports/brand-report-list
 import { OrderReportListTableComponent } from './pages/reports/order-report-list-table/order-report-list-table.component';
 import { ProductReportListTableComponent } from './pages/reports/product-report-list-table/product-report-list-table.component';
 import { ReportService } from './shared/services/report.service';
+import {PdfService} from './shared/services/pdf.service';
 
 const GMAP_KEY = 'AIzaSyCwkmAAikH-IoW8ZTNaqz73qhddfm9rOrE';
 
@@ -126,7 +127,8 @@ const DROPZONE_CONFIG = {
     BrandService,
     DashboardService,
     LoginGuard,
-    ReportService
+    ReportService,
+    PdfService
   ],
   bootstrap: [AppComponent]
 })

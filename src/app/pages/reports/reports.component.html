@@ -14,20 +14,26 @@
   <form #reportForm="ngForm" (ngSubmit)="getReports(reportForm.value)" class="form-horizontal">
     <div class="panel-body">
       <div class="row ">
-        <div class="col-md-3">
-          <datetime name="startDate" id="startDate" [timepicker]="false" required ngModel #startDate="ngModel" ></datetime>
+        <div class="col-md-5">
+          <div class="col-md-6" style="padding:0cm;padding-right:1rem">
+            <datetime name="startDate" id="startDate" [timepicker]="false" required [(ngModel)]="startDateModel" #startDate="ngModel" (ngModelchange)="onReportChange()"></datetime>
+          </div>
+          <div class="col-md-6" style="padding:0cm;padding-left:1rem">
+            <datetime name="endDate" id="endDate" [timepicker]="false" required [(ngModel)]="endDateModel" #endDate="ngModel" (ngModelchange)="onReportChange()"></datetime>
+          </div>
         </div>
+
         <div class="col-md-3">
-          <datetime name="endDate" id="endDate" [timepicker]="false" required ngModel #endDate="ngModel"></datetime>
-        </div>
-        <div class="col-md-4">
-          <select name="reportType" style="height: 4.3rem;" id="reportType" class="form-control" [(ngModel)]="selectedReportType" >
+          <select name="reportType" style="height: 4.3rem;" id="reportType" class="form-control" [(ngModel)]="selectedReportType" (change)="onReportChange()">
             <option value="product-sales-report">Product Sales Report</option>
             <option value="brand-sales-report">Brand Sales Report</option>
           </select>
         </div>
         <div class="col-md-2">
           <button type="submit" class="btn-primary btn btn-block" [disabled]="!startDate.valid || !endDate.valid">Generate</button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn-warning btn btn-block" [disabled]="!exportPdf" (click)="exportToPdf()">Export</button>
         </div>
       </div>
     </div>

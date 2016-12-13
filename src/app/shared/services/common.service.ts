@@ -46,6 +46,9 @@ export class CommonService {
       case 'error': this.toastyService.error(this.toastOptions); break;
       case 'warning': this.toastyService.warning(this.toastOptions); break;
     }
+  }
+
+  generatePdf(columns: Array<any>, rows: Array<any>, data: any) {
 
   }
 

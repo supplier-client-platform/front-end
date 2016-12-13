@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderService } from '../../shared/services/order.service';
 import { CommonService } from '../../shared/services/common.service';
 import {IOrderStatusSubmit} from '../orders/order-list/order-list.component';
+import {UserService} from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-search',
@@ -17,27 +18,30 @@ export class SearchComponent implements OnInit {
   dateTo;
   datepickerToOpts = {};
   datepickerFromOpts = {};
+  searched: boolean;
 
 
-  constructor(private commonService: CommonService, private orderService: OrderService) { }
+  constructor(private commonService: CommonService, private orderService: OrderService, private userService: UserService) {
+    this.searched = false;
+  }
 
   ngOnInit() {
 
   }
 
   getAdvanceSearchOrders(value) {
-
     let param = this.commonService.addQueryParams({
-      marketPlaceId: 1,
+      marketPlaceId: this.userService.supplierID,
       orderId: value.orderId,
       customer_name: value.name,
       contact_number: value.customerMobile,
-      startDate: value.startDate ? value.startDate.toISOString() : "",
-      endDate: value.endDate ? value.endDate.toISOString() : ""
+      startDate: value.startDate ? value.startDate.toISOString() : '',
+      endDate: value.endDate ? value.endDate.toISOString() : ''
     }, ['']);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.searchOrders = data.data;
+        this.searched = true;
       });
   }
 

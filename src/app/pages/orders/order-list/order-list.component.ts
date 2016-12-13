@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrderService } from '../../../shared/services/order.service';
 import { CommonService } from '../../../shared/services/common.service';
 import { IToastyObject } from '../../../shared/models/common.model';
+import {UserService} from '../../../shared/services/user.service';
 
 
 export interface IOrderStatusSubmit {
@@ -25,7 +26,7 @@ export class OrderListComponent implements OnInit {
   toastyObject: IToastyObject;
   loading: boolean;
 
-  constructor(private commonService: CommonService, private orderService: OrderService) {
+  constructor(private commonService: CommonService, private orderService: OrderService, private userService: UserService) {
       this.loading = true;
   }
 
@@ -36,7 +37,7 @@ export class OrderListComponent implements OnInit {
 
   // TODO: Market place id should be available after login
   getPendingOrders() {
-    let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Pending' }, []);
+    let param = this.commonService.addQueryParams({ marketPlaceId: this.userService.supplierID, status: 'Pending' }, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.pendingOrders = data.data;
@@ -48,7 +49,7 @@ export class OrderListComponent implements OnInit {
   }
 
   getCompletedOrders() {
-    let param = this.commonService.addQueryParams({ marketPlaceId: 1, status: 'Accepted' }, []);
+    let param = this.commonService.addQueryParams({ marketPlaceId: this.userService.supplierID, status: 'Accepted' }, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.completedOrders = data.data;
@@ -60,7 +61,7 @@ export class OrderListComponent implements OnInit {
 
   getSearchOrders(value) {
     let param = this.commonService.addQueryParams({
-      marketPlaceId: 1,
+      marketPlaceId: this.userService.supplierID,
       orderId: value.orderId,
       customer_name: value.name
     }, ['']);
