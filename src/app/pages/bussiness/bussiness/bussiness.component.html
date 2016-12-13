@@ -410,7 +410,7 @@
 								<div class="col-md-12">
 									<label class="control-label" for="disabledInput"><b>Branch Location</b></label>
 									<div *ngIf="branchMap">
-										<sebm-google-map [usePanning]="true" [latitude]="branch.lat" [longitude]="branch.lng">
+										<sebm-google-map style="height:30rem" [usePanning]="true" [latitude]="branch.lat" [longitude]="branch.lng">
 											<sebm-google-map-marker (dragEnd)="latChange($event)" [markerDraggable]="true" [latitude]="branch.lat" [longitude]="branch.lng"></sebm-google-map-marker>
 										</sebm-google-map>
 									</div>
