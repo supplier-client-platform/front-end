@@ -58,7 +58,7 @@ export class ReportsComponent implements OnInit {
     }
   }
 
-  export() {
+  exportToPdf() {
     let colProducts = [
       {title: 'Brand ID', dataKey: 'brand_id'},
       {title: 'Brand Name', dataKey: 'brand_name'},
@@ -84,8 +84,6 @@ export class ReportsComponent implements OnInit {
   }
 
   onReportChange() {
-
-    debugger;
     this.brandSales = null;
     this.productSales = null;
     this.exportPdf = false;

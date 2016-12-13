@@ -33,7 +33,7 @@
           <button type="submit" class="btn-primary btn btn-block" [disabled]="!startDate.valid || !endDate.valid">Generate</button>
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn-warning btn btn-block" [disabled]="!exportPdf" (click)="export()">Export</button>
+          <button type="button" class="btn-warning btn btn-block" [disabled]="!exportPdf" (click)="exportToPdf()">Export</button>
         </div>
       </div>
     </div>
