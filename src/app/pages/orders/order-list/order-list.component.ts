@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { OrderService } from '../../../shared/services/order.service';
-import { CommonService } from '../../../shared/services/common.service';
-import { IToastyObject } from '../../../shared/models/common.model';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {OrderService} from '../../../shared/services/order.service';
+import {CommonService} from '../../../shared/services/common.service';
+import {IToastyObject} from '../../../shared/models/common.model';
 import {UserService} from '../../../shared/services/user.service';
-
+declare var Pusher: any;
 
 export interface IOrderStatusSubmit {
   orderID: string;
@@ -25,9 +25,18 @@ export class OrderListComponent implements OnInit {
   orderInfoStatus: string;
   toastyObject: IToastyObject;
   loading: boolean;
+  pusher: any;
+  channel: any;
 
   constructor(private commonService: CommonService, private orderService: OrderService, private userService: UserService) {
-      this.loading = true;
+    this.loading = true;
+
+    this.pusher = new Pusher('20b67caf4dad6ad7ae0d');
+    this.channel = this.pusher.subscribe('order');
+    this.channel.bind('order_web_notifications' + userService.supplierID, function (data) {
+      this.getCompletedOrders();
+      this.getPendingOrders();
+    }.bind(this));
   }
 
   ngOnInit() {
@@ -37,24 +46,24 @@ export class OrderListComponent implements OnInit {
 
   // TODO: Market place id should be available after login
   getPendingOrders() {
-    let param = this.commonService.addQueryParams({ marketPlaceId: this.userService.supplierID, status: 'Pending' }, []);
+    let param = this.commonService.addQueryParams({marketPlaceId: this.userService.supplierID, status: 'Pending'}, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.pendingOrders = data.data;
-        this.loading=false;
+        this.loading = false;
       }, (err) => {
-        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
         this.commonService.toasty(this.toastyObject);
       });
   }
 
   getCompletedOrders() {
-    let param = this.commonService.addQueryParams({ marketPlaceId: this.userService.supplierID, status: 'Accepted' }, []);
+    let param = this.commonService.addQueryParams({marketPlaceId: this.userService.supplierID, status: 'Accepted'}, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
         this.completedOrders = data.data;
       }, (err) => {
-        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
         this.commonService.toasty(this.toastyObject);
       });
   }
@@ -69,7 +78,7 @@ export class OrderListComponent implements OnInit {
       .subscribe((data: any) => {
         this.searchOrders = data.data;
       }, (err) => {
-        this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+        this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
         this.commonService.toasty(this.toastyObject);
       });
   }
@@ -85,7 +94,7 @@ export class OrderListComponent implements OnInit {
   }
 
   orderStatusSubmit(values: any) {
-    this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
+    this.toastyObject = {title: 'Saving....', msg: 'Please wait', type: 'info'};
     this.commonService.toasty(this.toastyObject);
 
     let obj: IOrderStatusSubmit = {
@@ -100,10 +109,10 @@ export class OrderListComponent implements OnInit {
       this.orderInfo.status = this.orderInfoStatus;
       this.getPendingOrders();
       this.getCompletedOrders();
-      this.toastyObject = { title: 'Success', msg: 'Order status changed Successfully!', type: 'success' };
+      this.toastyObject = {title: 'Success', msg: 'Order status changed Successfully!', type: 'success'};
       this.commonService.toasty(this.toastyObject);
     }, (err) => {
-      this.toastyObject = { title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error' };
+      this.toastyObject = {title: 'Oops!', msg: 'Something Went Wrong! Please Try Again...', type: 'error'};
       this.commonService.toasty(this.toastyObject);
     });
   }

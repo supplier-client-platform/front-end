@@ -5,13 +5,17 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
   templateUrl: './order-list-table.component.html',
   styleUrls: ['./order-list-table.component.scss']
 })
+
+/**
+ * Class representing an Order List Table Component.
+ */
 export class OrderListTableComponent implements OnInit {
   @Input() showSearch: boolean;
   @Input() orders: Array<any>;
   @Output() rowSelected = new EventEmitter();
   @Output() orderSelected = new EventEmitter();
 
-  activatedRow: number = 0;
+  activatedRow: number;
   hideSearch: boolean;
   searchText: string;
 
@@ -20,20 +24,32 @@ export class OrderListTableComponent implements OnInit {
 
   ngOnInit() {
     this.hideSearch = this.showSearch;
+    this.activatedRow = 0;
   }
 
-
-  activateRow(order) {
+  /**
+   * Activate the selected order.
+   * @param order - order details.
+   */
+  public activateRow(order): void {
     this.activatedRow = order.id;
     this.rowSelected.emit(order);
   }
 
-  activateRowClass(id) {
+  /**
+   * Activate the row class if this row is the selected one.
+   * @param id
+   * @returns {boolean}
+   */
+  public activateRowClass(id): boolean {
     return (id === this.activatedRow);
   }
 
-  transmitParent(obj) {
-    console.log('called');
+  /**
+   * Transmit the order selected details.
+   * @param obj.
+   */
+  public transmitParent(obj): void {
     this.orderSelected.emit(obj);
   }
 }

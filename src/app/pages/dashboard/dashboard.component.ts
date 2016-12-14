@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../../shared/services/dashboard.service';
+import {Component, OnInit} from '@angular/core';
+import {DashboardService} from '../../shared/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
+/**
+ * Class representing a Dashboard component.
+ */
 export class DashboardComponent implements OnInit {
 
   stats: Object = {};
@@ -64,7 +68,6 @@ export class DashboardComponent implements OnInit {
   }
 
 
-
   constructor(public dashboardService: DashboardService) {
     this.getSales();
     this.getOrders();
@@ -96,8 +99,8 @@ export class DashboardComponent implements OnInit {
       .subscribe((data) => {
 
 
-        let completed = { data: [], label: 'Completed' };
-        let rejected = { data: [], label: 'Cancelled' };
+        let completed = {data: [], label: 'Completed'};
+        let rejected = {data: [], label: 'Cancelled'};
         let months = [];
         let total = 0;
 
@@ -129,7 +132,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((data) => {
         console.log('Sales', data);
 
-        let income = { data: [], label: 'Gross Total' };
+        let income = {data: [], label: 'Gross Total'};
         let months = [];
         let total = 0;
 
