@@ -25,7 +25,7 @@ export class SearchOrderPipe implements PipeTransform {
    * @param order - order detail.
    * @returns {boolean}
    */
-  private filterOrder(term: any, order: any): Boolean {
+  private filterOrder(term: any, order: any): boolean {
     let regex = new RegExp(term, 'i');
     let res = regex.test(order.customer_id) || regex.test(order.name) || regex.test(order.created_at)
       || regex.test(order.contact) || regex.test(order.status) || regex.test(order.email) || regex.test(order.net_total);

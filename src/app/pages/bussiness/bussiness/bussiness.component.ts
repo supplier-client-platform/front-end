@@ -47,7 +47,7 @@ export class BussinessComponent implements OnInit {
   bussinessInfoLoading: boolean = true;
   pinList: Array<Object> = [];
   delObject: Object = {};
-  updateFlag: Boolean = false;
+  updateFlag: boolean = false;
 
   map: boolean = false;
 

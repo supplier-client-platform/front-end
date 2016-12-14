@@ -25,7 +25,7 @@ export class SearchBrandPipe implements PipeTransform {
    * @param brand - brand detail.
    * @returns {boolean}
    */
-  private filterBrand(term: any, brand: any): Boolean {
+  private filterBrand(term: any, brand: any): boolean {
     let regex = new RegExp(term, 'i');
     let res = regex.test(brand.brandname);
     return res;
