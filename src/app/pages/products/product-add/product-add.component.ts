@@ -13,6 +13,10 @@ import { Router } from '@angular/router';
   templateUrl: './product-add.component.html',
   styleUrls: ['./product-add.component.scss']
 })
+
+/**
+ * Class representing a Product Add Component.
+ */
 export class ProductAddComponent implements OnInit {
 
   supplierID: number;

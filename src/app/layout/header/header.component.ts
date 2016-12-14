@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services/user.service';
 import { UPDATE_USER, UserState } from '../../shared/reducers/user.reducer';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
+/**
+ * Class representing an header component.
+ */
 export class HeaderComponent implements OnInit {
 
   user: Object = {};
@@ -16,6 +21,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Function to subscribe the user info from the user service.
+   */
   subscribe() {
     this.userService.userInfo
       .subscribe((data: UserState) => {
@@ -23,6 +31,9 @@ export class HeaderComponent implements OnInit {
       });
   }
 
+  /**
+   * Function to get the user details from the REST API.
+   */
   getUser() {
     this.userService.getUserDetails()
       .subscribe((data) => {

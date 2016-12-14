@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
+/**
+ * Class representing a Login Component.
+ */
 export class LoginComponent implements OnInit {
 
   error: boolean = false;
@@ -17,6 +21,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Function used to login.
+   * @param username - username of the current logging user.
+   * @param pass - password of the current logging user.
+   */
   login(username, pass) {
     this.loading = true;
     this.error = false;
@@ -33,6 +42,9 @@ export class LoginComponent implements OnInit {
 
   }
 
+  /**
+   * Get the supplier details from the REST API using user service.
+   */
   getSupplier() {
     this.userService.getBussinessDetails()
       .subscribe((data) => {

@@ -13,6 +13,10 @@ declare var Pusher: any;
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
+
+/**
+ * Class representing a Sidebar Component.
+ */
 export class SidebarComponent implements OnInit {
 
   bussiness: Object;
@@ -42,12 +46,17 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Function used to logout.
+   */
   logout() {
-
     this.userService.logout();
     this.router.navigate(['/', 'login']);
   }
 
+  /**
+   * Function to subscribe the user info from the user service.
+   */
   subscribe() {
     this.userService.userInfo
       .subscribe((data: UserState) => {
@@ -55,6 +64,9 @@ export class SidebarComponent implements OnInit {
       });
   }
 
+  /**
+   * Function to get the business details from the REST API.
+   */
   getBussiness() {
     this.userService.getBussinessDetails()
       .subscribe((data) => {
@@ -63,13 +75,13 @@ export class SidebarComponent implements OnInit {
       });
   }
 
+  /**
+   * Function to get the side bar details from the the REST API.
+   */
   getSidebar() {
     this.dashboardService.getSidebar().subscribe((data) => {
       this.sidebar = data.data;
       console.log(this.sidebar);
     });
   }
-
-
-
 }

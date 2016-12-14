@@ -5,6 +5,9 @@ import {IToastyObject} from '../../../shared/models/common.model';
 import {UserService} from '../../../shared/services/user.service';
 declare var Pusher: any;
 
+/**
+ * Interface representing an IOrderStatusSubmit.
+ */
 export interface IOrderStatusSubmit {
   orderID: string;
   status: string;
@@ -16,6 +19,10 @@ export interface IOrderStatusSubmit {
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.scss']
 })
+
+/**
+ * Class representing an Order List Component.
+ */
 export class OrderListComponent implements OnInit {
   @ViewChild('lgModal') lgModal;
   pendingOrders: Array<any> = [];
@@ -30,7 +37,6 @@ export class OrderListComponent implements OnInit {
 
   constructor(private commonService: CommonService, private orderService: OrderService, private userService: UserService) {
     this.loading = true;
-
     this.pusher = new Pusher('20b67caf4dad6ad7ae0d');
     this.channel = this.pusher.subscribe('order');
     this.channel.bind('order_web_notifications' + userService.supplierID, function (data) {
@@ -44,8 +50,10 @@ export class OrderListComponent implements OnInit {
     this.getPendingOrders();
   }
 
-  // TODO: Market place id should be available after login
-  getPendingOrders() {
+  /**
+   * Function to get the pending order details from the REST API.
+   */
+  public getPendingOrders(): void {
     let param = this.commonService.addQueryParams({marketPlaceId: this.userService.supplierID, status: 'Pending'}, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
@@ -57,7 +65,10 @@ export class OrderListComponent implements OnInit {
       });
   }
 
-  getCompletedOrders() {
+  /**
+   * Function to get complete order details from the REST API.
+   */
+  public getCompletedOrders(): void {
     let param = this.commonService.addQueryParams({marketPlaceId: this.userService.supplierID, status: 'Accepted'}, []);
     this.orderService.getOrders(param)
       .subscribe((data: any) => {
@@ -68,7 +79,11 @@ export class OrderListComponent implements OnInit {
       });
   }
 
-  getSearchOrders(value) {
+  /**
+   * Function to get the search order results from the REST API.
+   * @param value - search key term.
+   */
+  public getSearchOrders(value): void {
     let param = this.commonService.addQueryParams({
       marketPlaceId: this.userService.supplierID,
       orderId: value.orderId,
@@ -83,17 +98,29 @@ export class OrderListComponent implements OnInit {
       });
   }
 
-  loadOrder(order) {
+  /**
+   * Function to load the selected order details to orderInfo.
+   * @param order - selected order details.
+   */
+  public loadOrder(order): void {
     this.orderInfo = order;
   }
 
-  loadModal(obj) {
+  /**
+   * Function to load the modal.
+   * @param obj
+   */
+  public loadModal(obj): void {
     this.orderInfoStatus = obj.status;
     this.orderInfo = obj.orderInfo;
     this.lgModal.show();
   }
 
-  orderStatusSubmit(values: any) {
+  /**
+   * Function to send request to REST API upon changing the status.
+   * @param values - details regarding the change.
+   */
+  public orderStatusSubmit(values: any): void {
     this.toastyObject = {title: 'Saving....', msg: 'Please wait', type: 'info'};
     this.commonService.toasty(this.toastyObject);
 

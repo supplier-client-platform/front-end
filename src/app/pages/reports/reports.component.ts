@@ -10,6 +10,10 @@ declare var jQuery:any;
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss']
 })
+
+/**
+ * Class representing Reports Component.
+ */
 export class ReportsComponent implements OnInit {
   public startDateModel: Date;
   public endDateModel: Date;
@@ -30,7 +34,11 @@ export class ReportsComponent implements OnInit {
   ngOnInit() {
   }
 
-  getReports(value) {
+  /**
+   * Function to get the product or brand report data from the REST API.
+   * @param value - details about the report to be generated.
+   */
+  public getReports(value): void {
     this.emptyTable = false;
     this.loading = true;
     this.endDateModel = value.endDate;
@@ -61,7 +69,10 @@ export class ReportsComponent implements OnInit {
     }
   }
 
-  exportToPdf() {
+  /**
+   * Function to export the reports in a pdf format using the pdf service.
+   */
+  public exportToPdf(): void {
     let colProducts = [
       {title: 'Brand ID', dataKey: 'brand_id'},
       {title: 'Brand Name', dataKey: 'brand_name'},
@@ -86,14 +97,21 @@ export class ReportsComponent implements OnInit {
     }
   }
 
-  onReportChange() {
+  /**
+   * Triggered when date and report type changes.
+   */
+  public onReportChange(): void {
     this.brandSales = null;
     this.productSales = null;
     this.exportPdf = false;
     this.emptyTable = true;
   }
 
-  handleDateFromChange(dateFrom: Date) {
+  /**
+   * Function to handle on change of the date from.
+   * @param dateFrom - changed dataFrom.
+   */
+  public handleDateFromChange(dateFrom: Date): void {
     this.onReportChange();
     this.startDateModel = dateFrom;
     this.datepickerToOpts = {
@@ -102,7 +120,11 @@ export class ReportsComponent implements OnInit {
     this.endDateModel = dateFrom;
   }
 
-  handleDateToChange(dateTo: Date) {
+  /**
+   * Function to handle on change of the data to.
+   * @param dateTo - changed date to.
+   */
+  public handleDateToChange(dateTo: Date): void {
     this.onReportChange();
     this.endDateModel = dateTo;
   }

@@ -10,6 +10,10 @@ import { IToastyObject } from '../../shared/models/common.model';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
+
+/**
+ * Class representing a search component.
+ */
 export class SearchComponent implements OnInit {
 
   @Output() rowSelected = new EventEmitter();
@@ -31,7 +35,11 @@ export class SearchComponent implements OnInit {
 
   }
 
-  getAdvanceSearchOrders(value) {
+  /**
+   * Function to get the advance search order details from the REST API.
+   * @param value - seach terms
+   */
+  public getAdvanceSearchOrders(value): void {
     this.dateFrom = value.startDate;
     let param = this.commonService.addQueryParams({
       marketPlaceId: this.userService.supplierID,
@@ -48,17 +56,19 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  loadOrder(order) {
+  /**
+   * Function to load the selected order details.
+   * @param order
+   */
+  public loadOrder(order): void {
     this.orderInfo = order;
   }
 
-  // loadModal(obj) {
-  //   this.orderInfoStatus = obj.status;
-  //   this.orderInfo = obj.orderInfo;
-  //   this.lgModal.show();
-  // }
-
-  orderStatusSubmit(values: any) {
+  /**
+   * Function to send request to the REST API to change the order status.
+   * @param values
+   */
+  public orderStatusSubmit(values: any): void {
     this.toastyObject = { title: 'Saving....', msg: 'Please wait', type: 'info' };
     this.commonService.toasty(this.toastyObject);
 
@@ -67,8 +77,6 @@ export class SearchComponent implements OnInit {
       status: this.orderInfoStatus,
       reason: values.reason
     };
-
-    // this.lgModal.hide();
 
     this.orderService.changeOrderStatus(obj).subscribe((data: any) => {
       this.orderInfo.status = this.orderInfoStatus;
@@ -80,16 +88,28 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  activateRow(order) {
+  /**
+   * Function to activate the selected order row.
+   * @param order
+   */
+  public activateRow(order): void {
     this.rowSelected.emit(order);
   }
 
-  transmitParent(obj) {
+  /**
+   * Function transmit to the child component to emit the selected order details.
+   * @param obj
+   */
+  public transmitParent(obj): void {
     console.log('called');
     this.orderSelected.emit(obj);
   }
 
-  handleDateFromChange(dateFrom: Date) {
+  /**
+   * Function to handle the date from change.
+   * @param dateFrom
+   */
+  public handleDateFromChange(dateFrom: Date): void {
     this.dateFrom = dateFrom;
     this.datepickerToOpts = {
       startDate: dateFrom

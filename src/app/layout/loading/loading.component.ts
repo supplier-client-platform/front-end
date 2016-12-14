@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']
 })
+
+/**
+ * Class representing a Loading component.
+ */
 export class LoadingComponent implements OnInit {
 
   constructor() { }

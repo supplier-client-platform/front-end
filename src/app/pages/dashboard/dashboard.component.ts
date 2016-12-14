@@ -77,7 +77,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-
+  /**
+   * Function to get stats from the REST API.
+   */
   getStats() {
     this.dashboardService.getStats()
       .subscribe((data) => {
@@ -94,6 +96,9 @@ export class DashboardComponent implements OnInit {
       });
   }
 
+  /**
+   * Function to get the orders from the REST API.
+   */
   getOrders() {
     this.dashboardService.getOrders()
       .subscribe((data) => {
@@ -127,6 +132,9 @@ export class DashboardComponent implements OnInit {
       });
   }
 
+  /**
+   * Function to get the sale details from the REST API.
+   */
   getSales() {
     this.dashboardService.getSales()
       .subscribe((data) => {

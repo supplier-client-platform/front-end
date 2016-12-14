@@ -6,6 +6,10 @@ import {Input} from '@angular/core/src/metadata/directives';
   templateUrl: './brand-report-list-table.component.html',
   styleUrls: ['./brand-report-list-table.component.scss']
 })
+
+/**
+ * Class representing the Brand Report List Table Component.
+ */
 export class BrandReportListTableComponent implements OnInit {
   @Input() brandSales: Array<any>;
 
